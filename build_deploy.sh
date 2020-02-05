@@ -2,10 +2,10 @@
 
 set -exv
 
-IMAGE="quay.io/quarkus/code-quarkus-product-app"
+IMAGE="quay.io/ia3andy/code-quarkus-product-poc-app"
 IMAGE_TAG=$(git rev-parse --short=7 HEAD)
 
-docker build -f code.quarkus.io/src/main/docker/Dockerfile.native.multistage -t "${IMAGE}:${IMAGE_TAG}" .
+docker build -f Dockerfile.native.multistage -t "${IMAGE}:${IMAGE_TAG}" .
 
 if [[ -n "$QUAY_USER" && -n "$QUAY_TOKEN" ]]; then
     DOCKER_CONF="$PWD/.docker"

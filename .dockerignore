@@ -1,0 +1,9 @@
+*
+!code.quarkus.io/src
+!code.quarkus.io/pom.xml
+!code.quarkus.io/reflection-config.json
+!code.quarkus.io/resources-config.json
+!code.quarkus.io/target/*-runner
+!code.quarkus.io/target/*-runner.jar
+!code.quarkus.io/target/lib/*
+!.git/*
