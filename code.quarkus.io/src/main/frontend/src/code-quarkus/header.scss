@@ -1,0 +1,78 @@
+@import "config.scss";
+
+.header {
+  height: 70px;
+  background-color: $headerBackgroundColor;
+  background-image: $headerBackgroundImage;
+  background-size: 100% 70px;
+  background-repeat: repeat-x;
+  color: $headerTextColor;
+
+  .header-content {
+    grid-column: span 12;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+
+    .nav-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      float: right;
+    }
+    .brand {
+      display: inline-block;
+      margin-top: 1.2rem;
+      width: 13rem;
+      @media screen and (max-width: 900px) {
+        margin-left: 20px;
+      }
+    }
+
+    .nav-list {
+      height: 70px;
+      text-transform: uppercase;
+      white-space: nowrap;
+
+      @media screen and (max-width: 1200px) {
+        font-size: 1rem;
+      }
+
+      @media screen and (max-width: 900px) {
+        display: none;
+      }
+
+      li {
+        float: left;
+        position: relative;
+        margin: 0;
+      }
+
+      a {
+        display: inline-block;
+        color: $headerMenuLinkTextColor;
+        padding: 0 10px;
+        text-decoration: none;
+        line-height: 70px;
+        height: 55px;
+        font-size: 1rem;
+      }
+      a:hover {
+        border-bottom: 3px solid $headerMenuLinkTextColor;
+      }
+      a.start-coding {
+        margin-left: 3px;
+        text-decoration: none;
+        color: $headerMenuStartCodingButtonTextColor;
+        height: 37px;
+        line-height: 37px;
+        margin-top: 15px;
+        background-color: $headerMenuStartCodingButtonBg;
+        transition: background .2s ease-in 0s;
+        border: none;
+        &:hover {
+          color: $headerMenuStartCodingButtonTextColor;
+        }
+      }
+    }
+  }
+}
