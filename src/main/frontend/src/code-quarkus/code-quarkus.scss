@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Mono);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import "config.scss";
+
+body {
+  background: $background;
+  font-family: "Open Sans", Regular;
+}
+
+.responsive-container {
+  max-width: 1200px;
+
+  @media screen and (max-width: $tabletWidth) {
+    max-width: 900px;
+  }
+
+  @media screen and (max-width: $mobileWidth) {
+    max-width: 100%;
+  }
+}
+
+.mobile-only {
+  @media screen and (min-width: $mobileWidth) {
+    display: none;
+  }
+}
+
+.desktop-only {
+  @media screen and (max-width: $mobileWidth) {
+    display: none;
+  }
+}
+
+.pf-c-backdrop__open {
+  background: $background;
+}
+
+.pf-c-backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: none;
+}
+
+button.pf-c-button {
+  outline: none;
+}
+
+.next-steps-modal {
+  background-color: $nextStepsModalBg;
+  color: $nextStepsModalTextColor;
+  border: 4px solid $nextStepsModalBorderColor;
+  .pf-c-content {
+    color: $nextStepsModalTextColor;
+
+    .pf-c-button.pf-m-link {
+      padding: 0;
+      color: $nextStepsModalLinkColor;
+    }
+  }
+  .pf-c-title {
+    color: $nextStepsModalTitleColor;
+    font-weight: bold;
+  }
+
+  & > .pf-c-button {
+    background-color: $nextStepsModalCloseButtonBg;
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    vertical-align: middle;
+    padding: 0;
+    border-radius: 0;
+    svg {
+      color: $nextStepsModalBg;
+    }
+    &:hover {
+      background-color: $nextStepsModalCloseButtonBgHover;
+    }
+  }
+
+  code {
+    display: block;
+    margin: 10px 0;
+    padding: 5px;
+
+    .copy-to-clipboard {
+      float: right;
+      margin-right: 10px;
+    }
+  }
+
+  .download-button {
+    background-color: $nextStepsModalDownloadButtonBg;
+    border: 1px solid $nextStepsModalDownloadButtonBg;
+    color: $nextStepsModalDownloadButtonTextColor;
+    border-radius: 0;
+    text-transform: uppercase;
+    width: 200px;
+    &:hover {
+      border: 1px solid $nextStepsModalDownloadButtonTextColor;
+    }
+  }
+
+  .pf-c-modal-box__footer {
+    button.pf-c-button {
+      background-color: $nextStepsModalFooterButtonBg;
+      color: $nextStepsModalFooterButtonTextColor;
+      border-radius: 0;
+      border: 1px solid $nextStepsModalFooterButtonBg;
+
+      &:hover {
+        border: 1px solid $nextStepsModalFooterButtonTextColor;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+code {
+  background-color: $codeBg;
+  color: $codeTextColor;
+}
