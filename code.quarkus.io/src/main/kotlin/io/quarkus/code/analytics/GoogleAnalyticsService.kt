@@ -7,6 +7,7 @@ import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import java.util.logging.Level.FINE
 import java.util.logging.Logger
+import java.util.regex.Pattern
 import javax.enterprise.event.Observes
 import javax.inject.Inject
 import javax.inject.Provider
@@ -18,6 +19,7 @@ open class GoogleAnalyticsService {
 
     companion object {
         private val LOG = Logger.getLogger(GoogleAnalyticsService::class.java.name)
+        val USER_AGENT_PATTERN = Pattern.compile("^\\S+/\\S+ (\\S+).*\$")
     }
 
     private lateinit var defaultUserAgent: String
@@ -42,6 +44,9 @@ open class GoogleAnalyticsService {
 
     @ConfigProperty(name = "io.quarkus.code.ga.batchSize", defaultValue = "30")
     internal lateinit var batchSize: Provider<Int>
+
+    @ConfigProperty(name = "io.quarkus.code.hostname", defaultValue = "code.quarkus.io")
+    internal lateinit var hostname: Provider<String>
 
     var googleAnalytics: GoogleAnalytics? = null
 
@@ -68,7 +73,6 @@ open class GoogleAnalyticsService {
             url: String,
             userAgent: String?,
             referer: String?,
-            host: String?,
             remoteAddr: String?,
             extensions: Set<String>?,
             buildTool: String?
@@ -93,7 +97,7 @@ open class GoogleAnalyticsService {
                     sending analytic event:
                         - userAgent: ${fixedUserAgent}
                         - documentReferrer: ${referer}
-                        - documentHostName: ${host}
+                        - documentHostName: ${hostname.get()}
                         - userIp: ${remoteAddr != null}
                         - applicationName: ${applicationName}
                         - documentUrl: ${url}
@@ -106,7 +110,7 @@ open class GoogleAnalyticsService {
             event
                     .userAgent(fixedUserAgent)
                     .documentReferrer(referer)
-                    .documentHostName(host)
+                    .documentHostName(hostname.get())
                     .userIp(remoteAddr)
                     .dataSource("api")
                     .anonymizeIp(true)
@@ -124,7 +128,7 @@ open class GoogleAnalyticsService {
     }
 
     private fun fixUserAgent(userAgent: String?): String {
-        if (userAgent.isNullOrBlank() || userAgent.startsWith("Java")) {
+        if (userAgent.isNullOrBlank() || !USER_AGENT_PATTERN.matcher(userAgent).matches()) {
             return defaultUserAgent
         }
         return userAgent
