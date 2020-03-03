@@ -1,9 +1,9 @@
 
-$background: #000;
-$backgroundSecondary: #0d1c2b;
+$background: #EFEFEF;
+$backgroundSecondary: #242424;
 
-$primary: #71aeef;
-$secondary: #4695eb;
+$primary: #666666;
+$secondary: #EB0B19;
 
 $warningColor: #ff004a;
 $errorColor: #ff0048a8;
@@ -15,8 +15,8 @@ $readonlyLabelAndBorderColor: #707070;
 
 // Top container
 $topContainerTextColor: white;
-$topContainerBg: $background;
-$topContainerBgImage: url("/static/media/bg-form.jpg");
+$topContainerBg: $backgroundSecondary;
+$topContainerBgImage: none;
 
 $fieldLabelAndBorderColor: $primary; 
 $fieldLabelAndBorderHoverColor: $topContainerTextColor; 
@@ -32,7 +32,7 @@ $generateButtonDisabledBgAndBorderColor: rgba(90, 149, 235, 0.342);
 $generateButtonDisabledColor: rgba(255, 255, 255, 0.384);
 
 // Main container
-$mainContainerTextColor: white;
+$mainContainerTextColor: black;
 $mainContainerBg: $background;
 
 $mobileWidth: 900px;
@@ -59,9 +59,9 @@ $codeTextColor: white;
 
 // Extensions picker
 $extensionsPickerTextColor: $mainContainerTextColor;
-$extensionsPickerCheckColor: white;
-$extensionsPickerCheckSelectedHoverColor: white;
-$extensionsPickerCheckSelectedColor: $primary;
+$extensionsPickerCheckColor: $mainContainerTextColor;
+$extensionsPickerCheckSelectedHoverColor: $mainContainerTextColor;
+$extensionsPickerCheckSelectedColor: $secondary;
 $extensionsPickerCheckSelectedByDefaultColor: $readonlyLabelAndBorderColor;
 $extensionsPickerKeyboardActivedTextColor: $secondary;
 $extensionsPickerRemoveButtonColor: $warningColor;
@@ -72,7 +72,7 @@ $extensionsPickerMoreDropdownBg: $backgroundSecondary;
 $extensionsPickerMoreDropdownTextColor: white;
 
 $extensionsPickerCategoryTextColor: $mainContainerTextColor;
-$extensionsPickerCategoryUnderlineColor: $secondary;
+$extensionsPickerCategoryUnderlineColor: #242424;
 
 $extensionsPickerSearchTextColor: $mainContainerTextColor;
 $extensionsPickerSearchBorderColorOnFocus: $secondary;
@@ -83,8 +83,8 @@ $extensionsPickerFlagPreviewColor: $secondary;
 $extensionsPickerFlagExperimentalColor: $warningColor;
 
 // Header
-$headerBackgroundColor: $background;
-$headerBackgroundImage: url("/static/media/bg-header.jpg");
+$headerBackgroundColor: #1A1A1A;
+$headerBackgroundImage: none;
 $headerTextColor: white;
 
 $headerMenuLinkTextColor: white;

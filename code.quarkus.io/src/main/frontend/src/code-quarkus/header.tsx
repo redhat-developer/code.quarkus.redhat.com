@@ -6,18 +6,12 @@ export function Header() {
     <div className="header">
       <div className="header-content responsive-container">
         <div className="brand">
+          <a href="https://www.redhat.com" className="pf-c-nav__link">
+            <img className="pf-c-brand" alt="Red Hat Logo" src="https://developers.redhat.com/themes/custom/rhdp2/images/branding/RHLogo_white.svg" />
+          </a>
           <a href="/">
             <img src="/static/media/quarkus-logo.svg" className="project-logo" title="Quarkus" alt="Quarkus"/>
           </a>
-        </div>
-        <div className="nav-container">
-          <ul className="nav-list">
-            <li><a href="https://quarkus.io/get-started/">Get Started</a></li>
-            <li><a href="https://quarkus.io/guides/">Guides</a></li>
-            <li><a href="https://quarkus.io/community/">Community</a></li>
-            <li><a href="https://quarkus.io/blog/">Blog</a></li>
-            <li><a className="start-coding" href="/">Start Coding</a></li>
-          </ul>
         </div>
       </div>
     </div>
