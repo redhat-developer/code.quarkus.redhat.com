@@ -2,7 +2,7 @@
 
 set -exv
 
-IMAGE="quay.io/ia3andy/code-quarkus-product-poc-app"
+IMAGE="quay.io/redhat-developer/code-quarkus"
 IMAGE_TAG=$(git rev-parse --short=7 HEAD)
 
 docker build -f Dockerfile.native.multistage -t "${IMAGE}:${IMAGE_TAG}" .
