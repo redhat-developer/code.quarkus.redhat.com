@@ -2,4 +2,4 @@
 
 export IMAGE="quay.io/redhat-developer/code-quarkus"
 
-./code.quarkus.io/build_deploy.sh
+cd code.quarkus.io && ./build_deploy.sh
