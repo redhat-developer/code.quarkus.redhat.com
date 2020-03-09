@@ -1,8 +1,8 @@
 
-$background: #EFEFEF;
-$backgroundSecondary: #242424;
+$background: white;
+$backgroundSecondary: #f0f0f0;
 
-$primary: #666666;
+$primary: #646464;
 $secondary: #EB0B19;
 
 $warningColor: #ff004a;
@@ -14,7 +14,7 @@ $readOnlyTextColor: #bdbcbc;
 $readonlyLabelAndBorderColor: #707070;
 
 // Top container
-$topContainerTextColor: white;
+$topContainerTextColor: black;
 $topContainerBg: $backgroundSecondary;
 $topContainerBgImage: none;
 
@@ -23,8 +23,8 @@ $fieldLabelAndBorderHoverColor: $topContainerTextColor;
 $fieldTextColor: $topContainerTextColor; 
 $selectOptionsTextColor: black; 
 
-$readOnlyTextColor: #bdbcbc;
-$readonlyLabelAndBorderColor: #707070;
+$readOnlyTextColor: #a8a7a7;
+$readonlyLabelAndBorderColor: #999999;
 
 $generateButtonTextColor: white;
 $generateButtonBgColor: $secondary;
@@ -72,10 +72,10 @@ $extensionsPickerMoreDropdownBg: $backgroundSecondary;
 $extensionsPickerMoreDropdownTextColor: white;
 
 $extensionsPickerCategoryTextColor: $mainContainerTextColor;
-$extensionsPickerCategoryUnderlineColor: #242424;
+$extensionsPickerCategoryUnderlineColor: #dcdcdc;
 
 $extensionsPickerSearchTextColor: $mainContainerTextColor;
-$extensionsPickerSearchBorderColorOnFocus: $secondary;
+$extensionsPickerSearchBorderColorOnFocus: #dcdcdc;
 $extensionsPickerSearchClearColor: $warningColor;
 
 $extensionsPickerFlagDefaultColor: $readonlyLabelAndBorderColor;
