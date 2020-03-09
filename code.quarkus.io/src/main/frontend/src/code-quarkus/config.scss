@@ -19,7 +19,7 @@ $topContainerBg: $backgroundSecondary;
 $topContainerBgImage: none;
 
 $fieldLabelAndBorderColor: $primary; 
-$fieldLabelAndBorderHoverColor: $topContainerTextColor; 
+$fieldLabelAndBorderHoverColor: $secondary;
 $fieldTextColor: $topContainerTextColor; 
 $selectOptionsTextColor: black; 
 
@@ -39,14 +39,14 @@ $mobileWidth: 900px;
 $tabletWidth: 1200px;
 
 // Next steps Modal
-$nextStepsModalBg: $background;
-$nextStepsModalTextColor: white;
+$nextStepsModalBg: $backgroundSecondary;
+$nextStepsModalTextColor: black;
 $nextStepsModalBorderColor: $secondary;
 $nextStepsModalTitleColor: $secondary;
 $nextStepsModalLinkColor: $linkTextColor;
 
-$nextStepsModalCloseButtonBg: $secondary;
-$nextStepsModalCloseButtonBgHover: rgba(70, 149, 235, 0.548);
+$nextStepsModalCloseButtonBg: $primary;
+$nextStepsModalCloseButtonBgHover: $secondary;
 
 $nextStepsModalDownloadButtonBg: $secondary;
 $nextStepsModalDownloadButtonTextColor: white;
@@ -69,14 +69,14 @@ $extensionsPickerRemoveButtonColor: $warningColor;
 $extensionsPickerDescriptionTextColorOnTablet: #ccc;
 
 $extensionsPickerMoreDropdownBg: $backgroundSecondary;
-$extensionsPickerMoreDropdownTextColor: white;
+$extensionsPickerMoreDropdownTextColor: black;
 
 $extensionsPickerCategoryTextColor: $mainContainerTextColor;
 $extensionsPickerCategoryUnderlineColor: #dcdcdc;
 
 $extensionsPickerSearchTextColor: $mainContainerTextColor;
 $extensionsPickerSearchBorderColor: #dcdcdc;
-$extensionsPickerSearchBorderColorOnFocus: black;
+$extensionsPickerSearchBorderColorOnFocus: $secondary;
 $extensionsPickerSearchClearColor: $warningColor;
 
 $extensionsPickerFlagDefaultColor: $readonlyLabelAndBorderColor;
@@ -96,6 +96,6 @@ $headerMenuStartCodingButtonBg: $secondary;
 
 // Blurb
 $blurbBg: $backgroundSecondary;
-$blurbTextColor: white;
+$blurbTextColor: black;
 $blurbLinkTextColor: $linkTextColor;
 $blurbInfoIconColor: $primary;
