@@ -1,11 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Mono);
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import "../red-hat-font.scss";
+@include printRedHatFont(400, "Regular", $familyName: "RedHatText", $relative: false);
+@include printRedHatFont(700, "Medium", $familyName: "RedHatText", $relative: false);
 @import "config.scss";
 
 body {
   background: $background;
-  font-family: "Open Sans", Regular;
+  font-family: RedHatText, Regular;
 }
+
 
 .responsive-container {
   max-width: 1200px;
