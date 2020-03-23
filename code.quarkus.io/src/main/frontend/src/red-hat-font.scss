@@ -1,7 +1,7 @@
 //----------------------
 // Red Hat Font Mixin
 //----------------------
-$fontLocation: "https://static.redhat.com";
+$fontLocation: "https://static.redhat.com/libs/redhat/redhat-font/2/webfonts";
 
 @mixin printRedHatFont(
   $weightValue: 400,
