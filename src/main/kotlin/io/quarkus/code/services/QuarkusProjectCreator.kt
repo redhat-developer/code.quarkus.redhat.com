@@ -7,12 +7,11 @@ import io.quarkus.code.writer.CommonsZipProjectWriter
 import io.quarkus.generators.BuildTool
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.util.stream.Collectors.toSet
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-open class QuarkusProjectCreator {
+class QuarkusProjectCreator {
     companion object {
         private const val MVNW_RESOURCES_DIR = "/creator/mvnw"
         private const val MVNW_WRAPPER_DIR = ".mvn/wrapper"
@@ -44,20 +43,20 @@ open class QuarkusProjectCreator {
                 val sourceType = CreateProject.determineSourceType(extensions)
                 val context = mutableMapOf("path" to (project.path as Any))
                 val buildTool = io.quarkus.generators.BuildTool.valueOf(project.buildTool)
-                val success = CreateProject(zipWriter)
+                val success = CreateProject(zipWriter, QuarkusExtensionCatalog.descriptor)
                         .groupId(project.groupId)
                         .artifactId(project.artifactId)
                         .version(project.version)
                         .sourceType(sourceType)
                         .buildTool(buildTool)
                         .className(project.className)
-                        .extensions(extensions)
                         .doCreateProject(context)
                 if (!success) {
                     throw IOException("Error during Quarkus project creation")
                 }
-                AddExtensions(zipWriter, buildTool)
-                        .addExtensions(extensions)
+                AddExtensions(zipWriter, buildTool, QuarkusExtensionCatalog.descriptor)
+                        .extensions(extensions)
+                        .execute()
                 if (buildTool == BuildTool.MAVEN) {
                     addMvnw(zipWriter)
                 } else if (buildTool == BuildTool.GRADLE) {
