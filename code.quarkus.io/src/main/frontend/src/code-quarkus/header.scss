@@ -13,19 +13,18 @@
     width: 100%;
     margin: 0 auto;
     display: flex;
+    height: 70px;
 
     .nav-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      float: right;
+      line-height: 70px;
       a {
         display: inline-block;
         color: $headerMenuLinkTextColor;
         padding: 0 10px;
         text-decoration: none;
-        line-height: 70px;
         height: 55px;
         font-size: 1rem;
+        margin-right: 30px;
 
 
         svg {
@@ -36,22 +35,37 @@
       a:hover svg {
         transform: translate(-10px);
       }
+
+      @media screen and (max-width: $mobileWidth) {
+       display: none;
+      }
     }
 
     .quarkus-brand, .redhat-brand {
-      margin-top: 1rem;
-      width: 13rem;
-      @media screen and (max-width: 900px) {
+      a {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        height: 40px;
+        width: auto;
+        max-width: none;
+        vertical-align: middle;
+      }
+      @media screen and (max-width: $mobileWidth) {
         margin-left: 20px;
+        margin-right: 20px;
+        img {
+          height: 25px;
+          width: auto;
+        }
       }
     }
 
     .redhat-brand {
       flex-grow: 1;
-
-      img {
-        height: 40px;
-      }
     }
 
   }

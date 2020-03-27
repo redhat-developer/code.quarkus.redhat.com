@@ -7,6 +7,8 @@
 $font: RedHatText, Regular;
 $inputFont: "PT Mono", Regular;
 
+$quarkusBlue: #4B97E8;
+
 $background: white;
 $backgroundSecondary: #f0f0f0;
 
@@ -98,7 +100,7 @@ $headerBackgroundColor: #1A1A1A;
 $headerBackgroundImage: none;
 $headerTextColor: white;
 
-$headerMenuLinkTextColor: white;
+$headerMenuLinkTextColor: $quarkusBlue;
 
 $headerMenuStartCodingButtonTextColor: white;
 $headerMenuStartCodingButtonBorderColor: $secondary;

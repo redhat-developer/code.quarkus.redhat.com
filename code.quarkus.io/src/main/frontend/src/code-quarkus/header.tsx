@@ -22,7 +22,7 @@ export function Header() {
                     <a href="https://code.quarkus.io" onClick={linkClick}><AngleLeftIcon/> Back to code.quarkus.io</a>
                 </div>
                 <div className="quarkus-brand">
-                    <a href="/" onClick={linkClick}>
+                    <a href="https://quarkus.io" onClick={linkClick}>
                         <img src="/static/media/quarkus-logo.svg" className="logo" title="Quarkus" alt="Quarkus"/>
                     </a>
                 </div>
