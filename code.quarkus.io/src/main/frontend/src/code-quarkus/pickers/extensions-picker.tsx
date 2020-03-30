@@ -61,7 +61,7 @@ function StatusTag(props: { status?: string }) {
       const experimentalTooltip = 'Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures.';
       return <span className="extension-tag experimental" title={experimentalTooltip}>EXPERIMENTAL</span>;
     default:
-      return <React.Fragment/>;
+      return <span className="extension-tag custom">{props.status}</span>;
   }
 }
 
