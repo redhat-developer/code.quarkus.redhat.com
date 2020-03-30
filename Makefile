@@ -1,20 +1,7 @@
-dev:
-	cd code.quarkus.io && make dev
+.PHONY: code.quarkus.io
 
-start-web:
-	cd code.quarkus.io && make start-web
-
-dev-web:
-	cd code.quarkus.io && make dev-web
-
-debug:
-	cd code.quarkus.io && make debug
-
-clean:
-	cd code.quarkus.io && make clean
-
-native:
-	cd code.quarkus.io && make native
+code.quarkus.io:
+	$(MAKE) --directory=$(MAKECMDGOALS)
 
 merge-with-upstream:
 	git subtree pull --prefix code.quarkus.io https://github.com/quarkusio/code.quarkus.io master --squash

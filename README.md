@@ -4,16 +4,19 @@
 
 Start in watch mode:
 ```bash`
-make dev
+make code dev-backend
 ``
 
 
-# Web dev (back + front)
+# Full Dev (back + front)
 
-Start web watch mode:
-```bash`
-make dev-web
-``
+Start in watch mode:
+```bash
+make code dev
+```
+
+Open: http://locahost:3000 (:8080 is the backend)
+
 
 Then open `./src/main/frontend` with your favorite IDE to edit.
 
