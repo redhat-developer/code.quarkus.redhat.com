@@ -373,5 +373,28 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>test-ga</id>
+            <activation>
+                <property>
+                    <name>test-ga</name>
+                </property>
+            </activation>
+            <properties>
+                <quarkus.platform.group-id>com.redhat.quarkus</quarkus.platform.group-id>
+            </properties>
+            <repositories>
+                <repository>
+                    <id>Indy</id>
+                    <url>http://indy.psi.redhat.com/api/content/maven/group/static/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>Indy</id>
+                    <url>http://indy.psi.redhat.com/api/content/maven/group/static/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
     </profiles>
 </project>
