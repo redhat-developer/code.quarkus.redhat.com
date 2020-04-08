@@ -7,7 +7,7 @@ COPY pom.xml reflection-config.json resources-config.json maven-settings.xml* /u
 USER root
 RUN chown -R quarkus /usr/src/app
 USER quarkus
-RUN cd /usr/src/app/ && mvn clean package -Pnative -Dnative-image.xmx=4g $MAVEN_EXTRA_ARGS
+RUN cd /usr/src/app/ && mvn clean package -Pnative -Dnative-image.xmx=2g $MAVEN_EXTRA_ARGS
 RUN mkdir -p /tmp/ssl-libs/lib \
   && cp /opt/graalvm/lib/security/cacerts /tmp/ssl-libs \
   && cp /opt/graalvm/lib/libsunec.so /tmp/ssl-libs/lib/
