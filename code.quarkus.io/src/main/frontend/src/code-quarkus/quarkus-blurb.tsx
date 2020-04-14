@@ -13,11 +13,8 @@ export function QuarkusBlurb() {
     analytics.event('UX', 'Blurb', 'Close');
     setVisible(false);
   };
-  const missingFeatureLinkClick = () => {
-    analytics.event('UX', 'Blurb', 'Click on "Missing a feature?" link');
-  };
-  const foundBugLinkClick = () => {
-    analytics.event('UX', 'Blurb', 'Click on "Found a bug?" link');
+  const feedbackLinkClick = () => {
+    analytics.event('UX', 'Blurb', 'Click on "We are listening for feedback" link');
   };
   return (
     <>
@@ -29,9 +26,7 @@ export function QuarkusBlurb() {
           <br/>
           <p className="desktop-only">Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!</p>
           <br/>
-          <p>[<a href="https://github.com/quarkusio/code.quarkus.io/issues/new?labels=feature&template=feature_request.md" onClick={missingFeatureLinkClick} target="_blank" rel="noopener noreferrer">Missing
-            a feature?</a> <a href="https://github.com/quarkusio/code.quarkus.io/issues/new?labels=bug&template=bug_report.md" target="_blank" rel="noopener noreferrer" onClick={foundBugLinkClick}>Found
-            a bug?</a> We are listening for feedback]</p>
+          <p>[Missing a feature? Found a bug? <a href="https://access.redhat.com/support/cases/#/troubleshoot?product=Red%20Hat%20build%20of%20Quarkus" target="_blank" rel="noopener noreferrer" onClick={feedbackLinkClick}>We are listening for feedback</a>]</p>
         </Alert>
       )}
       <Alert className="mobile-only quarkus-blurb" variant="info" title="On mobile devices, you can explore the list of Quarkus extensions.">
