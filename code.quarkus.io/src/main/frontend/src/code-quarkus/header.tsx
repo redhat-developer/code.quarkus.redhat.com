@@ -9,6 +9,7 @@ export function Header() {
         const link = e.target.getAttribute('href');
         analytics.event('UX', 'Click on header link', link);
     };
+    const isCodeQuarkusReferrer = document.referrer.includes("code.quarkus.io");
     return (
         <div className="header">
             <div className="header-content responsive-container">
@@ -18,9 +19,11 @@ export function Header() {
                              src="https://developers.redhat.com/themes/custom/rhdp2/images/branding/RHLogo_white.svg"/>
                     </a>
                 </div>
-                <div className="nav-container">
-                    <a href="https://code.quarkus.io" onClick={linkClick}><AngleLeftIcon/> Back to code.quarkus.io</a>
-                </div>
+                {isCodeQuarkusReferrer && (
+                    <div className="nav-container">
+                        <a href="https://code.quarkus.io" onClick={linkClick}><AngleLeftIcon/> Back to code.quarkus.io</a>
+                    </div>
+                )}
                 <div className="quarkus-brand">
                     <a href="https://quarkus.io" onClick={linkClick}>
                         <img src="/static/media/quarkus-logo.svg" className="logo" title="Quarkus" alt="Quarkus"/>
