@@ -26,7 +26,7 @@ export function QuarkusBlurb() {
           <br/>
           <p className="desktop-only">Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!</p>
           <br/>
-          <p>[Missing a feature? Found a bug? <a href="https://access.redhat.com/support/cases/#/troubleshoot?product=Red%20Hat%20build%20of%20Quarkus" target="_blank" rel="noopener noreferrer" onClick={feedbackLinkClick}>We are listening for feedback</a>]</p>
+          <p>[Missing a feature? Found a bug? <a href="https://access.redhat.com/support/" target="_blank" rel="noopener noreferrer" onClick={feedbackLinkClick}>We are listening for feedback</a>]</p>
         </Alert>
       )}
       <Alert className="mobile-only quarkus-blurb" variant="info" title="On mobile devices, you can explore the list of Quarkus extensions.">
