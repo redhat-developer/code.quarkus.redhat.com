@@ -9,15 +9,33 @@
     </proxies>
     <profiles>
         <profile>
-            <id>test-ga</id>
+            <id>redhat-ga</id>
             <activation>
                 <property>
-                    <name>test-ga</name>
+                    <name>redhat-ga</name>
                 </property>
             </activation>
-            <properties>
-                <quarkus.platform.group-id>com.redhat.quarkus</quarkus.platform.group-id>
-            </properties>
+            <repositories>
+                <repository>
+                    <id>redhat-ga</id>
+                    <url>https://maven.repository.redhat.com/ga/</url>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>redhat-ga</id>
+                    <url>https://maven.repository.redhat.com/ga/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <profile>
+            <id>internal-build</id>
+            <activation>
+                <property>
+                    <name>internal-build</name>
+                </property>
+            </activation>
             <repositories>
                 <repository>
                     <id>Indy</id>
@@ -203,5 +221,6 @@
     </profiles>
     <activeProfiles>
         <activeProfile>securecentral</activeProfile>
+        <activeProfile>redhat-ga</activeProfile>
     </activeProfiles>
 </settings>
