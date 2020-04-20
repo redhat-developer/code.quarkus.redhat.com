@@ -65,12 +65,17 @@
       outline: none;
     }
 
+    a.extension-tag {
+      cursor: pointer;
+    }
+
     .extension-tag {
       font-size: 0.6rem;
       line-height: 20px;
       margin: 5px 5px;
       padding: 0 3px;
       height: 20px;
+      color: $extensionsPickerTextColor;
       text-transform: uppercase;
 
       &.preview {
@@ -79,6 +84,28 @@
 
       &.experimental {
         border: 1px solid $extensionsPickerFlagExperimentalColor;
+      }
+
+      &.supported {
+        border: none;
+        color: white;
+        background-color: #6AB983;
+      }
+
+      &.dev-support {
+        border: 1px solid #6AB983;
+      }
+
+      &.tech-preview {
+        border: none;
+        color: white;
+        background-color: #4A97E8;
+      }
+
+      &.deprecated {
+        border: none;
+        color: white;
+        background-color: $warningColor;
       }
 
       &.custom {
