@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Mono);
-@import url(https://fonts.googleapis.com/css?family=PT+Mono);
 @import "../red-hat-font.scss";
 @include printRedHatFont(400, "Regular", $familyName: "RedHatText", $relative: false);
 @include printRedHatFont(700, "Medium", $familyName: "RedHatText", $relative: false);
@@ -23,6 +22,8 @@ $linkTextColor: $secondary;
 $readOnlyTextColor: #bdbcbc;
 $readonlyLabelAndBorderColor: #707070;
 
+$loaderColor: $primary;
+
 // Top container
 $topContainerTextColor: black;
 $topContainerBg: $backgroundSecondary;
@@ -42,6 +43,9 @@ $generateButtonBorderColorOnHover: black;
 $generateButtonDisabledBgAndBorderColor: rgba(90, 149, 235, 0.342);
 $generateButtonDisabledColor: rgba(255, 255, 255, 0.384);
 
+$generateButtonMoreDropdownTextColor: white;
+$generateButtonMoreDropdownBg: black;
+
 // Main container
 $mainContainerTextColor: black;
 $mainContainerBg: $background;
@@ -50,21 +54,21 @@ $mobileWidth: 900px;
 $tabletWidth: 1200px;
 
 // Next steps Modal
-$nextStepsModalBg: $backgroundSecondary;
-$nextStepsModalTextColor: black;
-$nextStepsModalBorderColor: $secondary;
-$nextStepsModalTitleColor: $secondary;
-$nextStepsModalLinkColor: $linkTextColor;
+$modalBg: $backgroundSecondary;
+$modalTextColor: black;
+$modalBorderColor: $secondary;
+$modalTitleColor: $secondary;
+$modalLinkColor: $linkTextColor;
 
-$nextStepsModalCloseButtonBg: $primary;
-$nextStepsModalCloseButtonBgHover: $secondary;
+$modalCloseButtonBg: $primary;
+$modalCloseButtonBgHover: $secondary;
 
 $nextStepsModalDownloadButtonBg: $secondary;
 $nextStepsModalDownloadButtonTextColor: white;
 $nextStepsModalDownloadButtonBorderColorOnHover: black;
 
-$nextStepsModalFooterButtonBg: white;
-$nextStepsModalFooterButtonTextColor: $secondary;
+$modalFooterButtonBg: white;
+$modalFooterButtonTextColor: $secondary;
 
 $codeBg: #2b2b2b;
 $codeTextColor: white;

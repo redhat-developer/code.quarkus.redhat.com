@@ -1,0 +1,78 @@
+@import "src/code-quarkus/config";
+
+.header {
+  height: 70px;
+  background-color: $headerBackgroundColor;
+  background-image: $headerBackgroundImage;
+  background-size: 100% 70px;
+  background-repeat: repeat-x;
+  color: $headerTextColor;
+
+  .header-content {
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    height: 70px;
+
+    .nav-container {
+      display: flex;
+      height: 55px;
+      line-height: 55px;
+
+      & > a {
+        display: inline-block;
+        color: $headerMenuLinkTextColor;
+        padding: 0 10px;
+        text-decoration: none;
+        height: 55px;
+        font-size: 1rem;
+        white-space: nowrap;
+
+        svg {
+          transition: transform 0.3s ease-in-out;
+        }
+
+        &:hover svg {
+          transform: translate(-10px);
+        }
+      }
+
+      @media screen and (max-width: $mobileWidth) {
+       display: none;
+      }
+    }
+
+    .quarkus-brand, .redhat-brand {
+      a {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0;
+        padding: 0;
+      }
+      img {
+        height: 40px;
+        width: auto;
+        max-width: none;
+        vertical-align: middle;
+      }
+      @media screen and (max-width: $mobileWidth) {
+        margin-left: 20px;
+        margin-right: 20px;
+        img {
+          height: 25px;
+          width: auto;
+        }
+      }
+    }
+
+    .quarkus-brand a img {
+      margin-top: -3px;
+    }
+
+    .redhat-brand {
+      flex-grow: 1;
+    }
+
+  }
+}
