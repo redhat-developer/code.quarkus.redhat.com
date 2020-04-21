@@ -1,8 +1,9 @@
-import { CopyToClipboard, ExternalLink, useAnalytics } from '../../core';
-import { Button, Modal, TextContent } from '@patternfly/react-core';
+import {CopyToClipboard, ExternalLink, useAnalytics} from '../../core';
+import {Button, Modal, TextContent} from '@patternfly/react-core';
 import React from 'react';
-import { ExtensionEntry } from '../pickers/extensions-picker';
-import { Target } from '../api/quarkus-project-utils';
+import {ExtensionEntry} from '../pickers/extensions-picker';
+import {Target} from '../api/quarkus-project-utils';
+import {EnvConfNextStep} from "../../redhat/redhat-components";
 
 interface NextStepsProps {
   url: string;
@@ -72,6 +73,7 @@ export function NextStepsModal(props: NextStepsProps) {
 
         <h1>What's next?</h1>
         <div>
+          <EnvConfNextStep onClick={onClickLink}/>
           {props.target === Target.DOWNLOAD && (
             <p>Unzip the project and start playing with Quarkus by running:</p>
           )}
