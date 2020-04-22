@@ -1,9 +1,9 @@
 package io.quarkus.code.rest
 
-import io.quarkus.code.service.QuarkusProjectService
-import io.quarkus.code.service.GitHubService
 import io.quarkus.code.model.GitHubCreatedRepository
 import io.quarkus.code.model.QuarkusProject
+import io.quarkus.code.service.GitHubService
+import io.quarkus.code.service.QuarkusProjectService
 import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.openapi.annotations.Operation
 import java.util.logging.Level
@@ -52,11 +52,12 @@ class GitHubResource {
                       @NotEmpty @HeaderParam("GitHub-State") state: String): GitHubCreatedRepository {
         check(gitHubService.isEnabled()) { "GitHub is not enabled" }
         val location = projectCreator.createTmp(project)
-        val token = gitHubService.fetchAccessToken(code, state);
-        if (gitHubService.repositoryExists(token.accessToken, project.artifactId)) {
+        val token = gitHubService.fetchAccessToken(code, state)
+        val login = gitHubService.login(token.accessToken)
+        if (gitHubService.repositoryExists(login, token.accessToken, project.artifactId)) {
             throw WebApplicationException("This repository name ${project.artifactId} already exists", 409)
         }
-        val repo = gitHubService.createRepository(token.accessToken, project.artifactId)
+        val repo = gitHubService.createRepository(login, token.accessToken, project.artifactId)
         gitHubService.push(repo.ownerName, token.accessToken, repo.url, location)
         return repo
     }
