@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.scss';
 import { AngleLeftIcon } from '@patternfly/react-icons';
-import { useAnalytics } from '../../core';
+import { createLinkTracker, useAnalytics } from '../../core/analytics';
 
 export function Header() {
     const analytics = useAnalytics();
@@ -9,6 +9,7 @@ export function Header() {
         const link = e.target.getAttribute('href');
         analytics.event('UX', 'Click on header link', link);
     };
+    const linkTracker = createLinkTracker(analytics,'UX', 'Header');
     const isCodeQuarkusReferrer = document.referrer.includes("code.quarkus.io");
     return (
         <div className="header">
@@ -21,11 +22,11 @@ export function Header() {
                 </div>
                 {isCodeQuarkusReferrer && (
                     <div className="nav-container">
-                        <a href="https://code.quarkus.io" onClick={linkClick}><AngleLeftIcon/> Back to code.quarkus.io</a>
+                        <a href="https://code.quarkus.io" onClick={linkTracker}><AngleLeftIcon/> Back to code.quarkus.io</a>
                     </div>
                 )}
                 <div className="quarkus-brand">
-                    <a href="https://quarkus.io" onClick={linkClick}>
+                    <a href="https://quarkus.io" onClick={linkTracker}>
                         <img src="/static/media/quarkus-logo.svg" className="logo" title="Quarkus" alt="Quarkus"/>
                     </a>
                 </div>
