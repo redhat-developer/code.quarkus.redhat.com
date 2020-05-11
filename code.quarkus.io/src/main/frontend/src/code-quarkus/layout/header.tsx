@@ -17,7 +17,7 @@ export function Header() {
                 <div className="redhat-brand">
                     <a href="https://www.redhat.com" className="pf-c-nav__link" onClick={linkClick}>
                         <img className="logo" alt="Red Hat Logo"
-                             src="https://developers.redhat.com/themes/custom/rhdp2/images/branding/RHLogo_white.svg"/>
+                             src="/static/media/rh-logo.svg"/>
                     </a>
                 </div>
                 {isCodeQuarkusReferrer && (
