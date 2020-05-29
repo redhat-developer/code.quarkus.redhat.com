@@ -111,18 +111,7 @@ object QuarkusExtensionUtils {
             ext.metadata?.get(Extension.MD_STATUS) as String? ?: "stable"
 
     private fun getExtensionTags(ext: Extension, tagsFrom: List<String>): List<String> {
-        val tags = tagsFrom.map {
-                    if(setOf("quarkus-jdbc-derby", "quarkus-jdbc-h2").contains(ext.artifactId)) {
-                        return@map listOf("dev-support")
-                    }
-                    if(setOf("quarkus-resteasy-mutiny").contains(ext.artifactId)) {
-                        return@map listOf("tech-preview")
-                    }
-                    if(setOf("quarkus-logging-json", "quarkus-smallrye-jwt").contains(ext.artifactId)) {
-                        return@map listOf("supported")
-                    }
-                    return@map normalizeToList(ext.metadata[it])
-                }
+        val tags = tagsFrom.map { normalizeToList(ext.metadata[it]) }
                 .flatten()
                 .filter { it != "stable" }
                 .map { it.toLowerCase() }
