@@ -1,4 +1,4 @@
-name: Internal CI trigger
+name: Quarkus Internal Builds auto-commit
 on: [workflow_dispatch]
 env:
   LANG: en_US.UTF-8
@@ -18,7 +18,7 @@ jobs:
           author_name: CI
           author_email: andy.damevin+ghaction@redhat.com
           add: 'internal-releases.txt'
-          message: 'Internal build trigger from CI'
+          message: 'Quarkus Internal Builds auto-commit'
           ref: 'internal'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
