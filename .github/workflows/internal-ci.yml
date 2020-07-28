@@ -1,0 +1,26 @@
+name: Internal CI trigger
+on:
+  workflow_dispatch:
+    branches:
+      - internal
+    types: trigger-deploy
+env:
+  LANG: en_US.UTF-8
+jobs:
+  internal-builds:
+    runs-on: ubuntu-latest
+    name: "Deploy internal builds"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Edit internal-releases.txt
+        run: |
+          date >> internal-releases.txt
+      - name: Commit and push
+        uses: EndBug/add-and-commit@v4
+        with:
+          add: 'internal-releases.txt'
+          message: 'Internal build trigger from CI'
+          ref: 'internal'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
