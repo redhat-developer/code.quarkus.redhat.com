@@ -19,8 +19,8 @@ jobs:
         with:
           author_name: CI
           author_email: andy.damevin+ghaction@redhat.com
-          add: 'internal-releases.txt'
-          message: 'Quarkus Internal Builds auto-commit'
+          add: 'internal-build-version.txt'
+          message: 'Quarkus Internal auto-commit for build: ${{ github.event.client_payload.build_version }}'
           ref: 'internal'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
