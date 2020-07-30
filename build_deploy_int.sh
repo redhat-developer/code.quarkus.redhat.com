@@ -1,10 +1,7 @@
 #!/bin/bash
 
 function findLatestBuild() {
-  shopt -s nocasematch    #Dont care about the character case
-  LIST_HTML="$(curl -s "http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/quarkus/?C=M;O=D")"
-  REGEX='(<a\ +href=\"quarkus-)([^\"]+)(\">)'
-  [[ $LIST_HTML =~ $REGEX ]] && echo "quarkus-${BASH_REMATCH[2]}"
+  cat internal-build-version.txt
 }
 
 function findLatestQuarkusVersion() {
