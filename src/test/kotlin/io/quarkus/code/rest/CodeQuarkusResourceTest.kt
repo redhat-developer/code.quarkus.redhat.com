@@ -1,6 +1,6 @@
 package io.quarkus.code.rest
 
-import io.quarkus.code.model.QuarkusProject
+import io.quarkus.code.model.ProjectDefinition
 import io.quarkus.test.junit.QuarkusTest
 import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.*
@@ -27,7 +27,7 @@ class CodeQuarkusResourceTest {
                 .statusCode(200)
                 .contentType("application/zip")
                 .header("Content-Disposition", "attachment; filename=\"code-with-quarkus.zip\"")
-        assertThat(projectService.createdProjectRef.get(), equalTo(QuarkusProject()))
+        assertThat(projectService.createdProjectRef.get(), equalTo(ProjectDefinition()))
     }
 
     @Test
@@ -120,7 +120,7 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-app-with-a-few-arg.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         artifactId = "test-app-with-a-few-arg",
                         version = "1.0.0",
                         shortExtensions = "D9x.9Ie"
@@ -142,7 +142,7 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-empty-shortids.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         artifactId = "test-empty-shortids",
                         version = "1.0.1"
                 ))
@@ -162,7 +162,7 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-empty-ext.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         artifactId = "test-empty-ext",
                         version = "1.0.1",
                         extensions = setOf("")
@@ -175,7 +175,7 @@ class CodeQuarkusResourceTest {
     fun testWithUrlRewrite() {
         given()
                 .`when`()
-                .get("/d?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=cvj.L0j.9Ie") // camel-quarkus-microprofile-metrics, quarkus-amazon-lambda-http, quarkus-elytron-security-oauth2
+                .get("/d?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=7RG.L0j.9Ie") // quarkus-logging-json, quarkus-amazon-lambda-http, quarkus-elytron-security-oauth2
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -183,13 +183,13 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-app.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         groupId = "com.toto",
                         artifactId = "test-app",
                         version = "1.0.0",
                         className = "org.toto.TotoResource",
                         path = "/toto/titi",
-                        shortExtensions = "cvj.L0j.9Ie"
+                        shortExtensions = "7RG.L0j.9Ie"
                 )
         )
         )
@@ -200,7 +200,7 @@ class CodeQuarkusResourceTest {
     fun testWithAllParams() {
         given()
                 .`when`()
-                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=cvj.L0j.9Ie")
+                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=7RG.L0j.9Ie")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -208,13 +208,13 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-app.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         groupId = "com.toto",
                         artifactId = "test-app",
                         version = "1.0.0",
                         className = "org.toto.TotoResource",
                         path = "/toto/titi",
-                        shortExtensions = "cvj.L0j.9Ie"
+                        shortExtensions = "7RG.L0j.9Ie"
                 ))
         )
     }
@@ -232,7 +232,7 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-app.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         groupId = "com.toto",
                         artifactId = "test-app",
                         version = "1.0.0",
@@ -287,7 +287,7 @@ class CodeQuarkusResourceTest {
                 .header("Content-Disposition", "attachment; filename=\"test-app-with-a-few-arg.zip\"")
         assertThat(
                 projectService.getCreatedProject(), equalTo(
-                QuarkusProject(
+                ProjectDefinition(
                         artifactId = "test-app-with-a-few-arg",
                         version = "1.0.0",
                         buildTool = "GRADLE",

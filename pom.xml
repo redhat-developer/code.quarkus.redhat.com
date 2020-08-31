@@ -28,13 +28,13 @@
         <git.commit.id>local</git.commit.id>
 
         <!-- Quarkus version is used for bundling Code Quarkus -->
-        <quarkus.version>1.5.2.Final</quarkus.version>
+        <quarkus.version>1.7.1.Final</quarkus.version>
 
         <!-- Quarkus Platform version must be compatible with Quarkus version -->
         <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.version>1.5.2.Final</quarkus.platform.version>
-
+        <quarkus.platform.artifact-id.json>${quarkus.platform.artifact-id}</quarkus.platform.artifact-id.json>
+        <quarkus.platform.version>1.7.1.Final</quarkus.platform.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -89,7 +89,7 @@
         </dependency>
         <dependency>
             <groupId>${quarkus.platform.group-id}</groupId>
-            <artifactId>${quarkus.platform.artifact-id}</artifactId>
+            <artifactId>${quarkus.platform.artifact-id.json}</artifactId>
             <version>${quarkus.platform.version}</version>
             <type>json</type>
         </dependency>
@@ -348,7 +348,7 @@
                                 <configuration>
                                     <enableHttpUrlHandler>true</enableHttpUrlHandler>
                                     <additionalBuildArgs>
-                                        -H:ResourceConfigurationFiles=${project.basedir}/resources-config.json,-H:ReflectionConfigurationFiles=${project.basedir}/reflection-config.json
+                                        -H:ResourceConfigurationFiles=resources-config.json,-H:ReflectionConfigurationFiles=reflection-config.json
                                     </additionalBuildArgs>
                                 </configuration>
                             </execution>
