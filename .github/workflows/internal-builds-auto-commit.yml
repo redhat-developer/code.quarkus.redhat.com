@@ -15,7 +15,7 @@ jobs:
           ref: 'internal'
       - name: Edit internal-build-version.txt
         run: |
-          if [[ -z "${github.event.client_payload.build_version}" ]]; then
+          if [[ -z "${{ github.event.client_payload.build_version }}" ]]; then
               echo "Must provide build_version in payload" 1>&2
               exit 1
           fi
