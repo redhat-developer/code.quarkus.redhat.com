@@ -1,1 +1,1 @@
-quarkus-1.7.5.ER1
+quarkus-1.7.5.CR2
