@@ -137,6 +137,9 @@ object QuarkusExtensionUtils {
                 .flatten()
                 .filter { it != "stable" }
                 .map { it.toLowerCase() }
+        if("quarkus-resteasy-qute".equals(ext.artifactId)) {
+           return listOf("tech-preview")
+        }
         if (isDefaultExtension(ext)) {
            return tags.plus("included")
         }
