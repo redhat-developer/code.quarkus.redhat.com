@@ -140,6 +140,9 @@ object QuarkusExtensionUtils {
         if("quarkus-resteasy-qute".equals(ext.artifactId)) {
            return listOf("tech-preview")
         }
+        if("quarkus-reactive-mysql-client".equals(ext.artifactId)) {
+            return listOf("tech-preview")
+        }
         if (isDefaultExtension(ext)) {
            return tags.plus("included")
         }
