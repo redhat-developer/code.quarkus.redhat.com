@@ -182,8 +182,7 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using default project, then, it should create the zip with all the files correctly with the requested content`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val proj = creator.create(ProjectDefinition())
         val (testDir, zipList) = QuarkusProjectServiceTestUtils.extractProject(proj)
         val fileList = QuarkusProjectServiceTestUtils.readFiles(testDir)
@@ -207,8 +206,7 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using default project, then, it should create all the files correctly with the requested content`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val proj = creator.createTmp(ProjectDefinition())
         val fileList = QuarkusProjectServiceTestUtils.readFiles(proj.toFile())
         val pomText = proj.resolve("pom.xml")
@@ -231,8 +229,7 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using a custom project, then, it should create all the files correctly with the requested content`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val proj = creator.create(
             ProjectDefinition(
                 groupId = "com.test",
@@ -270,8 +267,7 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `Create a Gradle project using kotlin source`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val proj = creator.create(
             ProjectDefinition(
                 groupId = "com.test",
@@ -308,8 +304,7 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `Create a Gradle project using scala source`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val proj = creator.create(
             ProjectDefinition(
                 groupId = "com.test",
@@ -348,8 +343,7 @@ internal class QuarkusProjectServiceTest {
         val executorService = Executors.newFixedThreadPool(4)
 
         val latch = CountDownLatch(20)
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
         val creates = (1..20).map { _ ->
             Callable {
                 val result = creator.create(ProjectDefinition())
@@ -361,6 +355,13 @@ internal class QuarkusProjectServiceTest {
         println("await")
         latch.await()
         println("done")
+    }
+
+    private fun getProjectService(): QuarkusProjectService {
+        val creator = QuarkusProjectService()
+        creator.config = codeQuarkusConfig
+        creator.extensionCatalog = quarkusExtensionCatalog
+        return creator
     }
 
 }
