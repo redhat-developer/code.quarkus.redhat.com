@@ -1,9 +1,9 @@
 package io.quarkus.code.service
 
+import io.quarkus.code.config.CodeQuarkusConfig
 import io.quarkus.code.model.ProjectDefinition
 import io.quarkus.devtools.commands.CreateProject
 import io.quarkus.devtools.project.BuildTool
-import io.quarkus.devtools.project.QuarkusProject
 import io.quarkus.devtools.project.compress.QuarkusProjectCompress
 import java.io.IOException
 import java.nio.file.Files
@@ -35,6 +35,9 @@ class QuarkusProjectService {
     @Inject
     internal lateinit var extensionCatalog: QuarkusExtensionCatalogService
 
+    @Inject
+    internal lateinit var config: CodeQuarkusConfig
+
     fun create(projectDefinition: ProjectDefinition): ByteArray {
         QuarkusExtensionCatalogService.checkPlatformInitialization()
         val path = createTmp(projectDefinition)
@@ -55,6 +58,7 @@ class QuarkusProjectService {
         val sourceType = CreateProject.determineSourceType(extensions)
         val context = mutableMapOf("path" to (projectDefinition.path as Any))
         val buildTool = BuildTool.valueOf(projectDefinition.buildTool)
+        val quarkusPluginCommunityVersion = if (BuildTool.GRADLE == buildTool) config.quarkusVersion.replace("-redhat-.*".toRegex(), "") else null
         val success = CreateProject(projectFolderPath, QuarkusExtensionCatalogService.descriptor)
                 .groupId(projectDefinition.groupId)
                 .artifactId(projectDefinition.artifactId)
@@ -62,6 +66,7 @@ class QuarkusProjectService {
                 .sourceType(sourceType)
                 .buildTool(buildTool)
                 .className(projectDefinition.className)
+                .quarkusPluginVersion(quarkusPluginCommunityVersion)
                 .javaTarget("11")
                 .extensions(extensions)
                 .doCreateProject(context)
