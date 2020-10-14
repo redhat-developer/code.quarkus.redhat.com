@@ -12,7 +12,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 @QuarkusTest
-@Disabled("https://github.com/redhat-developer/code.quarkus.redhat.com/issues/9")
 class CodeQuarkusTest {
 
     @ParameterizedTest
@@ -54,8 +53,4 @@ class CodeQuarkusTest {
         val run = WrapperRunner.run(dir.toPath().resolve(appName), WrapperRunner.Wrapper.GRADLE)
         assertThat(run, `is`(0))
     }
-
-
-
-
 }
