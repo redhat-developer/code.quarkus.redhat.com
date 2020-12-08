@@ -5,12 +5,13 @@ echo "Build version: $BUILD_VERSION"
 [[ -z "$BUILD_VERSION" ]] && { echo "BUILD_VERSION is empty" ; exit 1; }
 
 function findLatestQuarkusVersion() {
-  LIST_HTML="$(curl -s "http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/quarkus/$BUILD_VERSION/extras/repository-artifact-list.txt")"
-  REGEX="($1):([^:]+):([a-zA-Z0-9.-]+)"
+  LIST_HTML="$(curl -s "http://rcm-guest.app.eng.bos.redhat.com/rcm-guest/staging/quarkus/$1/extras/repository-artifact-list.txt")"
+  REGEX="($2):([^:]+):([a-zA-Z0-9.-]+)"
   [[ $LIST_HTML =~ $REGEX ]] && echo "${BASH_REMATCH[3]}"
+}
 
-QUARKUS_VERSION="$(findLatestQuarkusVersion "io.quarkus")"
-PLATFORM_VERSION="$(findLatestQuarkusVersion "com.redhat.quarkus")"
+QUARKUS_VERSION="$(findLatestQuarkusVersion $BUILD_VERSION "io.quarkus")"
+PLATFORM_VERSION="$(findLatestQuarkusVersion $BUILD_VERSION "com.redhat.quarkus")"
 echo "Quarkus version: $QUARKUS_VERSION"
 echo "Platform version: $PLATFORM_VERSION"
 
