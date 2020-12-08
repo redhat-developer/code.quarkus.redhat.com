@@ -28,13 +28,13 @@
         <git.commit.id>local</git.commit.id>
 
         <!-- Quarkus version is used for bundling Code Quarkus -->
-        <quarkus.version>1.7.5.Final-redhat-00007</quarkus.version>
+        <quarkus.version>1.7.5.Final-redhat-00011</quarkus.version>
 
         <!-- Quarkus Platform version must be compatible with Quarkus version -->
         <quarkus.platform.group-id>com.redhat.quarkus</quarkus.platform.group-id>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
         <quarkus.platform.artifact-id.json>${quarkus.platform.artifact-id}</quarkus.platform.artifact-id.json>
-        <quarkus.platform.version>1.7.5.Final-redhat-00007</quarkus.platform.version>
+        <quarkus.platform.version>1.7.5.Final-redhat-00011</quarkus.platform.version>
 
     </properties>
     <dependencyManagement>
