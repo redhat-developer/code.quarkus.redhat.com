@@ -9,7 +9,9 @@ To merge latest master of code.quarkus.io, it will do a `git subtree pull`:
 make merge-with-upstream
 ```
 
-# Release a new RHBQ
+# Release a new RHBQ path version (major.minor.patch)
+
+> **Releasing minor version may require an update (and some possible adaptation) of the code.quarkus.io subtree.**
 
 ## Create a release commit
 
