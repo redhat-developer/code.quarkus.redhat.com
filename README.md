@@ -17,7 +17,7 @@ make merge-with-upstream
 
 1. Check that the new Quarkus version is available in the [RH maven repo](https://maven.repository.redhat.com/ga/com/redhat/quarkus/quarkus-universe-bom/)
 2. Set the new Quarkus version in the [pom](https://github.com/redhat-developer/code.quarkus.redhat.com/blob/master/code.quarkus.io/pom.xml) `quarkus.version` and `quarkus.platform.version` 
-3. Build and test locally: `mvn clean install -f code.quarkus.io -s code.quarkus.io/maven-settings.xml `
+3. Build and test locally: `cd code.quarkus.io && mvn clean install -s maven-settings.xml`
 4. Create a commit named: `Release X.Y.Z.Final-redhat-NNNNN`
 
 There is currently no PR check CI: https://github.com/redhat-developer/code.quarkus.redhat.com/issues/14 
