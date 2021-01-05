@@ -1,26 +1,8 @@
 # Red Hat Code Quarkus App
 
-# Backend dev
+This repository contains code for code.quarkus.redhat.com. It uses a subtree (like a fork but as a subdir) of https://github.com/quarkusio/code.quarkus.io with some changes added to it.
 
-Start in watch mode:
-```bash
-make code.quarkus.io dev-backend
-```
-
-
-# Full Dev (back + front)
-
-Start in watch mode:
-```bash
-make code.quarkus.io dev
-```
-
-Open: http://locahost:3000 (:8080 is the backend)
-
-
-Then open `./src/main/frontend` with your favorite IDE to edit.
-
-# Merge latest code.quarkus.io
+# Merge latest code.quarkus.io sources
 
 To merge latest master of code.quarkus.io, it will do a `git subtree pull`:
 ```bash
@@ -33,7 +15,8 @@ make merge-with-upstream
 
 1. Check that the new Quarkus version is available in the [RH maven repo](https://maven.repository.redhat.com/ga/com/redhat/quarkus/quarkus-universe-bom/)
 2. Set the new Quarkus version in the [pom](https://github.com/redhat-developer/code.quarkus.redhat.com/blob/master/code.quarkus.io/pom.xml) `quarkus.version` and `quarkus.platform.version` 
-3. Create a commit named: `Release X.Y.Z.Final-redhat-NNNNN`
+3. Build and test locally: `mvn clean install -f code.quarkus.io -s code.quarkus.io/maven-settings.xml `
+4. Create a commit named: `Release X.Y.Z.Final-redhat-NNNNN`
 
 There is currently no PR check CI: https://github.com/redhat-developer/code.quarkus.redhat.com/issues/14 
 There is a CI for master using Jenkins (jobs containing `-redhat`): https://ci.ext.devshift.net/view/quarkus/
