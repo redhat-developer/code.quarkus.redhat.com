@@ -36,12 +36,11 @@ make merge-with-upstream
 3. Create a commit named: `Release X.Y.Z.Final-redhat-NNNNN`
 
 There is currently no PR check CI: https://github.com/redhat-developer/code.quarkus.redhat.com/issues/14 
+There is a CI for master using Jenkins (jobs containing `-redhat`): https://ci.ext.devshift.net/view/quarkus/
 
 ## Deployment to production
 
-Jenkins (jobs containing `-redhat`): https://ci.ext.devshift.net/view/quarkus/
-
 1. Check that everything works as expected on [staging](https://code.quarkus.stage.redhat.com/)
-2. (Inside Red Hat private network) Create a PR on this [link](https://gitlab.cee.redhat.com/service/app-interface/-/edit/master/data/services/quarkus/cicd/ci-ext/saas-redhat.yaml) with the commit hash to release in the `ref: ...` with the commit hash of to release
+2. (Inside Red Hat private network) Create a PR on this [link](https://gitlab.cee.redhat.com/service/app-interface/-/edit/master/data/services/quarkus/cicd/ci-ext/saas-redhat.yaml) with the commit hash to release in the `ref: ...` 
 3. Comment with `/lgtm` and wait for CI checks
 4. Merging the PR will trigger a deployment to production
