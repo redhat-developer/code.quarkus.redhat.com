@@ -6,12 +6,13 @@ import io.restassured.RestAssured.given
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.notNullValue
 import org.hamcrest.MatcherAssert.assertThat
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.condition.DisabledIfSystemProperty
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 @QuarkusTest
+@DisabledIfSystemProperty(named = "no-app-running-test", matches = "true")
 class CodeQuarkusTest {
 
     @ParameterizedTest
