@@ -19,7 +19,6 @@ object QuarkusExtensionUtils {
     private const val hashCharEncodeLength = hashAlphabet.length
     private const val hashMaxLength = 3
     private val maxHashCode: Int
-    private val defaultExtensions = setOf("io.quarkus:quarkus-resteasy")
     private val stopWords = setOf("the", "and", "you", "that", "was", "for", "are", "with", "his", "they", "one",
             "have", "this", "from", "had", "not", "but", "what", "can", "out", "other", "were", "all", "there", "when",
             "your", "how", "each", "she", "which", "their", "will", "way", "about", "many", "then", "them", "would",
@@ -99,11 +98,12 @@ object QuarkusExtensionUtils {
                 description = ext.description,
                 shortName = getExtensionShortName(ext),
                 category = cat.name,
+                default = false,
                 status = getExtensionStatus(ext),
                 tags = getExtensionTags(ext, listOf(config.tagsFrom.orElse("status"))),
-                default = isDefaultExtension(ext),
                 keywords = toKeywords(ext.keywords ?: emptyList(), ext.description),
                 order = order.getAndIncrement(),
+                providesExampleCode = providesExampleCode(ext),
                 labels = ext.keywords ?: emptyList(),
                 guide = getExtensionGuide(ext)
         )
@@ -132,25 +132,21 @@ object QuarkusExtensionUtils {
         return if(list.isEmpty()) "stable" else list[0]
     }
 
+
     private fun getExtensionTags(ext: Extension, tagsFrom: List<String>): List<String> {
-        val tags = tagsFrom.map { normalizeToList(ext.metadata[it]) }
+        var tags = tagsFrom.map { normalizeToList(ext.metadata[it]) }
                 .flatten()
                 .filter { it != "stable" }
                 .map { it.toLowerCase() }
         if("quarkus-resteasy-qute".equals(ext.artifactId)) {
-           return listOf("tech-preview")
+            tags = listOf("tech-preview")
+        } else if("quarkus-reactive-mysql-client".equals(ext.artifactId)) {
+            tags = listOf("tech-preview")
         }
-        if("quarkus-reactive-mysql-client".equals(ext.artifactId)) {
-            return listOf("tech-preview")
-        }
-        if (isDefaultExtension(ext)) {
-           return tags.plus("included")
+        if (providesExampleCode(ext)) {
+            return tags.plus("provides-example")
         }
         return tags
-    }
-
-    private fun isDefaultExtension(ext: Extension): Boolean {
-        return defaultExtensions.contains(toId(ext))
     }
 
     private fun normalizeToList(value: Any?): List<String> {
@@ -162,6 +158,11 @@ object QuarkusExtensionUtils {
         }
         return listOf()
     }
+
+    private fun providesExampleCode(ext: Extension): Boolean =
+            !(ext.metadata?.get(Extension.MD_CODESTART) as String?).isNullOrBlank()
+                    && "quarkus-kotlin" != ext.artifactId
+                    && "quarkus-scala" != ext.artifactId
 
     private fun getExtensionGuide(ext: Extension) =
             ext.metadata?.get(Extension.MD_GUIDE) as String?

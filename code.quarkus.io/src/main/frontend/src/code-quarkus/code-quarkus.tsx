@@ -25,7 +25,7 @@ export function CodeQuarkus(props: CodeQuarkusProps) {
   return (
     <AnalyticsContext.Provider value={analytics}>
       <div className="code-quarkus">
-        <Header />
+        <Header quarkusVersion={props.config.quarkusVersion} />
         <ExtensionsLoader name="extensions">
           {extensions => (
             <QuarkusProjectFlow {...props} extensions={extensions}/>

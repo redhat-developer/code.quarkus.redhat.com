@@ -19,75 +19,73 @@ internal class QuarkusProjectServiceTest {
 
     companion object {
         val EXPECTED_CONTENT = arrayOf(
-            "",
-            "pom.xml",
-            "src/",
-            "src/main/",
-            "src/main/java/",
-            "src/main/java/org/",
-            "src/main/java/org/acme/",
-            "src/main/java/org/acme/ExampleResource.java",
-            "src/test/",
-            "src/test/java/",
-            "src/test/java/org/",
-            "src/test/java/org/acme/",
-            "src/test/java/org/acme/ExampleResourceTest.java",
-            "src/test/java/org/acme/NativeExampleResourceIT.java",
-            "src/main/resources/",
-            "src/main/resources/META-INF/",
-            "src/main/resources/META-INF/resources/",
-            "src/main/resources/META-INF/resources/index.html",
-            "src/main/docker/",
-            "src/main/docker/Dockerfile.native",
-            "src/main/docker/Dockerfile.jvm",
-            "src/main/docker/Dockerfile.fast-jar",
-            ".dockerignore",
-            "src/main/resources/application.properties",
-            "README.md",
-            ".gitignore",
-            ".mvn/",
-            ".mvn/wrapper/",
-            ".mvn/wrapper/maven-wrapper.jar",
-            ".mvn/wrapper/maven-wrapper.properties",
-            ".mvn/wrapper/MavenWrapperDownloader.java",
-            "mvnw.cmd",
-            "mvnw"
+                "",
+                "pom.xml",
+                "src/",
+                "src/main/",
+                "src/main/java/",
+                "src/main/java/org/",
+                "src/main/java/org/acme/",
+                "src/main/java/org/acme/GreetingResource.java",
+                "src/test/",
+                "src/test/java/",
+                "src/test/java/org/",
+                "src/test/java/org/acme/",
+                "src/test/java/org/acme/GreetingResourceTest.java",
+                "src/test/java/org/acme/NativeGreetingResourceIT.java",
+                "src/main/resources/",
+                "src/main/resources/META-INF/",
+                "src/main/resources/META-INF/resources/",
+                "src/main/resources/META-INF/resources/index.html",
+                "src/main/docker/",
+                "src/main/docker/Dockerfile.native",
+                "src/main/docker/Dockerfile.jvm",
+                "src/main/docker/Dockerfile.fast-jar",
+                ".dockerignore",
+                "src/main/resources/application.properties",
+                "README.md",
+                ".gitignore",
+                ".mvn/",
+                ".mvn/wrapper/",
+                ".mvn/wrapper/maven-wrapper.properties",
+                ".mvn/wrapper/MavenWrapperDownloader.java",
+                "mvnw.cmd",
+                "mvnw"
         )
 
         val EXPECTED_CONTENT_CUSTOM = arrayOf(
-            "",
-            "pom.xml",
-            "src/",
-            "src/main/",
-            "src/main/java/",
-            "src/main/java/com/",
-            "src/main/java/com/test/",
-            "src/main/java/com/test/TestResource.java",
-            "src/test/",
-            "src/test/java/",
-            "src/test/java/com/",
-            "src/test/java/com/test/",
-            "src/test/java/com/test/TestResourceTest.java",
-            "src/test/java/com/test/NativeTestResourceIT.java",
-            "src/main/resources/",
-            "src/main/resources/META-INF/",
-            "src/main/resources/META-INF/resources/",
-            "src/main/resources/META-INF/resources/index.html",
-            "src/main/docker/",
-            "src/main/docker/Dockerfile.native",
-            "src/main/docker/Dockerfile.jvm",
-            "src/main/docker/Dockerfile.fast-jar",
-            ".dockerignore",
-            "src/main/resources/application.properties",
-            "README.md",
-            ".gitignore",
-            ".mvn/",
-            ".mvn/wrapper/",
-            ".mvn/wrapper/maven-wrapper.jar",
-            ".mvn/wrapper/maven-wrapper.properties",
-            ".mvn/wrapper/MavenWrapperDownloader.java",
-            "mvnw.cmd",
-            "mvnw"
+                "",
+                "pom.xml",
+                "src/",
+                "src/main/",
+                "src/main/java/",
+                "src/main/java/com/",
+                "src/main/java/com/test/",
+                "src/main/java/com/test/TestResource.java",
+                "src/test/",
+                "src/test/java/",
+                "src/test/java/com/",
+                "src/test/java/com/test/",
+                "src/test/java/com/test/TestResourceTest.java",
+                "src/test/java/com/test/NativeTestResourceIT.java",
+                "src/main/resources/",
+                "src/main/resources/META-INF/",
+                "src/main/resources/META-INF/resources/",
+                "src/main/resources/META-INF/resources/index.html",
+                "src/main/docker/",
+                "src/main/docker/Dockerfile.native",
+                "src/main/docker/Dockerfile.jvm",
+                "src/main/docker/Dockerfile.fast-jar",
+                ".dockerignore",
+                "src/main/resources/application.properties",
+                "README.md",
+                ".gitignore",
+                ".mvn/",
+                ".mvn/wrapper/",
+                ".mvn/wrapper/maven-wrapper.properties",
+                ".mvn/wrapper/MavenWrapperDownloader.java",
+                "mvnw.cmd",
+                "mvnw"
         )
 
         val EXPECTED_CONTENT_GRADLE_KOTLIN = arrayOf(
@@ -182,36 +180,43 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using default project, then, it should create the zip with all the files correctly with the requested content`() {
         // When
-        val creator = getProjectService()
-        val proj = creator.create(ProjectDefinition())
+        val creator = QuarkusProjectService()
+        creator.extensionCatalog = quarkusExtensionCatalog
+        // TODO 1.10 remove io.quarkus:quarkus-resteasy as it's the default
+        val proj = creator.create(ProjectDefinition(extensions = setOf("io.quarkus:quarkus-resteasy")))
         val (testDir, zipList) = QuarkusProjectServiceTestUtils.extractProject(proj)
         val fileList = QuarkusProjectServiceTestUtils.readFiles(testDir)
         val pomText = Paths.get(testDir.path, "code-with-quarkus/pom.xml")
-            .toFile().readText(Charsets.UTF_8)
-        val resourceText = Paths.get(testDir.path, "code-with-quarkus/src/main/java/org/acme/ExampleResource.java")
-            .toFile().readText(Charsets.UTF_8)
+                .toFile().readText(Charsets.UTF_8)
+        val resourceText = Paths.get(testDir.path, "code-with-quarkus/src/main/java/org/acme/GreetingResource.java")
+                .toFile().readText(Charsets.UTF_8)
+
         // Then
         assertThat(zipList, containsInAnyOrder(*prefixFileList(EXPECTED_CONTENT, "code-with-quarkus/")))
-
-        assertThat(fileList.size, equalTo(35))
+        assertThat(fileList.size, equalTo(34))
 
         assertThat(pomText, containsString("<groupId>org.acme</groupId>"))
         assertThat(pomText, containsString("<artifactId>code-with-quarkus</artifactId>"))
         assertThat(pomText, containsString("<version>1.0.0-SNAPSHOT</version>"))
         assertThat(pomText, containsString("<quarkus-plugin.version>${codeQuarkusConfig.quarkusVersion}</quarkus-plugin.version>"))
+        assertThat(pomText, containsString("<groupId>io.quarkus</groupId>"))
+        assertThat(pomText, containsString("<artifactId>quarkus-resteasy</artifactId>"))
+        assertThat(pomText, containsString("<artifactId>rest-assured</artifactId>"))
 
-        assertThat(resourceText, containsString("@Path(\"/hello\")"))
+        assertThat(resourceText, containsString("@Path(\"/hello-resteasy\")"))
     }
 
     @Test
     fun `When using default project, then, it should create all the files correctly with the requested content`() {
         // When
-        val creator = getProjectService()
-        val proj = creator.createTmp(ProjectDefinition())
+        val creator = QuarkusProjectService()
+        creator.extensionCatalog = quarkusExtensionCatalog
+        // TODO 1.10 remove io.quarkus:quarkus-resteasy as it's the default
+        val proj = creator.createTmp(ProjectDefinition(extensions = setOf("io.quarkus:quarkus-resteasy")))
         val fileList = QuarkusProjectServiceTestUtils.readFiles(proj.toFile())
         val pomText = proj.resolve("pom.xml")
                 .toFile().readText(Charsets.UTF_8)
-        val resourceText = proj.resolve("src/main/java/org/acme/ExampleResource.java")
+        val resourceText = proj.resolve("src/main/java/org/acme/GreetingResource.java")
                 .toFile().readText(Charsets.UTF_8)
         // Then
         assertThat(fileList, containsInAnyOrder(*EXPECTED_CONTENT))
@@ -222,8 +227,11 @@ internal class QuarkusProjectServiceTest {
         assertThat(pomText, containsString("<artifactId>code-with-quarkus</artifactId>"))
         assertThat(pomText, containsString("<version>1.0.0-SNAPSHOT</version>"))
         assertThat(pomText, containsString("<quarkus-plugin.version>${codeQuarkusConfig.quarkusVersion}</quarkus-plugin.version>"))
+        assertThat(pomText, containsString("<groupId>io.quarkus</groupId>"))
+        assertThat(pomText, containsString("<artifactId>quarkus-resteasy</artifactId>"))
+        assertThat(pomText, containsString("<artifactId>rest-assured</artifactId>"))
 
-        assertThat(resourceText, containsString("@Path(\"/hello\")"))
+        assertThat(resourceText, containsString("@Path(\"/hello-resteasy\")"))
     }
 
     @Test
@@ -237,7 +245,7 @@ internal class QuarkusProjectServiceTest {
                 version = "2.0.0",
                 className = "com.test.TestResource",
                 path = "/test/it",
-                extensions = setOf("io.quarkus:quarkus-resteasy-jsonb"),
+                extensions = setOf("io.quarkus:quarkus-resteasy", "io.quarkus:quarkus-resteasy-jsonb"),
                 shortExtensions = "YjV.pDS"
             )
         )
@@ -250,13 +258,14 @@ internal class QuarkusProjectServiceTest {
 
         // Then
         assertThat(zipList, containsInAnyOrder(*prefixFileList(EXPECTED_CONTENT_CUSTOM, "test-app/")))
-        assertThat(fileList.size, equalTo(35))
+        assertThat(fileList.size, equalTo(34))
 
         assertThat(pomText, containsString("<groupId>com.test</groupId>"))
         assertThat(pomText, containsString("<artifactId>test-app</artifactId>"))
         assertThat(pomText, containsString("<version>2.0.0</version>"))
         assertThat(pomText, containsString("<quarkus-plugin.version>${codeQuarkusConfig.quarkusVersion}</quarkus-plugin.version>"))
         assertThat(pomText, containsString("<groupId>io.quarkus</groupId>"))
+        assertThat(pomText, containsString("<artifactId>quarkus-resteasy</artifactId>"))
         assertThat(pomText, containsString("<artifactId>quarkus-resteasy-jsonb</artifactId>"))
         assertThat(pomText, containsString("<artifactId>quarkus-hibernate-validator</artifactId>"))
         assertThat(pomText, containsString("<artifactId>quarkus-neo4j</artifactId>"))
@@ -275,7 +284,7 @@ internal class QuarkusProjectServiceTest {
                 version = "2.0.0",
                 buildTool = "GRADLE",
                 className = "com.test.TestResource",
-                shortExtensions = "OxX"
+                extensions = setOf("io.quarkus:quarkus-resteasy", "io.quarkus:quarkus-kotlin")
             )
         )
         val (testDir, zipList) = QuarkusProjectServiceTestUtils.extractProject(proj)
@@ -298,7 +307,7 @@ internal class QuarkusProjectServiceTest {
         // Ensure dependency block is not duplicated (issue #5251)
         assertThat(buildGradleText.indexOf("implementation enforcedPlatform"), equalTo(buildGradleText.lastIndexOf("implementation enforcedPlatform")));
 
-        assertThat(resourceText, containsString("fun hello() = \"hello\""))
+        assertThat(resourceText, containsString("fun hello() = \"Hello RESTEasy\""))
     }
 
     @Test
@@ -312,7 +321,7 @@ internal class QuarkusProjectServiceTest {
                 version = "2.0.0",
                 buildTool = "GRADLE",
                 className = "com.test.TestResource",
-                shortExtensions = "3e"
+                extensions = setOf("io.quarkus:quarkus-resteasy", "io.quarkus:quarkus-scala")
             )
         )
         val (testDir, zipList) = QuarkusProjectServiceTestUtils.extractProject(proj)
@@ -334,7 +343,7 @@ internal class QuarkusProjectServiceTest {
         // Ensure dependency block is not duplicated (issue #5251)
         assertThat(buildGradleText.indexOf("implementation enforcedPlatform"), equalTo(buildGradleText.lastIndexOf("implementation enforcedPlatform")));
 
-        assertThat(resourceText, containsString("def hello() = \"hello\""))
+        assertThat(resourceText, containsString("def hello() = \"Hello RESTEasy\""))
     }
 
     @Test

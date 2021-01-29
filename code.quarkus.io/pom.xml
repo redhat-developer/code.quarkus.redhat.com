@@ -24,18 +24,17 @@
         <commons-compress.version>1.19</commons-compress.version>
         <google-analytics-java.version>2.0.0</google-analytics-java.version>
         <hoverfly-java.version>0.12.3</hoverfly-java.version>
+        <assertj.version>3.17.1</assertj.version>
 
         <git.commit.id>local</git.commit.id>
 
         <!-- Quarkus version is used for bundling Code Quarkus -->
-        <quarkus.version>1.7.6.Final-redhat-00014</quarkus.version>
+        <quarkus.version>1.11.1.Final</quarkus.version>
 
         <!-- Quarkus Platform version must be compatible with Quarkus version -->
-        <quarkus.platform.group-id>com.redhat.quarkus</quarkus.platform.group-id>
+        <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
         <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-        <quarkus.platform.artifact-id.json>${quarkus.platform.artifact-id}</quarkus.platform.artifact-id.json>
-        <quarkus.platform.version>1.7.6.Final-redhat-00014</quarkus.platform.version>
-
+        <quarkus.platform.version>1.11.1.Final</quarkus.platform.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -104,12 +103,6 @@
             <version>${quarkus.version}</version>
         </dependency>
         <dependency>
-            <groupId>${quarkus.platform.group-id}</groupId>
-            <artifactId>${quarkus.platform.artifact-id.json}</artifactId>
-            <version>${quarkus.platform.version}</version>
-            <type>json</type>
-        </dependency>
-        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-smallrye-health</artifactId>
         </dependency>
@@ -157,6 +150,12 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -263,6 +262,8 @@
                 <executions>
                     <execution>
                         <goals>
+                            <goal>generate-code</goal>
+                            <goal>generate-code-tests</goal>
                             <goal>build</goal>
                         </goals>
                     </execution>
@@ -278,6 +279,7 @@
                 <configuration>
                     <systemProperties>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                        <maven.home>${maven.home}</maven.home>
                     </systemProperties>
                 </configuration>
             </plugin>
@@ -323,6 +325,19 @@
         </plugins>
     </build>
     <profiles>
+        <profile>
+            <id>quarkus-master</id>
+            <activation>
+                <property>
+                    <name>quarkus-master</name>
+                </property>
+            </activation>
+            <properties>
+                <quarkus.version>999-SNAPSHOT</quarkus.version>
+                <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
+                <quarkus.platform.version>999-SNAPSHOT</quarkus.platform.version>
+            </properties>
+        </profile>
         <profile>
             <id>backend-only</id>
             <activation>
@@ -384,6 +399,9 @@
                                         <native.image.path>
                                             ${project.build.directory}/${project.build.finalName}-runner
                                         </native.image.path>
+                                        <java.util.logging.manager>org.jboss.logmanager.LogManager
+                                        </java.util.logging.manager>
+                                        <maven.home>${maven.home}</maven.home>
                                     </systemProperties>
                                 </configuration>
                             </execution>
