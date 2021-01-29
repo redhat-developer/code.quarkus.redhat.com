@@ -30,10 +30,6 @@
       color: $extensionsPickerCheckSelectedHoverColor;
     }
 
-    &.by-default .extension-selector {
-      color: $extensionsPickerCheckSelectedByDefaultColor !important;
-    }
-
     div:focus {
       outline: none;
     }
@@ -85,8 +81,8 @@
         border: 1px solid $extensionsPickerFlagCustomColor;
       }
 
-      &.default {
-        border: 1px solid $extensionsPickerFlagDefaultColor;
+      &.example {
+        border: none;
       }
     }
 
@@ -281,6 +277,7 @@
   .main-container {
     margin-left: 30px;
     margin-top: 20px;
+    padding-bottom: 200px;
     flex-grow: 1;
     overflow: hidden;
 

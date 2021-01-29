@@ -99,7 +99,15 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>
@@ -540,7 +548,15 @@ exports[`<ExtensionsPicker /> select values and save 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>
@@ -828,7 +844,15 @@ exports[`<ExtensionsPicker /> show results for valid search 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>

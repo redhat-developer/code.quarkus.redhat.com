@@ -1,17 +1,14 @@
 package io.quarkus.code.service
 
-import io.quarkus.cli.commands.AddExtensions
-import io.quarkus.cli.commands.CreateProject
-import io.quarkus.cli.commands.writer.ProjectWriter
-import io.quarkus.code.misc.CommonsZipProjectWriter
-import io.quarkus.code.misc.FileProjectWriterWithPerms
-import io.quarkus.code.misc.ProjectWriterWithPerms
-import io.quarkus.code.model.QuarkusProject
-import io.quarkus.generators.BuildTool
-import java.io.ByteArrayOutputStream
+import io.quarkus.code.model.ProjectDefinition
+import io.quarkus.devtools.commands.CreateProject
+import io.quarkus.devtools.commands.data.QuarkusCommandException
+import io.quarkus.devtools.project.BuildTool
+import io.quarkus.devtools.project.compress.QuarkusProjectCompress
 import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.Path
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -38,85 +35,55 @@ class QuarkusProjectService {
     @Inject
     internal lateinit var extensionCatalog: QuarkusExtensionCatalogService
 
-    fun create(project: QuarkusProject): ByteArray {
+    fun create(projectDefinition: ProjectDefinition): ByteArray {
         QuarkusExtensionCatalogService.checkPlatformInitialization()
-        val baos = ByteArrayOutputStream()
-        baos.use {
-            val zipWriter = CommonsZipProjectWriter.createWriter(baos, project.artifactId)
-            zipWriter.use {
-                createProject(project, zipWriter)
-            }
-        }
-        return baos.toByteArray()
+        val path = createTmp(projectDefinition)
+        val time = System.currentTimeMillis() - 24 * 3600000
+        val zipPath = Files.createTempDirectory("zipped-").resolve("project.zip")
+        QuarkusProjectCompress.zip(path, zipPath, true, time)
+        return Files.readAllBytes(zipPath)
     }
 
-    fun createTmp(project: QuarkusProject): Path {
-        val location = Files.createTempDirectory("generated-")
-        val fileProjectWriter = FileProjectWriterWithPerms(location.toFile())
-        createProject(project, fileProjectWriter)
+    fun createTmp(projectDefinition: ProjectDefinition, isGitHub: Boolean = false): Path {
+        val location = Files.createTempDirectory("generated-").resolve(projectDefinition.artifactId)
+        createProject(projectDefinition, location, isGitHub)
         return location;
     }
 
-    private fun createProject(project: QuarkusProject, projectWriter: ProjectWriter) {
-        val extensions = checkAndMergeExtensions(project)
+    private fun createProject(projectDefinition: ProjectDefinition, projectFolderPath: Path, gitHub: Boolean) {
+        val extensions = checkAndMergeExtensions(projectDefinition)
         val sourceType = CreateProject.determineSourceType(extensions)
-        val context = mutableMapOf("path" to (project.path as Any))
-        val buildTool = io.quarkus.generators.BuildTool.valueOf(project.buildTool)
-        val success = CreateProject(projectWriter, QuarkusExtensionCatalogService.descriptor)
-                .groupId(project.groupId)
-                .artifactId(project.artifactId)
-                .version(project.version)
-                .sourceType(sourceType)
-                .buildTool(buildTool)
-                .className(project.className)
-                .javaTarget("11")
-                .doCreateProject(context)
-        if (!success) {
-            throw IOException("Error during Quarkus project creation")
+        val buildTool = BuildTool.valueOf(projectDefinition.buildTool)
+        val codestarts = HashSet<String>()
+        if(gitHub) {
+            codestarts.add("github-action")
         }
-        AddExtensions(projectWriter, buildTool, QuarkusExtensionCatalogService.descriptor)
-                .extensions(extensions)
-                .execute()
-        if (buildTool == BuildTool.MAVEN) {
-            addMvnw(projectWriter)
-        } else if (buildTool == BuildTool.GRADLE) {
-            addGradlew(projectWriter)
-        }
-    }
-
-    private fun checkAndMergeExtensions(project: QuarkusProject): Set<String> {
-        return extensionCatalog.checkAndMergeExtensions(project.extensions, project.shortExtensions)
-    }
-
-    private fun addMvnw(projectWriter: ProjectWriter) {
-        projectWriter.mkdirs(MVNW_WRAPPER_DIR)
-        writeResourceFile(projectWriter, MVNW_RESOURCES_DIR, MVNW_WRAPPER_JAR)
-        writeResourceFile(projectWriter, MVNW_RESOURCES_DIR, MVNW_WRAPPER_PROPS)
-        writeResourceFile(projectWriter, MVNW_RESOURCES_DIR, MVNW_WRAPPER_DOWNLOADER)
-        writeResourceFile(projectWriter, MVNW_RESOURCES_DIR, MVNW_CMD, true)
-        writeResourceFile(projectWriter, MVNW_RESOURCES_DIR, MVNW, true)
-    }
-
-    private fun addGradlew(projectWriter: ProjectWriter) {
-        projectWriter.mkdirs(GRADLEW_WRAPPER_DIR)
-        writeResourceFile(projectWriter, GRADLEW_RESOURCES_DIR, GRADLEW_WRAPPER_JAR)
-        writeResourceFile(projectWriter, GRADLEW_RESOURCES_DIR, GRADLEW_WRAPPER_PROPS)
-        writeResourceFile(projectWriter, GRADLEW_RESOURCES_DIR, GRADLEW_BAT, true)
-        writeResourceFile(projectWriter, GRADLEW_RESOURCES_DIR, GRADLEW, true)
-    }
-
-    private fun writeResourceFile(projectWriter: ProjectWriter, resourcesDir: String, filePath: String, allowExec: Boolean = false) {
-        if (!projectWriter.exists(filePath)) {
-            val resourcePath = "$resourcesDir/$filePath"
-            val resource = QuarkusProjectService::class.java.getResource(resourcePath)
-                    ?: throw IOException("missing resource $resourcePath")
-            val fileAsBytes = resource.readBytes()
-            if (projectWriter is ProjectWriterWithPerms) {
-                projectWriter.write(filePath, fileAsBytes, allowExec)
-            } else {
-                throw IllegalStateException("Unsupported projectWriter ${projectWriter.javaClass.name}")
+        try {
+            val result = CreateProject(projectFolderPath, QuarkusExtensionCatalogService.descriptor)
+                    .groupId(projectDefinition.groupId)
+                    .artifactId(projectDefinition.artifactId)
+                    .version(projectDefinition.version)
+                    .sourceType(sourceType)
+                    .codestartsEnabled(true)
+                    .buildTool(buildTool)
+                    .codestarts(codestarts)
+                    .javaTarget("11")
+                    .className(projectDefinition.className)
+                    .extensions(extensions)
+                    .noExamples(projectDefinition.noExamples)
+                    .setValue("path", projectDefinition.path)
+                    .execute()
+            if (!result.isSuccess) {
+                throw IOException("Error during Quarkus project creation")
             }
+        } catch (e: QuarkusCommandException) {
+            throw IOException("Error during Quarkus project creation", e)
         }
+
+    }
+
+    private fun checkAndMergeExtensions(projectDefinition: ProjectDefinition): Set<String> {
+        return extensionCatalog.checkAndMergeExtensions(projectDefinition.extensions, projectDefinition.shortExtensions)
     }
 
 }

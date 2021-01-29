@@ -91,7 +91,7 @@ $extensionsPickerSearchBorderColor: $extensionsPickerSearchTextColor;
 $extensionsPickerSearchBorderColorOnFocus: $secondary;
 $extensionsPickerSearchClearColor: $warningColor;
 
-$extensionsPickerFlagDefaultColor: $readonlyLabelAndBorderColor;
+$extensionsPickerFlagExampleColor: $primary;
 $extensionsPickerFlagPreviewColor: $secondary;
 $extensionsPickerFlagExperimentalColor: $warningColor;
 $extensionsPickerFlagCustomColor: black;
@@ -100,6 +100,9 @@ $extensionsPickerFlagCustomColor: black;
 $headerBackgroundColor: $background;
 $headerBackgroundImage: url("/static/media/bg-header.jpg");
 $headerTextColor: white;
+
+$headerQuarkusVersionTextColor: white;
+$headerQuarkusVersionBorderColor: $primary;
 
 $headerMenuLinkTextColor: white;
 

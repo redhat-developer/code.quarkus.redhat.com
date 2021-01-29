@@ -17,13 +17,12 @@ export interface GenerateResult {
 }
 
 export function generateProjectQuery(project: QuarkusProject, github: boolean = false): string {
-  const packageName = project.metadata.packageName || project.metadata.groupId;
   const params: any = {
     ...(project.metadata.groupId && { g: project.metadata.groupId }),
     ...(project.metadata.artifactId && { a: project.metadata.artifactId }),
     ...(project.metadata.version && { v: project.metadata.version }),
     ...(project.metadata.buildTool && { b: project.metadata.buildTool }),
-    ...(packageName && { c: `${packageName}.ExampleResource` }),
+    ...(project.metadata.noExamples && { ne: project.metadata.noExamples }),
     ...(project.extensions && { s: project.extensions.map(e => e.shortId).join('.') }),
     cn: CLIENT_NAME
   };
@@ -64,7 +63,7 @@ export const createOnGitHub = (project: QuarkusProject, clientId: string) => {
   const authParams = {
     redirect_uri: getProjectShareUrl(project, true),
     client_id: clientId,
-    scope: 'public_repo',
+    scope: 'public_repo,workflow',
     state: Math.random().toString(36)
   };
   const githubAuthorizeUrl = `https://github.com/login/oauth/authorize?${stringify(authParams)}`;
@@ -77,7 +76,8 @@ export function newDefaultProject(): QuarkusProject {
       groupId: 'org.acme',
       artifactId: 'code-with-quarkus',
       version: '1.0.0-SNAPSHOT',
-      buildTool: 'MAVEN'
+      buildTool: 'MAVEN',
+      noExamples: false
     },
     extensions: [],
   });
@@ -116,7 +116,7 @@ export function parseProjectInQuery(extensions: ExtensionEntry[],
       artifactId: queryObj.a || defaultProj.metadata.artifactId,
       version: queryObj.v || defaultProj.metadata.version,
       buildTool: queryObj.b || defaultProj.metadata.buildTool,
-      packageName: (typeof queryObj.c === 'string') ? (queryObj.c as string).replace('.ExampleResource', '') : undefined,
+      noExamples: queryObj.ne || defaultProj.metadata.noExamples
     },
     extensions: selectedExtensions,
     github: queryObj.github === 'true' ? {
