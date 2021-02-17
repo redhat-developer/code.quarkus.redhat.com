@@ -40,6 +40,7 @@ ENV JAVA_OPTIONS="-Dquarkus.http.@host=0.0.0.0 -Djava.util.logging.manager=org.j
 
 COPY --from=build --chown=1001 /usr/src/app/target/lib/ /deployments/lib/
 COPY --from=build --chown=1001 /usr/src/app/target/*-runner.jar /deployments/app.jar
+COPY --from=build --chown=1001 /usr/src/app/maven-settings.xml /deployments/
 
 EXPOSE 8080
 USER 1001
