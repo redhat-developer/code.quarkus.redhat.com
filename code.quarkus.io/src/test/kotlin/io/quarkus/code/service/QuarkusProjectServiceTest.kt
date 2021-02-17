@@ -180,8 +180,8 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using default project, then, it should create the zip with all the files correctly with the requested content`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
+
         // TODO 1.10 remove io.quarkus:quarkus-resteasy as it's the default
         val proj = creator.create(ProjectDefinition(extensions = setOf("io.quarkus:quarkus-resteasy")))
         val (testDir, zipList) = QuarkusProjectServiceTestUtils.extractProject(proj)
@@ -209,8 +209,8 @@ internal class QuarkusProjectServiceTest {
     @Test
     fun `When using default project, then, it should create all the files correctly with the requested content`() {
         // When
-        val creator = QuarkusProjectService()
-        creator.extensionCatalog = quarkusExtensionCatalog
+        val creator = getProjectService()
+
         // TODO 1.10 remove io.quarkus:quarkus-resteasy as it's the default
         val proj = creator.createTmp(ProjectDefinition(extensions = setOf("io.quarkus:quarkus-resteasy")))
         val fileList = QuarkusProjectServiceTestUtils.readFiles(proj.toFile())
@@ -221,7 +221,7 @@ internal class QuarkusProjectServiceTest {
         // Then
         assertThat(fileList, containsInAnyOrder(*EXPECTED_CONTENT))
 
-        assertThat(fileList.size, equalTo(33))
+        assertThat(fileList.size, equalTo(32))
 
         assertThat(pomText, containsString("<groupId>org.acme</groupId>"))
         assertThat(pomText, containsString("<artifactId>code-with-quarkus</artifactId>"))
@@ -277,6 +277,7 @@ internal class QuarkusProjectServiceTest {
     fun `Create a Gradle project using kotlin source`() {
         // When
         val creator = getProjectService()
+
         val proj = creator.create(
             ProjectDefinition(
                 groupId = "com.test",
@@ -314,6 +315,7 @@ internal class QuarkusProjectServiceTest {
     fun `Create a Gradle project using scala source`() {
         // When
         val creator = getProjectService()
+
         val proj = creator.create(
             ProjectDefinition(
                 groupId = "com.test",

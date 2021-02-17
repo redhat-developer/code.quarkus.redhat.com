@@ -309,9 +309,10 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
                 A CDI in name test
               </span>
               <span
-                class="extension-tag custom"
+                class="extension-tag experimental"
+                title="Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures."
               >
-                experimental
+                EXPERIMENTAL
               </span>
             </div>
             <div
@@ -391,9 +392,10 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
                 Camel Netty4 test HTTP
               </span>
               <span
-                class="extension-tag custom"
+                class="extension-tag preview"
+                title="This is work in progress. API or configuration properties might change as the extension matures. Give us your feedback :)"
               >
-                preview
+                PREVIEW
               </span>
             </div>
             <div
@@ -679,9 +681,10 @@ exports[`<ExtensionsPicker /> select values and save 1`] = `
               Camel Netty4 test HTTP
             </span>
             <span
-              class="extension-tag custom"
+              class="extension-tag preview"
+              title="This is work in progress. API or configuration properties might change as the extension matures. Give us your feedback :)"
             >
-              preview
+              PREVIEW
             </span>
           </div>
           <div
@@ -1034,9 +1037,10 @@ exports[`<ExtensionsPicker /> show results for valid search 1`] = `
               A CDI in name test
             </span>
             <span
-              class="extension-tag custom"
+              class="extension-tag experimental"
+              title="Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures."
             >
-              experimental
+              EXPERIMENTAL
             </span>
           </div>
           <div
