@@ -1,11 +1,13 @@
 package io.quarkus.code.model
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.Pattern
 import javax.ws.rs.DefaultValue
 import javax.ws.rs.QueryParam
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 class ProjectDefinition {
 
     companion object {
@@ -90,13 +92,14 @@ class ProjectDefinition {
         private set
 
     @QueryParam("e")
-    @Parameter(name = "e", description = "The set of extension that will be included in the generated application", required = false)
+    @Parameter(name = "e", description = "The set of extension ids that will be included in the generated application", required = false)
     var extensions: Set<String> = setOf()
         private set
 
     @QueryParam("s")
     @DefaultValue("")
     @Parameter(name = "s", description = "The set of extension shortIds separated by a '.' that will be included in the generated application", required = false)
+    @Deprecated(message = "see https://github.com/quarkusio/code.quarkus.io/issues/424")
     var shortExtensions: String = ""
         private set
 
