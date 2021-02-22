@@ -115,9 +115,6 @@ class CodeQuarkusResource {
             if(projectDefinition.buildTool != ProjectDefinition.DEFAULT_BUILDTOOL) {
                 params.add(BasicNameValuePair("b", projectDefinition.buildTool))
             }
-            if(projectDefinition.noExamples != ProjectDefinition.DEFAULT_NO_EXAMPLES) {
-                params.add(BasicNameValuePair("ne", projectDefinition.noExamples.toString()))
-            }
             if(!projectDefinition.extensions.isEmpty()) {
                 projectDefinition.extensions.forEach { params.add(BasicNameValuePair("e", it)) }
             }
