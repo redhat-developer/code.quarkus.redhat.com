@@ -138,11 +138,6 @@ object QuarkusExtensionUtils {
                 .flatten()
                 .filter { it != "stable" }
                 .map { it.toLowerCase() }
-        if("quarkus-resteasy-qute".equals(ext.artifactId)) {
-            tags = listOf("tech-preview")
-        } else if("quarkus-reactive-mysql-client".equals(ext.artifactId)) {
-            tags = listOf("tech-preview")
-        }
         if (providesExampleCode(ext)) {
             return tags.plus("provides-example")
         }
