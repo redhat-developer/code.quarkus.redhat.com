@@ -1,7 +1,7 @@
 import { cleanup } from '@testing-library/react';
-import { parseProjectInQuery } from '../quarkus-project-utils';
+import { parseProjectInQuery, toShortcut } from '../quarkus-project-utils';
 import { Extension } from '../model';
-import {parse} from "querystring";
+import { parse } from 'querystring';
 
 afterEach(() => {
   cleanup();
@@ -12,7 +12,6 @@ const entries: Extension[] = [
     'id': 'io.quarkus:quarkus-arc',
     'name': 'ArC',
     'version': 'test-version',
-    'shortId': 'a',
     'tags': [],
     'keywords': [
       'arc',
@@ -32,7 +31,6 @@ const entries: Extension[] = [
     'version': 'test-version',
     'name': 'Camel Netty4 test HTTP',
     'tags': ['preview'],
-    'shortId': 'b',
     'default': false,
     'keywords': [
       'camel-netty4-http',
@@ -44,7 +42,6 @@ const entries: Extension[] = [
   },
   {
     'id': 'some-id',
-    'shortId': 'c',
     'version': 'test-version',
     'name': 'A CDI in name test',
     'tags': ['experimental'],
@@ -63,8 +60,7 @@ const entries: Extension[] = [
     'order': 1,
   },
   {
-    'id': 'some-id',
-    'shortId': 'c',
+    'id': 'some-id3',
     'version': 'test-version',
     'name': 'A CDI in name test',
     'tags': ['experimental'],
@@ -86,13 +82,13 @@ const entries: Extension[] = [
 
 describe('quarkus-project', () => {
   it('parseProjectInQuery correctly', () => {
-    const queryParams = parse('g=org.test&a=code-test&v=1.0.0-SNAPSHOT&b=MAVEN&c=org.toto&s=a.bG');
+    const queryParams = parse('g=org.test&a=code-test&v=1.0.0-SNAPSHOT&b=MAVEN&c=org.toto&e=some-id&e=arc&e=quarkus-camel-netty4-http');
     const parsedProject = parseProjectInQuery(entries, queryParams);
     expect(parsedProject).toMatchSnapshot('no-github');
   });
 
   it('parseProjectInQuery correctly with github', () => {
-    const queryParams = parse('g=org.test&a=code-test&v=1.0.0-SNAPSHOT&b=GRADLE&c=org.toto&s=a.bG&code=totototo&state=djdjdj&github=true');
+    const queryParams = parse('g=org.test&a=code-test&v=1.0.0-SNAPSHOT&b=GRADLE&c=org.toto&e=some-id&e=arc&e=quarkus-camel-netty4-http&code=totototo&state=djdjdj&github=true');
     const parsedProject = parseProjectInQuery(entries, queryParams);
     expect(parsedProject).toMatchSnapshot('github');
   });
@@ -102,4 +98,11 @@ describe('quarkus-project', () => {
     expect(parsedProject).toMatchSnapshot('v=1.0');
   });
 
+  it('toShortcut should work properly', () => {
+    expect(toShortcut('io.quarkus:quarkus-my-ext')).toBe('my-ext');
+    expect(toShortcut('quarkus-my-ext')).toBe('my-ext');
+    expect(toShortcut('my-quarkus-ext')).toBe('my-quarkus-ext');
+    expect(toShortcut('io.quarkiverse.myext:quarkus-my-ext')).toBe('io.quarkiverse.myext:quarkus-my-ext');
+    expect(toShortcut('org.apache.camel.quarkus:camel-quarkus-core')).toBe('org.apache.camel.quarkus:camel-quarkus-core');
+  });
 });

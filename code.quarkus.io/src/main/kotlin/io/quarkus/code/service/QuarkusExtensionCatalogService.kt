@@ -5,10 +5,12 @@ import io.quarkus.code.config.CodeQuarkusConfig
 import io.quarkus.code.config.ExtensionProcessorConfig
 import io.quarkus.code.config.QuarkusPlatformConfig
 import io.quarkus.code.misc.QuarkusExtensionUtils
+import io.quarkus.code.misc.QuarkusExtensionUtils.toShortcut
 import io.quarkus.code.model.CodeQuarkusExtension
 import io.quarkus.platform.descriptor.resolver.json.QuarkusJsonPlatformDescriptorResolver
 import io.quarkus.runtime.StartupEvent
 import org.eclipse.microprofile.config.spi.ConfigProviderResolver
+import java.lang.IllegalArgumentException
 import java.util.logging.Level
 import java.util.logging.Logger
 import java.util.stream.Collectors
@@ -81,12 +83,24 @@ class QuarkusExtensionCatalogService {
         val fromId = (extensionsIds ?: setOf())
                 .stream()
                 .filter { !it.isBlank() }
-                .map { (this.extensionsById[it] ?: error("Invalid extension: $it")).id }
+                .map { findById(it) }
                 .collect(Collectors.toSet())
         val fromShortId = parseShortExtensions(rawShortExtensions).stream()
-                .map { (this.extensionsByShortId[it] ?: error("Invalid shortId: $it")).id }
+                .map { (this.extensionsByShortId[it] ?: throw IllegalArgumentException("Invalid shortId: $it")).id }
                 .collect(Collectors.toSet())
         return fromId union fromShortId
+    }
+
+    private fun findById(id: String): String {
+        if(this.extensionsById.containsKey(id)) {
+            return this.extensionsById[id]!!.id
+        }
+        val found = extensionsById.entries
+            .filter { toShortcut(it.key) == toShortcut(id) }
+        if (found.size == 1) {
+            return found[0].value.id
+        }
+        throw IllegalArgumentException("Invalid extension: $id")
     }
 
     private fun parseShortExtensions(shortExtension: String?): Set<String> {

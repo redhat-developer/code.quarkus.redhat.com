@@ -10,11 +10,10 @@ import { QuarkusBlurb } from '../layout/quarkus-blurb';
 import { processEntries } from './extensions-picker-utils';
 import { QuarkusProject } from '../api/model';
 import './extensions-picker.scss';
-import {debouncedSyncParamsQuery} from "../api/quarkus-project-utils";
+import { debouncedSyncParamsQuery } from '../api/quarkus-project-utils';
 
 export interface ExtensionEntry {
   id: string;
-  shortId: string;
   name: string;
   version: string;
   keywords: string[];
@@ -87,6 +86,11 @@ function StatusTag(props: { status?: string }) {
         className="extension-tag experimental"
         title="Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures."
       >EXPERIMENTAL</span>);
+    case 'deprecated':
+      return (<span
+          title="This extension has been deprecated. It is likely to be replaced or removed in a future version of Quarkus."
+          className="extension-tag deprecated"
+      >DEPRECATED</span>);
     case 'provides-example':
       return (<span
         title="This extension provides example code to help you get started..."
@@ -268,7 +272,7 @@ export const ExtensionsPicker = (props: ExtensionsPickerProps) => {
 
     setFilter(extensionSearch);
     debouncedSyncParamsQuery(extensionSearch, props.project);
-  }, [props.filterParam, props.project, debouncedSyncParamsQuery]);
+  }, [props.filterParam, props.project]);
 
   useEffect(() => {
     addParamToFilter();

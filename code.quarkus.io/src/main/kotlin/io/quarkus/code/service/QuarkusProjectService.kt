@@ -3,16 +3,19 @@ package io.quarkus.code.service
 
 import io.quarkus.code.config.CodeQuarkusConfig
 import io.quarkus.code.model.ProjectDefinition
+import io.quarkus.devtools.codestarts.CodestartException
 import io.quarkus.devtools.commands.CreateProject
 import io.quarkus.devtools.commands.data.QuarkusCommandException
 import io.quarkus.devtools.project.BuildTool
 import io.quarkus.devtools.project.compress.QuarkusProjectCompress
 import java.io.IOException
+import java.lang.IllegalArgumentException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.ws.rs.WebApplicationException
 
 @Singleton
 class QuarkusProjectService {
@@ -60,7 +63,7 @@ class QuarkusProjectService {
         val sourceType = CreateProject.determineSourceType(extensions)
         val buildTool = BuildTool.valueOf(projectDefinition.buildTool)
         val codestarts = HashSet<String>()
-        if(gitHub) {
+        if (gitHub) {
             codestarts.add("github-action")
         }
         try {
@@ -73,14 +76,16 @@ class QuarkusProjectService {
                     .codestarts(codestarts)
                     .javaTarget("11")
                     .className(projectDefinition.className)
-                    .quarkusGradlePluginVersion(config.quarkusVersion.replace("-redhat-.*".toRegex(), ""))
                     .extensions(extensions)
                     .noExamples(projectDefinition.noExamples)
                     .resourcePath(projectDefinition.path)
+                    .quarkusGradlePluginVersion(config.quarkusVersion.replace("-redhat-.*".toRegex(), ""))
                     .execute()
             if (!result.isSuccess) {
                 throw IOException("Error during Quarkus project creation")
             }
+        } catch (e: CodestartException) {
+            throw IllegalArgumentException(e.message)
         } catch (e: QuarkusCommandException) {
             throw IOException("Error during Quarkus project creation", e)
         }
