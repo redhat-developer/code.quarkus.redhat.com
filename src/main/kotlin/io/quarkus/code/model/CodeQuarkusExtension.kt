@@ -1,8 +1,15 @@
 package io.quarkus.code.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonInclude.Include.*
+
+@JsonInclude(NON_NULL)
 data class CodeQuarkusExtension(
         val id: String,
+
+        @Deprecated(message = "see https://github.com/quarkusio/code.quarkus.io/issues/424")
         val shortId: String,
+
         val version: String,
         val name: String,
         val description: String?,
