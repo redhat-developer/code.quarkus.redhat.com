@@ -1,1 +1,1 @@
-quarkus-1.11.3.ER7
+quarkus-1.11.5.CR3
