@@ -19,9 +19,8 @@ src/test/java/org/acme/GreetingResourceTest.java
 src/main/
 src/main/docker/
 src/main/docker/Dockerfile.native
-src/main/docker/Dockerfile.legacy-jar
-src/main/docker/Dockerfile.native-distroless
 src/main/docker/Dockerfile.jvm
+src/main/docker/Dockerfile.fast-jar
 src/main/resources/
 src/main/resources/META-INF/
 src/main/resources/META-INF/resources/

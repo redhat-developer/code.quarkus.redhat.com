@@ -170,7 +170,7 @@ internal class QuarkusProjectServiceTest {
         assertThatMatchSnapshot(info, projDir, "settings.gradle")
             .satisfies(checkContains("rootProject.name='test-scala-app'"))
         assertThat(projDir.resolve("gradle.properties"))
-            .satisfies(checkContains("quarkusPluginVersion=${codeQuarkusConfig.quarkusVersion}"))
+            .satisfies(checkContains("quarkusPlatformVersion=${codeQuarkusConfig.quarkusVersion}"))
         assertThat(projDir.resolve("build.gradle"))
             .satisfies(checkContains("id 'scala'"))
             .satisfies(checkContains("implementation 'io.quarkus:quarkus-scala'"))
