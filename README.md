@@ -29,3 +29,24 @@ There is a CI for master using Jenkins (jobs containing `-redhat`): https://ci.e
 2. (Inside Red Hat private network) Create a PR on this [link](https://gitlab.cee.redhat.com/service/app-interface/-/edit/master/data/services/quarkus/cicd/ci-ext/saas-redhat.yaml) with the commit hash to release in the `ref: ...` 
 3. Comment with `/lgtm` and wait for CI checks
 4. Merging the PR will trigger a deployment to production
+
+
+## Deploy with docker
+
+```shell
+docker run -i --rm -p 8080:8080 quay.io/app-sre/code-quarkus-int-build:latesttlo
+```
+
+## Deploy on OpenShift
+
+```shell
+# create project
+oc new-project code-quarkus-redhat-internal
+oc project code-quarkus-redhat-internal
+oc process -f template.yaml -p IMAGE=quay.io/app-sre/code-quarkus-int-build -p QUARKUS_LOG_SENTRY=false -p IO_QUARKUS_CODE_EXTENSION_PROCESSOR_TAGS_FROM=redhat-support | oc apply -f - 
+oc expose svc/code-quarkus
+
+# redeploy/update
+oc project code-quarkus-redhat-internal
+oc rollout latest dc/code-quarkus
+```
