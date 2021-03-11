@@ -34,7 +34,7 @@ There is a CI for master using Jenkins (jobs containing `-redhat`): https://ci.e
 ## Deploy with docker
 
 ```shell
-docker run -i --rm -p 8080:8080 quay.io/app-sre/code-quarkus-int-build:latesttlo
+docker run -i --rm -p 8080:8080 quay.io/app-sre/code-quarkus-int-build:latest
 ```
 
 ## Deploy on OpenShift
