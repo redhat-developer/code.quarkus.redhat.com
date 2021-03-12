@@ -1,1 +1,1 @@
-quarkus-1.11.5.CR4
+quarkus-1.11.6.CR1
