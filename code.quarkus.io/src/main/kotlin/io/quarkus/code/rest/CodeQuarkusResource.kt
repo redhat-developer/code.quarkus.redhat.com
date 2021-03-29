@@ -5,8 +5,8 @@ import io.quarkus.code.config.GitHubConfig
 import io.quarkus.code.config.GoogleAnalyticsConfig
 import io.quarkus.code.model.CodeQuarkusExtension
 import io.quarkus.code.model.CreatedProject
-import io.quarkus.code.model.PublicConfig
 import io.quarkus.code.model.ProjectDefinition
+import io.quarkus.code.model.PublicConfig
 import io.quarkus.code.service.QuarkusExtensionCatalogService
 import io.quarkus.code.service.QuarkusProjectService
 import io.quarkus.runtime.StartupEvent
@@ -17,7 +17,6 @@ import org.eclipse.microprofile.openapi.annotations.Operation
 import org.eclipse.microprofile.openapi.annotations.media.Content
 import org.eclipse.microprofile.openapi.annotations.media.Schema
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse
-import java.lang.IllegalArgumentException
 import java.nio.charset.StandardCharsets
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -175,29 +174,6 @@ class CodeQuarkusResource {
             return Response
                 .status(Response.Status.BAD_REQUEST)
                 .entity(message)
-                .type(TEXT_PLAIN)
-                .build()
-        }
-    }
-
-    @POST
-    @Path("/download")
-    @Consumes(APPLICATION_JSON)
-    @Produces("application/zip")
-    @Operation(summary = "Download a custom Quarkus application with the provided settings")
-    fun postDownload(@Valid projectDefinition: ProjectDefinition?): Response {
-        try {
-            val project = projectDefinition ?: ProjectDefinition()
-            return Response
-                .ok(projectCreator.create(project))
-                .type("application/zip")
-                .header("Content-Disposition", "attachment; filename=\"${project.artifactId}.zip\"")
-                .build()
-        } catch (e: IllegalStateException) {
-            LOG.warning("Bad request: ${e.message}")
-            return Response
-                .status(Response.Status.BAD_REQUEST)
-                .entity(e.message)
                 .type(TEXT_PLAIN)
                 .build()
         }
