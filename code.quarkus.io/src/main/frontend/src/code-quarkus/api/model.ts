@@ -6,7 +6,7 @@ export interface QuarkusProject {
     artifactId: string;
     version: string;
     name?: string;
-    packageName?: string;
+    noExamples?: boolean;
     buildTool: string;
   };
   extensions: ExtensionEntry[];
@@ -18,7 +18,6 @@ export interface QuarkusProject {
 
 export interface Extension {
   id: string;
-  shortId: string;
   version: string;
   name: string;
   keywords: string[];

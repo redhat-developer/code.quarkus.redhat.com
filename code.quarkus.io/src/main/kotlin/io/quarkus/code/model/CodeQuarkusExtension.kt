@@ -1,5 +1,9 @@
 package io.quarkus.code.model
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonInclude.Include.*
+
+@JsonInclude(NON_NULL)
 data class CodeQuarkusExtension(
         val id: String,
 
@@ -12,10 +16,13 @@ data class CodeQuarkusExtension(
         val shortName: String?,
         val category: String,
         val tags: List<String>,
-        val default: Boolean,
         val keywords: List<String>,
+        val providesExampleCode: Boolean,
         val guide: String?,
         val order: Int,
+
+        @Deprecated(message = "no continued")
+        val default: Boolean,
 
         @Deprecated(message = "has been replaced", replaceWith = ReplaceWith("tags"))
         val status: String,

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.condition.DisabledIfSystemProperty
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import io.quarkus.devtools.testing.WrapperRunner
 
 @QuarkusTest
 @DisabledIfSystemProperty(named = "no-app-running-test", matches = "true")
@@ -31,7 +32,8 @@ class CodeQuarkusTest {
                 .extract().asByteArray()
         assertThat(result, notNullValue())
         val dir = QuarkusProjectServiceTestUtils.extractProject(result).first
-        val run = WrapperRunner.run(dir.toPath().resolve(appName), WrapperRunner.Wrapper.MAVEN)
+        val appDir = dir.toPath().resolve(appName)
+        val run = WrapperRunner.run(appDir, WrapperRunner.Wrapper.MAVEN)
         assertThat(run, `is`(0))
     }
 
@@ -42,7 +44,7 @@ class CodeQuarkusTest {
         val languageExt = if(language != "java") "io.quarkus:quarkus-$language" else ""
         val appName = "test-app-maven-$language"
         val result = given()
-                .`when`().get("/api/download?b=GRADLE&a=$appName&v=1.0.0&s=pDS.L0j&e=$languageExt")
+                .`when`().get("/api/download?b=GRADLE&a=$appName&v=1.0.0&e=neo4j&e=amazon-lambda-http&e=$languageExt")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)

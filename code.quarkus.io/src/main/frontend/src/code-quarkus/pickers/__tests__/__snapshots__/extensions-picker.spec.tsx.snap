@@ -99,7 +99,15 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>
@@ -301,9 +309,10 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
                 A CDI in name test
               </span>
               <span
-                class="extension-tag custom"
+                class="extension-tag experimental"
+                title="Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures."
               >
-                experimental
+                EXPERIMENTAL
               </span>
             </div>
             <div
@@ -383,9 +392,10 @@ exports[`<ExtensionsPicker /> renders the ExtensionsPicker correctly 1`] = `
                 Camel Netty4 test HTTP
               </span>
               <span
-                class="extension-tag custom"
+                class="extension-tag preview"
+                title="This is work in progress. API or configuration properties might change as the extension matures. Give us your feedback :)"
               >
-                preview
+                PREVIEW
               </span>
             </div>
             <div
@@ -530,7 +540,15 @@ exports[`<ExtensionsPicker /> select values and save 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>
@@ -663,9 +681,10 @@ exports[`<ExtensionsPicker /> select values and save 1`] = `
               Camel Netty4 test HTTP
             </span>
             <span
-              class="extension-tag custom"
+              class="extension-tag preview"
+              title="This is work in progress. API or configuration properties might change as the extension matures. Give us your feedback :)"
             >
-              preview
+              PREVIEW
             </span>
           </div>
           <div
@@ -809,7 +828,15 @@ exports[`<ExtensionsPicker /> show results for valid search 1`] = `
           <p
             class="desktop-only"
           >
-            Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!
+            Explore the wide breadth of technologies Quarkus applications can be made with. The flag 
+            <span
+              class="codestart-example-icon"
+            />
+             means the extension helps you get started with example code.
+          </p>
+          <br />
+          <p>
+            Generate your application!
           </p>
           <br />
           <p>
@@ -1010,9 +1037,10 @@ exports[`<ExtensionsPicker /> show results for valid search 1`] = `
               A CDI in name test
             </span>
             <span
-              class="extension-tag custom"
+              class="extension-tag experimental"
+              title="Early feedback is requested to mature the idea. There is no guarantee of stability nor long term presence in the platform until the solution matures."
             >
-              experimental
+              EXPERIMENTAL
             </span>
           </div>
           <div

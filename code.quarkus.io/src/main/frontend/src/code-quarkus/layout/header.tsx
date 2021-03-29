@@ -3,7 +3,7 @@ import './header.scss';
 import { AngleLeftIcon } from '@patternfly/react-icons';
 import { createLinkTracker, useAnalytics } from '../../core/analytics';
 
-export function Header() {
+export function Header(props: { quarkusVersion: string }) {
     const analytics = useAnalytics();
     const linkClick = (e: any) => {
         const link = e.target.getAttribute('href');
@@ -29,6 +29,9 @@ export function Header() {
                     <a href="https://quarkus.io" onClick={linkTracker}>
                         <img src="/static/media/quarkus-logo.svg" className="logo" title="Quarkus" alt="Quarkus"/>
                     </a>
+                    <div className="quarkus-version">
+                        <span>{props.quarkusVersion}</span>
+                    </div>
                 </div>
             </div>
         </div>

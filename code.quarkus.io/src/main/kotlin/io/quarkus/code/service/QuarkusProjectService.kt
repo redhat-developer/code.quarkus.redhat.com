@@ -1,16 +1,21 @@
 package io.quarkus.code.service
 
+
 import io.quarkus.code.config.CodeQuarkusConfig
 import io.quarkus.code.model.ProjectDefinition
+import io.quarkus.devtools.codestarts.CodestartException
 import io.quarkus.devtools.commands.CreateProject
+import io.quarkus.devtools.commands.data.QuarkusCommandException
 import io.quarkus.devtools.project.BuildTool
 import io.quarkus.devtools.project.compress.QuarkusProjectCompress
 import java.io.IOException
+import java.lang.IllegalArgumentException
 import java.nio.file.Files
 import java.nio.file.Path
-import java.nio.file.attribute.PosixFilePermissions
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import javax.ws.rs.WebApplicationException
 
 @Singleton
 class QuarkusProjectService {
@@ -47,72 +52,48 @@ class QuarkusProjectService {
         return Files.readAllBytes(zipPath)
     }
 
-    fun createTmp(projectDefinition: ProjectDefinition): Path {
+    fun createTmp(projectDefinition: ProjectDefinition, isGitHub: Boolean = false): Path {
         val location = Files.createTempDirectory("generated-").resolve(projectDefinition.artifactId)
-        createProject(projectDefinition, location)
+        createProject(projectDefinition, location, isGitHub)
         return location;
     }
 
-    private fun createProject(projectDefinition: ProjectDefinition, projectFolderPath: Path) {
+    private fun createProject(projectDefinition: ProjectDefinition, projectFolderPath: Path, gitHub: Boolean) {
         val extensions = checkAndMergeExtensions(projectDefinition)
         val sourceType = CreateProject.determineSourceType(extensions)
-        val context = mutableMapOf("path" to (projectDefinition.path as Any))
         val buildTool = BuildTool.valueOf(projectDefinition.buildTool)
-        val quarkusPluginCommunityVersion = if (BuildTool.GRADLE == buildTool) config.quarkusVersion.replace("-redhat-.*".toRegex(), "") else null
-        val success = CreateProject(projectFolderPath, QuarkusExtensionCatalogService.descriptor)
-                .groupId(projectDefinition.groupId)
-                .artifactId(projectDefinition.artifactId)
-                .version(projectDefinition.version)
-                .sourceType(sourceType)
-                .buildTool(buildTool)
-                .className(projectDefinition.className)
-                .quarkusPluginVersion(quarkusPluginCommunityVersion)
-                .javaTarget("11")
-                .extensions(extensions)
-                .doCreateProject(context)
-        if (!success) {
-            throw IOException("Error during Quarkus project creation")
+        val codestarts = HashSet<String>()
+        if (gitHub) {
+            codestarts.add("github-action")
         }
-        if (buildTool == BuildTool.MAVEN) {
-            addMvnw(projectFolderPath)
-        } else if (buildTool == BuildTool.GRADLE) {
-            addGradlew(projectFolderPath)
+        try {
+            val result = CreateProject(projectFolderPath, QuarkusExtensionCatalogService.descriptor)
+                    .groupId(projectDefinition.groupId)
+                    .artifactId(projectDefinition.artifactId)
+                    .version(projectDefinition.version)
+                    .sourceType(sourceType)
+                    .buildTool(buildTool)
+                    .codestarts(codestarts)
+                    .javaTarget("11")
+                    .className(projectDefinition.className)
+                    .extensions(extensions)
+                    .noExamples(projectDefinition.noExamples)
+                    .resourcePath(projectDefinition.path)
+                    .quarkusGradlePluginVersion(config.quarkusVersion.replace("-redhat-.*".toRegex(), ""))
+                    .execute()
+            if (!result.isSuccess) {
+                throw IOException("Error during Quarkus project creation")
+            }
+        } catch (e: CodestartException) {
+            throw IllegalArgumentException(e.message)
+        } catch (e: QuarkusCommandException) {
+            throw IOException("Error during Quarkus project creation", e)
         }
+
     }
 
     private fun checkAndMergeExtensions(projectDefinition: ProjectDefinition): Set<String> {
         return extensionCatalog.checkAndMergeExtensions(projectDefinition.extensions, projectDefinition.shortExtensions)
-    }
-
-    private fun addMvnw(projectFolderPath: Path) {
-        Files.createDirectories(projectFolderPath.resolve(MVNW_WRAPPER_DIR))
-        writeResourceFile(projectFolderPath, MVNW_RESOURCES_DIR, MVNW_WRAPPER_JAR)
-        writeResourceFile(projectFolderPath, MVNW_RESOURCES_DIR, MVNW_WRAPPER_PROPS)
-        writeResourceFile(projectFolderPath, MVNW_RESOURCES_DIR, MVNW_WRAPPER_DOWNLOADER)
-        writeResourceFile(projectFolderPath, MVNW_RESOURCES_DIR, MVNW_CMD, true)
-        writeResourceFile(projectFolderPath, MVNW_RESOURCES_DIR, MVNW, true)
-    }
-
-    private fun addGradlew(projectFolderPath: Path) {
-        Files.createDirectories(projectFolderPath.resolve(GRADLEW_WRAPPER_DIR))
-        writeResourceFile(projectFolderPath, GRADLEW_RESOURCES_DIR, GRADLEW_WRAPPER_JAR)
-        writeResourceFile(projectFolderPath, GRADLEW_RESOURCES_DIR, GRADLEW_WRAPPER_PROPS)
-        writeResourceFile(projectFolderPath, GRADLEW_RESOURCES_DIR, GRADLEW_BAT, true)
-        writeResourceFile(projectFolderPath, GRADLEW_RESOURCES_DIR, GRADLEW, true)
-    }
-
-    private fun writeResourceFile(projectFolderPath: Path, resourcesDir: String, filePath: String, allowExec: Boolean = false) {
-        val absoluteFilePath = projectFolderPath.resolve(filePath);
-        if (!absoluteFilePath.toFile().exists()) {
-            val resourcePath = "$resourcesDir/$filePath"
-            val resource = QuarkusProjectService::class.java.getResource(resourcePath)
-                    ?: throw IOException("missing resource $resourcePath")
-            val fileAsBytes = resource.readBytes()
-            Files.write(absoluteFilePath, fileAsBytes)
-            if(allowExec) {
-                Files.setPosixFilePermissions(absoluteFilePath, PosixFilePermissions.fromString("rwxr-xr-x"))
-            }
-        }
     }
 
 }

@@ -18,7 +18,8 @@ echo "Platform version: $PLATFORM_VERSION"
 GIT_REV=$(git rev-parse --short=7 HEAD)
 export IMAGE="quay.io/app-sre/code-quarkus-int-build"
 
-export MAVEN_EXTRA_ARGS=" -Dno-app-running-test=true -Dquarkus.version=${QUARKUS_VERSION} -Dquarkus.platform.version=${PLATFORM_VERSION} -Pinternal-build -s maven-settings.xml"
+export MAVEN_BUILD_EXTRA_ARGS=" -Dno-app-running-test=true -Dquarkus.version=${QUARKUS_VERSION} -Dquarkus.platform.version=${PLATFORM_VERSION} -Pinternal-build -s maven-settings.xml"
+export MAVEN_EXTRA_ARGS="-Dmaven.settings=maven-settings.xml -Dinternal-build=true"
 export NATIVE_BUILD_MEMORY="3g"
 
 cd code.quarkus.io && ./build_deploy.sh

@@ -95,9 +95,10 @@ $extensionsPickerSearchBorderColor: #dcdcdc;
 $extensionsPickerSearchBorderColorOnFocus: $secondary;
 $extensionsPickerSearchClearColor: $warningColor;
 
-$extensionsPickerFlagDefaultColor: $readonlyLabelAndBorderColor;
+$extensionsPickerFlagExampleColor: $primary;
 $extensionsPickerFlagPreviewColor: $secondary;
 $extensionsPickerFlagExperimentalColor: $warningColor;
+$extensionsPickerFlagDeprecatedColor: $readonlyLabelAndBorderColor;
 $extensionsPickerFlagCustomColor: black;
 
 // Header
@@ -106,6 +107,8 @@ $headerBackgroundImage: none;
 $headerTextColor: white;
 
 $headerMenuLinkTextColor: $quarkusBlue;
+$headerQuarkusVersionTextColor: white;
+$headerQuarkusVersionBorderColor: $primary;
 
 $headerMenuStartCodingButtonTextColor: white;
 $headerMenuStartCodingButtonBorderColor: $secondary;

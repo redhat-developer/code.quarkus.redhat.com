@@ -12,6 +12,9 @@ interface CodeQuarkusFormProps {
   setProject: React.Dispatch<SetStateAction<QuarkusProject>>;
   config: Config;
   onSave: (target?: Target) => void;
+
+  filterParam?: string;
+  setFilterParam?: React.Dispatch<SetStateAction<string>>;
 }
 
 
@@ -34,7 +37,9 @@ export function CodeQuarkusForm(props: CodeQuarkusFormProps) {
         <div className="form-header responsive-container">
           <div className="project-info">
             <div className="title">
-              <h3>Configure your application details</h3>
+              <h3>
+                Configure your application details
+              </h3>
             </div>
             <InfoPicker value={props.project.metadata} onChange={setMetadata} quarkusVersion={props.config.quarkusVersion}/>
           </div>
@@ -53,6 +58,9 @@ export function CodeQuarkusForm(props: CodeQuarkusFormProps) {
           onChange={setExtensions}
           placeholder="RESTEasy, Hibernate ORM, Web..."
           buildTool={props.project.metadata.buildTool}
+          filterParam={props.filterParam}
+          setFilterParam={props.setFilterParam}
+          project={props.project}
         />
       </div>
 

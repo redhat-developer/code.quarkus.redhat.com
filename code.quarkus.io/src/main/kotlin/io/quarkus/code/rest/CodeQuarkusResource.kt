@@ -17,6 +17,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation
 import org.eclipse.microprofile.openapi.annotations.media.Content
 import org.eclipse.microprofile.openapi.annotations.media.Schema
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse
+import java.lang.IllegalArgumentException
 import java.nio.charset.StandardCharsets
 import java.util.logging.Level
 import java.util.logging.Logger
@@ -115,6 +116,9 @@ class CodeQuarkusResource {
             if(projectDefinition.buildTool != ProjectDefinition.DEFAULT_BUILDTOOL) {
                 params.add(BasicNameValuePair("b", projectDefinition.buildTool))
             }
+            if(projectDefinition.noExamples != ProjectDefinition.DEFAULT_NO_EXAMPLES) {
+                params.add(BasicNameValuePair("ne", projectDefinition.noExamples.toString()))
+            }
             if(!projectDefinition.extensions.isEmpty()) {
                 projectDefinition.extensions.forEach { params.add(BasicNameValuePair("e", it)) }
             }
@@ -141,13 +145,38 @@ class CodeQuarkusResource {
                     .type("application/zip")
                     .header("Content-Disposition", "attachment; filename=\"${projectDefinition.artifactId}.zip\"")
                     .build()
-        } catch (e: IllegalStateException) {
-            LOG.warning("Bad request: ${e.message}")
+        } catch (e: IllegalArgumentException) {
+            val message = "Bad request: ${e.message}"
+            LOG.warning(message)
             return Response
-                    .status(Response.Status.BAD_REQUEST)
-                    .entity(e.message)
-                    .type(TEXT_PLAIN)
-                    .build()
+                .status(Response.Status.BAD_REQUEST)
+                .entity(message)
+                .type(TEXT_PLAIN)
+                .build()
+        }
+    }
+
+    @POST
+    @Path("/download")
+    @Consumes(APPLICATION_JSON)
+    @Produces("application/zip")
+    @Operation(summary = "Download a custom Quarkus application with the provided settings")
+    fun postDownload(@Valid projectDefinition: ProjectDefinition?): Response {
+        try {
+            val project = projectDefinition ?: ProjectDefinition()
+            return Response
+                .ok(projectCreator.create(project))
+                .type("application/zip")
+                .header("Content-Disposition", "attachment; filename=\"${project.artifactId}.zip\"")
+                .build()
+        } catch (e: IllegalArgumentException) {
+            val message = "Bad request: ${e.message}"
+            LOG.warning(message)
+            return Response
+                .status(Response.Status.BAD_REQUEST)
+                .entity(message)
+                .type(TEXT_PLAIN)
+                .build()
         }
     }
 

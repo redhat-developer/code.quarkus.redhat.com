@@ -24,7 +24,10 @@ export function QuarkusBlurb() {
           <p>Think of Quarkus extensions as your project dependencies. Extensions configure, boot and integrate a framework or technology into your Quarkus application. They also do all of the heavy
             lifting of providing the right information to GraalVM for your application to compile natively.</p>
           <br/>
-          <p className="desktop-only">Explore the wide breadth of technologies Quarkus applications can be made with. Generate your application!</p>
+          <p className="desktop-only">Explore the wide breadth of technologies Quarkus applications can be made with.
+            The flag <span className="codestart-example-icon" /> means the extension helps you get started with example code.</p>
+          <br/>
+          <p>Generate your application!</p>
           <br/>
           <p>[Missing a feature? Found a bug? <a href="https://access.redhat.com/support/" target="_blank" rel="noopener noreferrer" onClick={feedbackLinkClick}>We are listening for feedback</a>]</p>
         </Alert>

@@ -42,6 +42,10 @@
        display: none;
       }
     }
+    .quarkus-brand {
+      line-height: 70px;
+      display: flex;
+    }
 
     .quarkus-brand, .redhat-brand {
       a {
@@ -63,6 +67,19 @@
           height: 25px;
           width: auto;
         }
+      }
+      .quarkus-version {
+        @media screen and (max-width: $mobileWidth) {
+          display: none;
+        }
+      }
+      .quarkus-version span {
+        margin-left: 20px;
+        color: $headerQuarkusVersionTextColor;
+        font-size: 1.2rem;
+        padding: 5px;
+        vertical-align: middle;
+        border: 1px solid $headerQuarkusVersionBorderColor;
       }
     }
 

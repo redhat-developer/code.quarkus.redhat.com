@@ -3,6 +3,7 @@ package io.quarkus.code.gen
 import io.quarkus.code.config.ExtensionProcessorConfig
 import io.quarkus.code.misc.QuarkusExtensionUtils.processExtensions
 import io.quarkus.code.misc.QuarkusExtensionUtils.shorten
+import io.quarkus.code.misc.QuarkusExtensionUtils.toShortcut
 import io.quarkus.code.model.CodeQuarkusExtension
 import io.quarkus.platform.descriptor.loader.json.ArtifactResolver
 import io.quarkus.platform.descriptor.loader.json.QuarkusJsonPlatformDescriptorLoaderContext
@@ -34,6 +35,15 @@ internal class QuarkusExtensionUtilsTest {
     }
 
     @Test
+    internal fun testToShortcut() {
+        assertThat(toShortcut("io.quarkus:quarkus-my-ext"), `is`("my-ext"))
+        assertThat(toShortcut("org.apache.camel.quarkus:camel-quarkus-core"), `is`("camel-quarkus-core"))
+        assertThat(toShortcut("camel-quarkus-core"), `is`("camel-quarkus-core"))
+        assertThat(toShortcut("quarkus-my-ext"), `is`("my-ext"))
+        assertThat(toShortcut("io.quarkiverse.myext:quarkus-my-ext"), `is`("my-ext"))
+    }
+
+    @Test
     internal fun textContent() {
 
         val extensions = processExtensions(descriptor = getTestDescriptor(), config = config)
@@ -45,8 +55,9 @@ internal class QuarkusExtensionUtilsTest {
                 description = "Build time CDI dependency injection",
                 shortName = "CDI",
                 category = "Core",
-                tags = listOf("test"),
+                tags = listOf("test", "provides-example"),
                 default = false,
+                providesExampleCode = true,
                 keywords = listOf("arc", "build", "cdi", "dependency", "dependency-injection", "di", "injection", "time"),
                 guide = "https://quarkus.io/guides/cdi-reference",
                 order = 0,
@@ -61,6 +72,7 @@ internal class QuarkusExtensionUtilsTest {
                 description = "Netty is a non-blocking I/O client-server framework. Used by Quarkus as foundation layer.",
                 shortName = null,
                 category = "Web",
+                providesExampleCode = false,
                 tags = listOf(),
                 default = false,
                 keywords = listOf("blocking", "client", "foundation", "framework", "layer", "netty", "non", "quarkus", "server", "used"),
@@ -97,11 +109,6 @@ internal class QuarkusExtensionUtilsTest {
             override fun <T> process(groupId: String, artifactId: String, classifier: String, type: String, version: String,
                                      processor: Function<Path, T>): T {
                 throw UnsupportedOperationException()
-            }
-
-            override fun getManagedDependencies(groupId: String, artifactId: String, classifier: String?,
-                                                type: String, version: String): List<Dependency> {
-                return emptyList()
             }
         }
 

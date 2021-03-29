@@ -90,6 +90,7 @@ class CodeQuarkusResourceTest {
                 groupId = "io.awesome",
                 artifactId = "my-awesome-app",
                 version = "2.0.0",
+                noExamples = true,
                 extensions = setOf("io.quarkus:quarkus-resteasy", "io.quarkus:quarkus-resteasy-jackson")
         )
         val path = given()
@@ -99,7 +100,7 @@ class CodeQuarkusResourceTest {
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
-                .body("path", equalTo("/d?g=io.awesome&a=my-awesome-app&v=2.0.0&e=io.quarkus%3Aquarkus-resteasy&e=io.quarkus%3Aquarkus-resteasy-jackson"))
+                .body("path", equalTo("/d?g=io.awesome&a=my-awesome-app&v=2.0.0&ne=true&e=io.quarkus%3Aquarkus-resteasy&e=io.quarkus%3Aquarkus-resteasy-jackson"))
                 .extract().path<String>("path")
         given()
                 .`when`().urlEncodingEnabled(false).get(path)
@@ -117,6 +118,7 @@ class CodeQuarkusResourceTest {
             groupId = "io.awesome",
             artifactId = "my-awesome-app",
             version = "2.0.0",
+            noExamples = true,
             extensions = setOf("io.quarkus:quarkus-resteasy", "io.quarkus:quarkus-resteasy-jackson")
         )
         given()
@@ -132,8 +134,7 @@ class CodeQuarkusResourceTest {
     }
 
     @Test
-    @DisplayName("Should return a project with default configuration when there is no parameters")
-    fun testNoParams() {
+    fun `Should return a project with default configuration when there is no parameters`() {
         given()
                 .`when`().get("/api/download")
                 .then()
@@ -145,8 +146,7 @@ class CodeQuarkusResourceTest {
     }
 
     @Test
-    @DisplayName("Should fail when a param is specified as empty")
-    fun testWithEmptyParam() {
+    fun `Should fail when artifactId is empty`() {
         given()
                 .`when`()
                 .get("/api/download?g=org.acme&a=&pv=1.0.0&c=org.acme.TotoResource&s=98e")
@@ -248,7 +248,7 @@ class CodeQuarkusResourceTest {
     fun testWithEmptyShortIds() {
         given()
                 .`when`()
-                .get("/api/download?g=org.acme&a=test-empty-shortids&v=1.0.1&b=MAVEN&c=org.acme.ExampleResource&s=")
+                .get("/api/download?g=org.acme&a=test-empty-shortids&v=1.0.1&b=MAVEN&s=")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -268,7 +268,7 @@ class CodeQuarkusResourceTest {
     fun testWithEmptyExtensions() {
         given()
                 .`when`()
-                .get("/api/download?g=org.acme&a=test-empty-ext&v=1.0.1&b=MAVEN&c=org.acme.ExampleResource&e=")
+                .get("/api/download?g=org.acme&a=test-empty-ext&v=1.0.1&b=MAVEN&c=org.test.ExampleResource&e=")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -279,6 +279,7 @@ class CodeQuarkusResourceTest {
                 ProjectDefinition(
                         artifactId = "test-empty-ext",
                         version = "1.0.1",
+                        className = "org.test.ExampleResource",
                         extensions = setOf("")
                 ))
         )
@@ -289,7 +290,7 @@ class CodeQuarkusResourceTest {
     fun testWithUrlRewrite() {
         given()
                 .`when`()
-                .get("/d?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=7RG.L0j.9Ie") // quarkus-logging-json, quarkus-amazon-lambda-http, quarkus-elytron-security-oauth2
+                .get("/d?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&e=logging-json&e=amazon-lambda-http&e=elytron-security-oauth2")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -303,7 +304,7 @@ class CodeQuarkusResourceTest {
                         version = "1.0.0",
                         className = "org.toto.TotoResource",
                         path = "/toto/titi",
-                        shortExtensions = "7RG.L0j.9Ie"
+                        extensions = setOf("logging-json", "amazon-lambda-http", "elytron-security-oauth2")
                 )
         )
         )
@@ -314,7 +315,7 @@ class CodeQuarkusResourceTest {
     fun testWithAllParams() {
         given()
                 .`when`()
-                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&s=7RG.L0j.9Ie")
+                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=org.toto.TotoResource&e=logging-json&e=amazon-lambda-http&e=elytron-security-oauth2")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -328,7 +329,7 @@ class CodeQuarkusResourceTest {
                         version = "1.0.0",
                         className = "org.toto.TotoResource",
                         path = "/toto/titi",
-                        shortExtensions = "7RG.L0j.9Ie"
+                        extensions = setOf("logging-json", "amazon-lambda-http", "elytron-security-oauth2")
                 ))
         )
     }
@@ -338,7 +339,7 @@ class CodeQuarkusResourceTest {
     fun testWithOldExtensionSyntaxParams() {
         given()
                 .`when`()
-                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=com.toto.TotoResource&e=io.quarkus:quarkus-resteasy&s=9Ie")
+                .get("/api/download?g=com.toto&a=test-app&v=1.0.0&p=/toto/titi&c=com.toto.TotoResource&e=io.quarkus:quarkus-resteasy")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -352,8 +353,7 @@ class CodeQuarkusResourceTest {
                         version = "1.0.0",
                         className = "com.toto.TotoResource",
                         path = "/toto/titi",
-                        extensions = setOf("io.quarkus:quarkus-resteasy"),
-                        shortExtensions = "9Ie"
+                        extensions = setOf("io.quarkus:quarkus-resteasy")
                 )
         )
         )
@@ -393,7 +393,7 @@ class CodeQuarkusResourceTest {
     fun testGradle() {
         given()
                 .`when`()
-                .get("/api/download?b=GRADLE&a=test-app-with-a-few-arg&v=1.0.0&s=pDS.L0j")
+                .get("/api/download?b=GRADLE&a=test-app-with-a-few-arg&v=1.0.0&e=neo4j&e=amazon-lambda-http")
                 .then()
                 .log().ifValidationFails()
                 .statusCode(200)
@@ -405,7 +405,7 @@ class CodeQuarkusResourceTest {
                         artifactId = "test-app-with-a-few-arg",
                         version = "1.0.0",
                         buildTool = "GRADLE",
-                        shortExtensions = "pDS.L0j"
+                        extensions = setOf("neo4j", "amazon-lambda-http")
                 )
         )
         )
