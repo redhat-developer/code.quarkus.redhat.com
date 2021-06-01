@@ -1,1 +1,1 @@
-quarkus-1.11.7.DR2
+quarkus-1.11.7.ER1
