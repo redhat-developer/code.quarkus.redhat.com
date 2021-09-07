@@ -58,6 +58,9 @@ const statusConfig: any = {
     target: '_blank',
     rel: 'noopener noreferrer'
   },
+  'supported-in-jvm': {
+     title: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine, while usage in Native is considered Technology Preview'
+  },
   'dev-support': {
     href: 'https://access.redhat.com/support/offerings/production/soc/',
     target: '_blank',
