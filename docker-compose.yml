@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  code-quarkus-api:
+    image: quay.io/quarkus/code-quarkus-api
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./docker-compose-config/.env.internal
