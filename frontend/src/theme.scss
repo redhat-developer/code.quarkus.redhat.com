@@ -105,10 +105,17 @@
   --headerBackgroundImage: none;
   --headerTextColor: white;
 
-  --headerQuarkusVersionTextColor: white;
-  --headerQuarkusVersionBorderColor: var(--secondary);
-
   --headerMenuLinkTextColor: white;
+
+  // StreamPicker
+  --streamPickerStreamIdTextColor: white;
+  --streamPickerPlatformKeyTextColor: var(--secondary);
+  --streamPickerBorderColor: var(--streamPickerPlatformKeyTextColor);
+  --streamPickerDropdownStreamIdTextColor: black;
+  --streamPickerDropdownPlatformKeyTextColor: var(--streamPickerPlatformKeyTextColor);
+  --streamPickerDropdownBackgroundColor: var(--background);
+  --quarkusStreamPickerDropdownBackgroundImage: var(--headerBackgroundImage);
+
 
   // Blurb
   --blurbBg: var(--background2);

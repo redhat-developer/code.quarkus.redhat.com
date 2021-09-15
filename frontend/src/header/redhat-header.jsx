@@ -4,6 +4,7 @@ import { CompanyHeader } from '@quarkusio/code-quarkus.components';
 import { createLinkTracker, useAnalytics } from '@quarkusio/code-quarkus.core.analytics';
 import { FaAngleLeft } from 'react-icons/fa';
 import rhLogo from '../media/rh-logo.svg';
+import quarkusLogo from '../media/quarkus-logo.svg';
 export function RedHatHeader(props) {
     const analytics = useAnalytics();
     const linkClick = (e) => {
@@ -13,7 +14,7 @@ export function RedHatHeader(props) {
     const linkTracker = createLinkTracker(analytics,'UX', 'Header');
     const isCodeQuarkusReferrer = document.referrer.includes("code.quarkus.io");
     return (
-        <CompanyHeader {...props}>
+        <CompanyHeader {...props} quarkusLogo={quarkusLogo}>
             <>
                 <div className="redhat-brand">
 

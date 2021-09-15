@@ -1,0 +1,8 @@
+# This livenessProbe hack will restart the pods after 1 hour
+livenessProbe:
+  exec:
+    command:
+      - exit 1
+  failureThreshold: 1
+  initialDelaySeconds: 3600
+  periodSeconds: 60
