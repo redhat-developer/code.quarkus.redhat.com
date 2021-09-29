@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: code-quarkus-rollout-cronjob
+spec:
+  schedule: "*/30 * * * *"
+  concurrencyPolicy: "Forbid"
+  startingDeadlineSeconds: 500
+  suspend: false
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 10
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: code-quarkus-rollout
+              image:  quay.io/openshift/origin-cli
+              imagePullPolicy: IfNotPresent
+              command: [ "/bin/bash","-c", "--" ]
+              args: [ "mkdir /tmp/.kube; touch /tmp/.kube/config; oc login --insecure-skip-tls-verify --token=$OC_TOKEN --server=https://api.ocp4.prod.psi.redhat.com:6443;oc rollout latest dc/code-quarkus-api; oc rollout latest dc/code-quarkus-frontend" ]
+              env:
+                - name: OC_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: code-quarkus-rollout-secrets
+                      key: oc-token
+                - name: KUBECONFIG
+                  value: "/tmp/.kube/config"
+          restartPolicy: Never

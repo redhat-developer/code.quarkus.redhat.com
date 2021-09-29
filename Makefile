@@ -13,5 +13,5 @@ unlink-library:
 upgrade-library:
 	cd frontend && yarn upgrade @quarkusio/code-quarkus.components --latest
 
-start-frontend:
+dev-frontend:
 	cd frontend && yarn start

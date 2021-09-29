@@ -1,52 +1,39 @@
 # Red Hat Code Quarkus App
 
-This repository contains code for code.quarkus.redhat.com. It uses a subtree (like a fork but as a subdir) of https://github.com/quarkusio/code.quarkus.io with some changes added to it.
+This repository contains the frontend for code.quarkus.redhat.com
+It is a really basic React app create with `create-react-app` using the community frontend library https://www.npmjs.com/package/@quarkusio/code-quarkus.components.
 
-# Merge latest code.quarkus.io sources
+Start the backend with docker:
 
-To merge latest master of code.quarkus.io, it will do a `git subtree pull`:
 ```bash
-make merge-with-upstream
+# Using RHBQ internal registry
+make start-internal-api
 ```
 
-# Release a new RHBQ path version (major.minor.patch)
+Start the frontend in dev mode:
+```bash
+make dev-frontend
+```
 
-> **Releasing minor version may require an update (and some possible adaptation) of the code.quarkus.io subtree.**
+# Link/Unlink local dev library
+```bash
+make link-library
+make unlink-library
+```
 
-## Create a release commit
+Start the app (backend and frontend) with docker compose:
 
-1. Check that the new Quarkus version is available in the [RH maven repo](https://maven.repository.redhat.com/ga/com/redhat/quarkus/quarkus-universe-bom/)
-2. Set the new Quarkus version in the [pom](https://github.com/redhat-developer/code.quarkus.redhat.com/blob/master/code.quarkus.io/pom.xml) `quarkus.version` and `quarkus.platform.version` 
-3. Build and test locally: `mvn clean install -s code.quarkus.io/maven-settings.xml`
-4. Create a commit named: `Release X.Y.Z.Final-redhat-NNNNN`
-
-There is currently no PR check CI: https://github.com/redhat-developer/code.quarkus.redhat.com/issues/14 
-There is a CI for master using Jenkins (jobs containing `-redhat`): https://ci.ext.devshift.net/view/quarkus/
+```bash
+# Using RHBQ internal registry
+make compose-internal
+```
 
 ## Deployment to production
 
 1. Check that everything works as expected on [staging](https://code.quarkus.stage.redhat.com/)
-2. (Inside Red Hat private network) Create a PR on this [link](https://gitlab.cee.redhat.com/service/app-interface/-/edit/master/data/services/quarkus/cicd/ci-ext/saas-redhat.yaml) with the commit hash to release in the `ref: ...` 
+2. (Inside Red Hat private network) Create a PR on this [link](https://gitlab.cee.redhat.com/service/app-interface/-/edit/master/data/services/quarkus/cicd/ci-ext/saas-redhat.yaml) with the commit hash to release in bot `ref: ...` **(there are two `ref` to edit, api & frontend)**
 3. Comment with `/lgtm` and wait for CI checks
 4. Merging the PR will trigger a deployment to production
 
 
-## Deploy with docker
 
-```shell
-docker run -i --rm -p 8080:8080 quay.io/app-sre/code-quarkus-int-build:latest
-```
-
-## Deploy on OpenShift
-
-```shell
-# create project
-oc new-project code-quarkus-redhat-internal
-oc project code-quarkus-redhat-internal
-oc process -f template.yaml -p IMAGE=quay.io/app-sre/code-quarkus-int-build -p QUARKUS_LOG_SENTRY=false -p IO_QUARKUS_CODE_EXTENSION_PROCESSOR_TAGS_FROM=redhat-support | oc apply -f - 
-oc expose svc/code-quarkus
-
-# redeploy/update
-oc project code-quarkus-redhat-internal
-oc rollout latest dc/code-quarkus
-```
