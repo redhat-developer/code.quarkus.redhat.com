@@ -113,9 +113,8 @@
   --streamPickerBorderColor: var(--streamPickerPlatformKeyTextColor);
   --streamPickerDropdownStreamIdTextColor: black;
   --streamPickerDropdownPlatformKeyTextColor: var(--streamPickerPlatformKeyTextColor);
-  --streamPickerDropdownBackgroundColor: var(--background);
-  --quarkusStreamPickerDropdownBackgroundImage: var(--headerBackgroundImage);
-
+  --streamPickerDropdownBackgroundColor: white;
+  --streamPickerDropdownCRTextColor: #505050;
 
   // Blurb
   --blurbBg: var(--background2);
