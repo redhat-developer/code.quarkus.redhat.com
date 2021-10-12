@@ -2,7 +2,6 @@
 
 set -exv
 
-GIT_REV=$(git rev-parse HEAD)
 GIT_REV_SHORT=$(git rev-parse --short=7 HEAD)
 IMAGE=${IMAGE-"quay.io/redhat-developer/code-quarkus"}
 IMAGE_TAG=${IMAGE_TAG-$GIT_REV_SHORT}
