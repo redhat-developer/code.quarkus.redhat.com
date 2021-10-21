@@ -30,6 +30,7 @@
   --topContainerTextColor: black;
   --topContainerBg: var(--background2);
   --topContainerBgImage: none;
+  --topContainerBgImageWide: none;
 
   --fieldLabelAndBorderColor: var(--primary);
   --fieldLabelAndBorderHoverColor: var(--secondary);
@@ -103,6 +104,7 @@
   // Header
   --headerBackgroundColor: #1A1A1A;
   --headerBackgroundImage: none;
+  --headerBackgroundImageWide:
   --headerTextColor: white;
 
   --headerMenuLinkTextColor: white;
