@@ -1,5 +1,5 @@
 compose-internal:
-	docker-compose -f docker-compose-internal.ym pull
+	docker-compose -f docker-compose-internal.yml pull
 	docker-compose -f docker-compose-internal.yml up
 
 compose:

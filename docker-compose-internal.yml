@@ -7,7 +7,7 @@ services:
     env_file:
       - ./.envs/.env.internal
   code-quarkus-frontend:
-    image: quay.io/app-sre/code-quarkus-int-build
+    image: quay.io/redhat-developer/code-quarkus
     ports:
       - "3000:8082"
     depends_on:
