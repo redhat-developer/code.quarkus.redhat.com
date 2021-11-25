@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-app-polyfill/ie11';
 import reportWebVitals from './reportWebVitals';
-import { CodeQuarkus, fetchConfig, fetchPlatform } from '@quarkusio/code-quarkus.components';
+import {CodeQuarkus, fetchConfig, fetchPlatform} from '@quarkusio/code-quarkus.components';
 import './theme.scss';
-import { RedHatHeader } from './header/redhat-header';
+import {RedHatHeader} from './header/redhat-header';
 
 const PUBLIC_URL = process.env.PUBLIC_URL && `${process.env.PUBLIC_URL}/`;
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || PUBLIC_URL;
 const CLIENT_NAME = window.location.hostname;
-const REQUEST_OPTIONS = { headers: { 'Client-Name': CLIENT_NAME } };
+const REQUEST_OPTIONS = {headers: {'Client-Name': CLIENT_NAME}};
 
 const tagsDef = [
     {
@@ -17,11 +17,15 @@ const tagsDef = [
         color: '#be9100',
         description: 'This extension provides starter code (may not be available in all languages).'
     },
-     {
-         name: 'supported',
-         href: 'https://access.redhat.com/support/offerings/production/soc/',
-         color: '#6AB983'
-     },
+    {
+        name: 'stable',
+        display: false
+    },
+    {
+        name: 'supported',
+        href: 'https://access.redhat.com/support/offerings/production/soc/',
+        color: '#6AB983'
+    },
     {
         name: 'supported-in-jvm',
         description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine, while usage in Native is considered Technology Preview',
@@ -53,10 +57,10 @@ const api = {
 };
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CodeQuarkus api={api} configApi={fetchConfig} platformApi={fetchPlatform} header={RedHatHeader}/>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <CodeQuarkus api={api} configApi={fetchConfig} platformApi={fetchPlatform} header={RedHatHeader}/>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
