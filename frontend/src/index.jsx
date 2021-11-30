@@ -19,7 +19,7 @@ const tagsDef = [
     },
     {
         name: 'stable',
-        display: false
+        hide: true
     },
     {
         name: 'supported',
