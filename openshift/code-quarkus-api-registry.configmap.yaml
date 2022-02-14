@@ -6,7 +6,7 @@ data:
   IO_QUARKUS_CODE_QUARKUS_PLATFORMS_REGISTRY_ID: registry.quarkus.redhat.com
   IO_QUARKUS_CODE_EXTENSION_PROCESSOR_TAGS_FROM: redhat-support
   QUARKUS_REGISTRIES: registry.quarkus.redhat.com,registry.quarkus.io
-  QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_REPO_URL: https://registry-quarkus-registry-redhat.quarkus-0c576f1a70d464f092d8591997631748-0000.us-south.containers.appdomain.cloud/maven
+  QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_REPO_URL: https://registry.quarkus.redhat.com/maven
   QUARKUS_REGISTRY_REGISTRY_QUARKUS_IO_REPO_URL: https://registry.quarkus.io/maven
   BOOTSTRAP_MAVEN_REPOS: indy-static
   BOOTSTRAP_MAVEN_REPO_INDY_STATIC_URL: http://indy.psi.redhat.com/api/content/maven/group/static
