@@ -1,4 +1,4 @@
-name: Code Quarkus Red Hat Frontend CI
+name: Frontend Tests
 on:
   push:
     paths:
@@ -34,4 +34,13 @@ jobs:
         run: yarn install --frozen-lockfile
       - name: Build frontend
         working-directory: frontend
-        run: yarn build
+        run: |
+          REACT_APP_BACKEND_URL=https://code.quarkus.stage.redhat.com yarn build
+          echo ${{ github.event.number }} > ./build/pr-id.txt
+      - name: Publishing build directory for PR preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-dir
+          path: ./frontend/build
+          retention-days: 3
