@@ -23,5 +23,8 @@ unlink-library:
 upgrade-library:
 	cd frontend && yarn upgrade @quarkusio/code-quarkus.components --latest
 
+dev-frontend-staging:
+	REACT_APP_BACKEND_URL=https://code.quarkus.stage.redhat.com make dev-frontend
+
 dev-frontend:
 	cd frontend && yarn start
