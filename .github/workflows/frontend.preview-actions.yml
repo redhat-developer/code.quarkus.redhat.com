@@ -16,7 +16,7 @@ jobs:
     if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Download PR Artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@b59d8c6a6c5c6c6437954f470d963c0b20ea7415 #v2
         with:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           workflow_conclusion: success
@@ -30,7 +30,7 @@ jobs:
         id: deploy
         run: npx surge ./ --domain https://code-quarkus-redhat-com-pr-${{  steps.pr.outputs.id }}-preview.surge.sh --token ${{ secrets.SURGE_TOKEN }}
       - name: Update PR status comment on success
-        uses: actions-cool/maintain-one-comment@v1.2.1
+        uses: actions-cool/maintain-one-comment@ed4d3a59dfe131c1bd46f0d2d57725daad6071d4 #v1.2.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
@@ -41,7 +41,7 @@ jobs:
           number: ${{ steps.pr.outputs.id }}
       - name: Update PR status comment on failure
         if: ${{ failure() }}
-        uses: actions-cool/maintain-one-comment@v1.2.1
+        uses: actions-cool/maintain-one-comment@ed4d3a59dfe131c1bd46f0d2d57725daad6071d4 #v1.2.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
