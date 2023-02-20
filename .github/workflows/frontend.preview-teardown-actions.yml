@@ -12,7 +12,7 @@ jobs:
         id: deploy
         run: npx surge teardown https://code-quarkus-redhat-com-pr-${{ github.event.number }}-preview.surge.sh --token ${{ secrets.SURGE_TOKEN }}
       - name: Update PR status comment
-        uses: actions-cool/maintain-one-comment@v1.2.1
+        uses: actions-cool/maintain-one-comment@ed4d3a59dfe131c1bd46f0d2d57725daad6071d4 #v1.2.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           body: |
