@@ -10,11 +10,6 @@ Start the backend with docker:
 make start-api
 ```
 
-```bash
-# Using RHBQ internal registry
-make start-internal-api
-```
-
 Start the frontend in dev mode:
 ```bash
 make dev-frontend
@@ -33,10 +28,6 @@ Start the app (backend and frontend) with docker compose:
 make compose
 ```
 
-```bash
-# Using RHBQ internal registry
-make compose-internal
-```
 
 
 
