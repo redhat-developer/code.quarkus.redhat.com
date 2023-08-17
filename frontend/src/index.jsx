@@ -36,6 +36,7 @@ const tagsDef = [
         href: 'https://access.redhat.com/support/offerings/production/soc/',
         color: '#6AB983'
     },
+    {
         name: 'dev-preview',
         href: 'https://access.redhat.com/support/offerings/devpreview',
         color: '#6AB983'
