@@ -37,6 +37,11 @@ const tagsDef = [
         color: '#6AB983'
     },
     {
+        name: 'dev-preview',
+        href: 'https://access.redhat.com/support/offerings/devpreview',
+        color: '#6AB983'
+    },
+    {
         name: 'tech-preview',
         description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported under Red Hat Subscription Level Agreements.',
         color: '#4A97E8'
@@ -59,6 +64,11 @@ const tagsDef = [
     {
         name: 'redhat-support:dev-support',
         href: 'https://access.redhat.com/support/offerings/production/soc/',
+        color: '#6AB983'
+    },
+    {
+        name: 'redhat-support:dev-preview',
+        href: 'https://access.redhat.com/support/offerings/devpreview',
         color: '#6AB983'
     },
     {
