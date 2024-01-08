@@ -12,7 +12,7 @@
     <artifactId>code-quarkus-redhat-app</artifactId>
     <properties>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
-        <code-quarkus.version>2</code-quarkus.version>
+        <code-quarkus.version>3</code-quarkus.version>
     </properties>
 
     <dependencyManagement>
