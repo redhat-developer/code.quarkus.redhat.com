@@ -69,8 +69,6 @@ objects:
                   value: ${IO_QUARKUS_CODE_LOG_LEVEL}
                 - name: IO_QUARKUS_CODE_HOSTNAME
                   value: ${IO_QUARKUS_CODE_HOSTNAME}
-                - name: IO_QUARKUS_CODE_FEATURES
-                  value: ${IO_QUARKUS_CODE_FEATURES}
                 - name: IO_QUARKUS_CODE_QUARKUS_PLATFORMS_RELOAD_CRON_EXPR
                   value: ${IO_QUARKUS_CODE_QUARKUS_PLATFORMS_RELOAD_CRON_EXPR}
                 - name: IO_QUARKUS_CODE_SENTRY_FRONTEND_DSN
@@ -141,7 +139,7 @@ parameters:
   - name: IO_QUARKUS_CODE_LOG_LEVEL
     value: inherit
   - name: IMAGE
-    value: quay.io/quarkus/code-quarkus-app
+    value: quay.io/redhat-developer/code-quarkus
     required: true
   - name: IMAGE_TAG
     value: latest
