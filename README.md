@@ -1,34 +1,26 @@
 # Red Hat Code Quarkus App
 
-This repository contains the frontend for code.quarkus.redhat.com
-It is a really basic React app create with `create-react-app` using the community frontend library https://www.npmjs.com/package/@quarkusio/code-quarkus.components.
+[![Tests](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml/badge.svg)](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml)
 
-Start the backend with docker:
 
-```bash
-# Using registry.quarkus.redhat.com
-make start-api
+# Development
+
+Api is located in `src/main/java`
+UI is located in `src/main/resources/web/`
+
+Use this command to start dev mode on: http://0.0.0.0:8080 (Api and UI).
+```
+(BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga quarkus dev)
 ```
 
-Start the frontend in dev mode:
-```bash
-make dev-frontend
+Build the library locally:
+```
+quarkus build
 ```
 
-# Link/Unlink local dev library
-```bash
-make link-library
-make unlink-library
+After building, use this command to start the app in production mode:
 ```
-
-Start the app (backend and frontend) with docker compose:
-
-```bash
-# Using registry.quarkus.redhat.com
-make compose
+(BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga java -jar community-app/target/quarkus-app/quarkus-run.jar)
 ```
-
-
-
 
 
