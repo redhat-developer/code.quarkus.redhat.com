@@ -12,9 +12,7 @@ docker build --compress -f docker/Dockerfile.redhat-app.multistage --build-arg M
 if [[ -n "$QUAY_USER" && -n "$QUAY_TOKEN" ]]; then
     DOCKER_CONF="$PWD/.docker"
     mkdir -p "$DOCKER_CONF"
-    docker tag "${IMAGE}:${IMAGE_TAG}" "${IMAGE}:latest"
     echo "$QUAY_TOKEN" | docker --config="$DOCKER_CONF" login -u="$QUAY_USER" --password-stdin quay.io
     docker --config="$DOCKER_CONF" push "${IMAGE}:${IMAGE_TAG}"
-    docker --config="$DOCKER_CONF" push "${IMAGE}:latest"
 fi
 
