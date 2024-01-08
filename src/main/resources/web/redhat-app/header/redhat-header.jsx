@@ -1,7 +1,7 @@
 import React from 'react';
 import './redhat-header.scss';
-import { CompanyHeader } from '@quarkusio/code-quarkus.components';
-import { createLinkTracker, useAnalytics } from '@quarkusio/code-quarkus.core.analytics';
+import { CompanyHeader } from '../../lib';
+import { createLinkTracker, useAnalytics }  from '../../lib';
 import { FaAngleLeft } from 'react-icons/fa';
 import rhLogo from '../media/rh-logo.svg';
 import quarkusLogo from '../media/quarkus-logo.svg';

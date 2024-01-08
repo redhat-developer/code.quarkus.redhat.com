@@ -1,7 +1,7 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: code-quarkus-api-registry-config
+  name: code-quarkus-registry-config
 data:
   IO_QUARKUS_CODE_QUARKUS_PLATFORMS_REGISTRY_ID: registry.quarkus.redhat.com
   IO_QUARKUS_CODE_EXTENSION_PROCESSOR_TAGS_FROM: redhat-support
