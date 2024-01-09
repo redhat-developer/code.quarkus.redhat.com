@@ -8,12 +8,12 @@ Api is located in `src/main/java`
 UI is located in `src/main/resources/web/`
 
 Use this command to start dev mode on: http://0.0.0.0:8080 (Api and UI).
-```
+```bash
 (BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga quarkus dev)
 ```
 
 Build the library locally:
-```
+```bash
 quarkus build
 ```
 
@@ -22,4 +22,16 @@ After building, use this command to start the app in production mode:
 (BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga java -jar community-app/target/quarkus-app/quarkus-run.jar)
 ```
 
+# Docker
 
+```bash
+docker run -i --rm -p 8080:8080 --env-file .env quay.io/redhat-developer/code-quarkus:latest
+```
+
+# OpenShift
+
+The template:
+https://github.com/redhat-developer/code.quarkus.redhat.com/blob/main/deploy/openshift/code-quarkus.yaml
+
+and the configmap:
+https://github.com/redhat-developer/code.quarkus.redhat.com/blob/main/deploy/openshift/code-quarkus-registry.configmap.yaml
