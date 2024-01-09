@@ -1,0 +1,11 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: code-quarkus-registry
+data:
+  IO_QUARKUS_CODE_QUARKUS_PLATFORMS_REGISTRY_ID: registry.quarkus.redhat.com
+  QUARKUS_REGISTRIES: registry.quarkus.redhat.com,registry.quarkus.io
+  QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_REPO_URL: https://registry.quarkus.redhat.com/maven
+  QUARKUS_REGISTRY_REGISTRY_QUARKUS_IO_REPO_URL: https://registry.quarkus.io/maven
+  BOOTSTRAP_MAVEN_REPOS: redhat-ga
+  BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL: https://maven.repository.redhat.com/ga
