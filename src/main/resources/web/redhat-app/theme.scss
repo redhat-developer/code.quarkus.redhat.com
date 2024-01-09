@@ -12,6 +12,8 @@
   --background2: #f0f0f0;
   --background3: #404040;
 
+  --textColor: black;
+
   --primary: #646464;
   --secondary: #EB0B19;
   --tertiary: #be9100;
@@ -29,7 +31,7 @@
   --buttonBorderColor: var(--primary);
 
   // Top container
-  --topContainerTextColor: black;
+  --topContainerTextColor: var(--textColor);
   --topContainerBg: var(--background2);
   --topContainerBgImage: none;
   --topContainerBgImageWide: none;
@@ -37,7 +39,7 @@
   --fieldLabelAndBorderColor: var(--primary);
   --fieldLabelAndBorderHoverColor: var(--secondary);
   --fieldTextColor: var(--topContainerTextColor);
-  --selectOptionsTextColor: black;
+  --selectOptionsTextColor: var(--textColor);
 
   --extensionsCartButtonTextColor: white;
   --extensionsCartButtonBgColor: var(--background3);
@@ -53,12 +55,12 @@
   --resetToDefaultButtonColor: var(--warningColor);
 
   // Main container
-  --mainContainerTextColor: black;
+  --mainContainerTextColor: var(--textColor);
   --mainContainerBg: var(--background);
 
   // Next steps Modal
   --modalBg: var(--background);
-  --modalTextColor: black;
+  --modalTextColor: var(--textColor);
   --modalBorderColor: var(--secondary);
   --modalTitleColor: var(--secondary);
   --modalLinkColor: var(--linkTextColor);
@@ -93,7 +95,7 @@
   --extensionsPickerDescriptionTextColorOnTablet: #636363;
 
   --dropdownMenuBg: var(--background2);
-  --dropdownMenuTextColor: black;
+  --dropdownMenuTextColor: var(--textColor);
 
   --extensionsPickerCategoryTextColor: var(--mainContainerTextColor);
   --extensionsPickerCategoryUnderlineColor: #7f7f7f;
@@ -128,7 +130,7 @@
 
   // Blurb
   --blurbBg: var(--background2);
-  --blurbTextColor: black;
+  --blurbTextColor: var(--textColor);
   --blurbLinkTextColor: var(--linkTextColor);
   --blurbInfoIconColor: var(--primary);
 }

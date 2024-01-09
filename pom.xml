@@ -6,13 +6,12 @@
     <parent>
         <groupId>io.quarkus.code</groupId>
         <artifactId>code-quarkus-parent</artifactId>
-        <version>2</version>
+        <version>5</version>
     </parent>
 
     <artifactId>code-quarkus-redhat-app</artifactId>
     <properties>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
-        <code-quarkus.version>3</code-quarkus.version>
     </properties>
 
     <dependencyManagement>
@@ -30,7 +29,11 @@
         <dependency>
             <groupId>io.quarkus.code</groupId>
             <artifactId>code-quarkus</artifactId>
-            <version>${code-quarkus.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.playwright</groupId>
+            <artifactId>quarkus-playwright</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
