@@ -4,14 +4,6 @@ kind: Template
 metadata:
   name: code-quarkus
 objects:
-  - kind: ConfigMap
-    apiVersion: v1
-    metadata:
-      name: code-quarkus-registry
-    data:
-      QUARKUS_REGISTRIES: registry.quarkus.redhat.com,registry.quarkus.io
-      BOOTSTRAP_MAVEN_REPOS: redhat-ga
-      BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL: https://maven.repository.redhat.com/ga
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
@@ -109,9 +101,12 @@ objects:
                       name: secrets
                       key: segment-write-key
                       optional: true
-              envFrom:
-                - configMapRef:
-                    name: code-quarkus-registry
+                - name: QUARKUS_REGISTRIES
+                  value: registry.quarkus.redhat.com,registry.quarkus.io
+                - name: BOOTSTRAP_MAVEN_REPOS
+                  value: redhat-ga
+                - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
+                  value: https://maven.repository.redhat.com/ga
       triggers:
         - type: ConfigChange
   - kind: Service
