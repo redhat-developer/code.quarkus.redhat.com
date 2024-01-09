@@ -1,8 +1,0 @@
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: code-quarkus-registry
-data:
-  QUARKUS_REGISTRIES: registry.quarkus.redhat.com,registry.quarkus.io
-  BOOTSTRAP_MAVEN_REPOS: redhat-ga
-  BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL: https://maven.repository.redhat.com/ga
