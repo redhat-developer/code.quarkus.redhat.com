@@ -1,7 +1,6 @@
 # Red Hat Code Quarkus App
 
-[![Tests](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml/badge.svg)](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml) [![Version](https://img.shields.io/maven-central/v/io.quarkus.code/code-quarkus?logo=apache-maven&style=flat-square)](https://search.maven.org/artifact/io.quarkus.code/code-quarkus)
-
+[![Tests](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml/badge.svg)](https://github.com/redhat-developer/code.quarkus.redhat.com/actions/workflows/build.actions.yml) 
 
 # Development
 
