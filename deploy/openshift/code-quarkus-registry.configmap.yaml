@@ -3,19 +3,6 @@ apiVersion: v1
 metadata:
   name: code-quarkus-registry
 data:
-  IO_QUARKUS_CODE_QUARKUS_PLATFORMS_REGISTRY_ID: registry.quarkus.redhat.com
   QUARKUS_REGISTRIES: registry.quarkus.redhat.com,registry.quarkus.io
-  QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_REPO_URL: https://registry.quarkus.redhat.com/maven
-  QUARKUS_REGISTRY_REGISTRY_QUARKUS_IO_REPO_URL: https://registry.quarkus.io/maven
   BOOTSTRAP_MAVEN_REPOS: redhat-ga
   BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL: https://maven.repository.redhat.com/ga
-
-
-  - name: BOOTSTRAP_MAVEN_REPOS
-    value: "indy-static"
-  - name: BOOTSTRAP_MAVEN_REPO_INDY_STATIC_URL
-    value: "http://indy.psi.redhat.com/api/content/maven/group/static/"
-  - name: QUARKUS_REGISTRIES
-    value: "registry-${BUILD_ID}.apps.ocp-c1.prod.psi.redhat.com,registry.quarkus.io"
-  - name: IO_QUARKUS_CODE_QUARKUS_PLATFORMS_REGISTRY_ID
-    value: "registry-${BUILD_ID}.apps.ocp-c1.prod.psi.redhat.com"
