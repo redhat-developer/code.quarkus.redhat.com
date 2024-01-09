@@ -39,7 +39,7 @@ public class CodeQuarkusRedHatPlaywrightTest {
             page.waitForLoadState();
 
             String title = page.title();
-            Assertions.assertEquals("Quarkus - Start coding with code.quarkus.io", title);
+            Assertions.assertEquals("Quarkus - Start coding with code.quarkus.redhat.com", title);
         }
     }
 
