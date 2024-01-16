@@ -19,7 +19,7 @@ quarkus build
 
 After building, use this command to start the app in production mode:
 ```
-(BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga java -jar community-app/target/quarkus-app/quarkus-run.jar)
+(BOOTSTRAP_MAVEN_REPOS=redhat-ga BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL=https://maven.repository.redhat.com/ga java -jar target/quarkus-app/quarkus-run.jar)
 ```
 
 # Docker
