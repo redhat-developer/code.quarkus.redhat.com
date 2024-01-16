@@ -1,6 +1,15 @@
 version: 2
 updates:
-- package-ecosystem: "npm"
-  directory: "/frontend"
+- package-ecosystem: "maven"
+  directory: "/"
   schedule:
     interval: "daily"
+  groups:
+    quarkus:
+      patterns:
+        - "quarkus.*"
+    dependencies:
+      patterns:
+        - "*"
+      exclude-patterns:
+        - "quarkus.*"
