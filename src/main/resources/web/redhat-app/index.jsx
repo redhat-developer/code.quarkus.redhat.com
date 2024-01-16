@@ -5,7 +5,7 @@ import {CodeQuarkus, fetchConfig, fetchPlatform} from '../lib';
 import './theme.scss';
 import {RedHatHeader} from './header/redhat-header';
 
-const PUBLIC_URL = window.PUBLIC_URL;
+const API_URL = window.API_URL;
 const CLIENT_NAME = window.location.hostname;
 const REQUEST_OPTIONS = {headers: {'Client-Name': CLIENT_NAME}};
 
@@ -97,7 +97,7 @@ const tagsDef = [
 
 
 const api = {
-    backendUrl: PUBLIC_URL,
+    backendUrl: API_URL,
     clientName: CLIENT_NAME,
     requestOptions: REQUEST_OPTIONS,
     tagsDef
