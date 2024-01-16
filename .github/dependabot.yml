@@ -5,9 +5,9 @@ updates:
   schedule:
     interval: "daily"
   groups:
-    quarkus:
+    code-quarkus:
       patterns:
-        - "quarkus.*"
+        - "code-quarkus.*"
     dependencies:
       patterns:
         - "*"
