@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.quarkus.code</groupId>
         <artifactId>code-quarkus-parent</artifactId>
-        <version>10</version>
+        <version>16</version>
     </parent>
 
     <artifactId>code-quarkus-redhat-app</artifactId>
@@ -19,7 +19,7 @@
         <dependencies>
             <dependency>
                 <groupId>io.quarkus.code</groupId>
-                <artifactId>code-quarkus-locker</artifactId>
+                <artifactId>code-quarkus-web-deps-locker</artifactId>
                 <version>${code-quarkus.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
@@ -30,6 +30,10 @@
         <dependency>
             <groupId>io.quarkus.code</groupId>
             <artifactId>code-quarkus</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus.code</groupId>
+            <artifactId>code-quarkus-web-deps</artifactId>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.playwright</groupId>
