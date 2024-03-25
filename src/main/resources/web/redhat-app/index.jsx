@@ -26,7 +26,7 @@ const tagsDef = [
     },
     {
         name: 'supported-in-jvm',
-        description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine, while usage in Native is considered Technology Preview',
+        description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine.',
         color: '#6AB983'
     },
     {
@@ -41,7 +41,7 @@ const tagsDef = [
     },
     {
         name: 'deprecated',
-        description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information',
+        description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information.',
         color: '#ff004a'
     },
     {
@@ -51,7 +51,7 @@ const tagsDef = [
     },
     {
         name: 'redhat-support:supported-in-jvm',
-        description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine, while usage in Native is considered Technology Preview',
+        description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine.',
         color: '#6AB983'
     },
     {
@@ -66,7 +66,7 @@ const tagsDef = [
     },
     {
         name: 'redhat-support:deprecated',
-        description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information',
+        description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information.',
         color: '#ff004a'
     },
     {
