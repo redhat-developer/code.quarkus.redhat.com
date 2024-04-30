@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.quarkus.code</groupId>
         <artifactId>code-quarkus-parent</artifactId>
-        <version>24</version>
+        <version>27</version>
     </parent>
 
     <artifactId>code-quarkus-redhat-app</artifactId>
