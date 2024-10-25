@@ -105,6 +105,11 @@
   --extensionsPickerSearchBorderColorOnFocus: var(--secondary);
   --extensionsPickerSearchClearColor: var(--warningColor);
 
+  // Presets
+  --presetsTitleTextColor: var(--extensionsPickerCategoryTextColor);
+  --presetsCardBorderColor: #373668;
+  --presetsCardTextColor: white;
+
   //Copy to clipboard
   --copyToClipboardBackgroundColor: rgba(215, 215, 215, 0.90);
   --copyToClipboardBodyBackgroundColor: var(--background);
@@ -133,4 +138,8 @@
   --blurbTextColor: var(--textColor);
   --blurbLinkTextColor: var(--linkTextColor);
   --blurbInfoIconColor: var(--primary);
+}
+
+.preset-card {
+  background-color: var(--background3);
 }
