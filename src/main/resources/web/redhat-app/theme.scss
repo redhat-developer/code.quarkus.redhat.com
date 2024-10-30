@@ -109,6 +109,7 @@
   --presetsTitleTextColor: var(--extensionsPickerCategoryTextColor);
   --presetsCardBorderColor: #373668;
   --presetsCardTextColor: white;
+  --presetsCardBackgroundColor: var(--background3);
 
   //Copy to clipboard
   --copyToClipboardBackgroundColor: rgba(215, 215, 215, 0.90);
@@ -140,6 +141,3 @@
   --blurbInfoIconColor: var(--primary);
 }
 
-.preset-card {
-  background-color: var(--background3);
-}
