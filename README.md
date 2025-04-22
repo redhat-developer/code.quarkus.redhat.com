@@ -30,4 +30,4 @@ docker run -i --rm -p 8080:8080 --env-file .env quay.io/redhat-developer/code-qu
 
 # OpenShift
 
-The Template: [./deploy/openshift/code-quarkus.yaml](./deploy/openshift/code-quarkus.yaml)
+The template: [./deploy/openshift/code-quarkus.yaml](./deploy/openshift/code-quarkus.yaml)
