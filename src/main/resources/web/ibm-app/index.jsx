@@ -12,9 +12,10 @@ const REQUEST_OPTIONS = {headers: {'Client-Name': CLIENT_NAME}};
 const tagsDef = [
     {
         name: 'support:full-support',
-        href: 'https://access.redhat.com/support/offerings/production/soc/',
+        description: 'Full-support for development and production phases.',
         color: '#0E6027',
         background: '#A7F0BA'
+
     },
     {
         name: 'support:supported-in-jvm',
@@ -24,7 +25,7 @@ const tagsDef = [
     },
     {
         name: 'support:dev-support',
-        href: 'https://access.redhat.com/support/offerings/developer/soc/',
+        description: 'Support and advice for development phase.',
         color: '#704214',
         background: '#FFDFA6'
     },
@@ -38,7 +39,7 @@ const tagsDef = [
         name: 'support:deprecated',
         description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information.',
         background: '#6a737d',
-        color: '#ffffff'
+        color: '#ffffff',
     },
     {
         name: 'status:preview',
