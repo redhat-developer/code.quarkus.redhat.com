@@ -5,4 +5,6 @@ import io.smallrye.config.WithParentName;
 public interface OfferingConfig {
     @WithParentName
     String id();
+
+    String supportTag();
 }

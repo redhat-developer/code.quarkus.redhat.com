@@ -72,9 +72,7 @@ public class OfferingPlatformOverride implements PlatformOverride {
     }
 
     private String mapTag(String s) {
-        // final String tagName = config.id() + "-support";
-        // TODO: switch to using id
-        final String tagName = "redhat" + "-support";
+        final String tagName = config.supportTag();
         if (s.equals(tagName + ":supported")) {
             return "support:full-support";
         }
