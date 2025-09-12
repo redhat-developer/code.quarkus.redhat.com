@@ -1,9 +1,0 @@
-registries:
-  - registry.quarkus.redhat.com:
-      maven:
-        repository:
-          url: https://registry.quarkus.redhat.com/maven
-  - registry.quarkus.io:
-      maven:
-        repository:
-          url: https://registry.quarkus.io/maven

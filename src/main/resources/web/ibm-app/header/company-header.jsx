@@ -1,11 +1,11 @@
 import React from 'react';
-import './redhat-header.scss';
-import { CompanyHeader } from '../../lib';
+import './company-header.scss';
+import { CompanyHeader as LibCompanyHeader } from '../../lib';
 import { createLinkTracker, useAnalytics }  from '../../lib';
 import { FaAngleLeft } from 'react-icons/fa';
-import rhLogo from '../media/rh-logo.svg';
 import quarkusLogo from '../media/quarkus-logo.svg';
-export function RedHatHeader(props) {
+
+export function CompanyHeader(props) {
     const analytics = useAnalytics();
     const linkClick = (e) => {
         const link = e.target.getAttribute('href');
@@ -14,14 +14,10 @@ export function RedHatHeader(props) {
     const linkTracker = createLinkTracker(analytics,'UX', 'Header');
     const isCodeQuarkusReferrer = document.referrer.includes("code.quarkus.io");
     return (
-        <CompanyHeader {...props} quarkusLogo={quarkusLogo}>
+        <LibCompanyHeader {...props} quarkusLogo={quarkusLogo}>
             <>
-                <div className="redhat-brand">
-
-                    <a href="https://www.redhat.com"  onClick={linkClick}>
-                        <img className="logo" alt="Red Hat Logo"
-                             src={rhLogo}/>
-                    </a>
+                <div className="brand">
+                    <a href="https://www.ibm.com"  onClick={linkClick}>IBM</a>&nbsp;Enterprise Build of Quarkus
                 </div>
                 {isCodeQuarkusReferrer && (
                     <div className="nav-container">
@@ -29,6 +25,6 @@ export function RedHatHeader(props) {
                     </div>
                 )}
                </>
-        </CompanyHeader>
+        </LibCompanyHeader>
     );
 }

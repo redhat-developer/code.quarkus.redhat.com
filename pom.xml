@@ -6,13 +6,14 @@
     <parent>
         <groupId>io.quarkus.code</groupId>
         <artifactId>code-quarkus-parent</artifactId>
-        <version>48</version>
+        <version>50</version>
     </parent>
 
     <artifactId>code-quarkus-redhat-app</artifactId>
     <properties>
         <git.commit.id>local</git.commit.id>
         <maven-antrun-plugin.version>3.1.0</maven-antrun-plugin.version>
+        <ibm-font.version>1.1.0</ibm-font.version>
     </properties>
 
     <dependencyManagement>
@@ -34,6 +35,18 @@
         <dependency>
             <groupId>io.quarkus.code</groupId>
             <artifactId>code-quarkus-web-deps</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mvnpm.at.ibm</groupId>
+            <artifactId>plex-sans</artifactId>
+            <version>${ibm-font.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mvnpm.at.ibm</groupId>
+            <artifactId>plex-mono</artifactId>
+            <version>${ibm-font.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.playwright</groupId>

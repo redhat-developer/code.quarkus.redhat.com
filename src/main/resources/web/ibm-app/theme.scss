@@ -1,24 +1,22 @@
-@import url(https://fonts.googleapis.com/css?family=PT+Mono);
-@import "./red-hat-font.scss";
-@include printRedHatFont(400, "Regular", $familyName: "RedHatText", $relative: false);
-@include printRedHatFont(700, "Medium", $familyName: "RedHatText", $relative: false);
+@import '@ibm/plex-mono/css/ibm-plex-mono-default.css';
+@import '@ibm/plex-sans/css/ibm-plex-sans-default.css';
 
 :root {
 
-  --font: RedHatText, Regular;
-  --inputFont: "PT Mono", Regular;
+  --font: "IBM Plex Sans", Regular;
+  --inputFont: "IBM Plex Sans", Regular;
 
   --background: white;
-  --background2: #f0f0f0;
+  --background2: #F4F4F4;
   --background3: #404040;
 
   --textColor: black;
 
-  --mainTitleFontWeight: 100;
+  --mainTitleFontWeight: normal;
   --mainTitleTextTransform: none;
 
   --primary: #646464;
-  --secondary: #EB0B19;
+  --secondary: #0F62FE;
   --tertiary: #be9100;
 
   --warningColor: #ff004a;
@@ -35,7 +33,7 @@
 
   // Top container
   --topContainerTextColor: var(--textColor);
-  --topContainerBg: var(--background2);
+  --topContainerBg: var(--background);
   --topContainerBgImage: none;
   --topContainerBgImageWide: none;
 
@@ -53,16 +51,16 @@
   --generateButtonDisabledBgAndBorderColor: rgba(90, 149, 235, 0.342);
   --generateButtonDisabledColor: rgba(255, 255, 255, 0.384);
 
-  --generateButtonMoreDropdownTextColor: var(--dropdownMenuTextColor);
-  --generateButtonMoreDropdownBg: var(--dropdownMenuBg);
+  --generateButtonMoreDropdownTextColor: black;
+  --generateButtonMoreDropdownBg: #b7b7b7;
   --resetToDefaultButtonColor: var(--warningColor);
 
   // Main container
   --mainContainerTextColor: var(--textColor);
-  --mainContainerBg: var(--background);
+  --mainContainerBg: var(--background2);
 
   --mainContainerControlBarTextColor: black;
-  --mainContainerControlBarBg: var(--background2);
+  --mainContainerControlBarBg: var(--background);
 
   // Next steps Modal
   --modalBg: var(--background);
@@ -87,53 +85,53 @@
   // Extensions picker
   --originPlatformColor: #cd54e1;
 
-  --extensionsPickerSearchBg: transparent;
   --extensionsPickerTextColor: var(--mainContainerTextColor);
   --extensionsPickerIdTextColor: var(--secondary);
-  --extensionsPickerListBg: var(--background2);
+  --extensionsPickerListBg: var(--background);
   --extensionsPickerCheckColor: var(--mainContainerTextColor);
   --extensionsPickerCheckSelectedHoverColor: var(--mainContainerTextColor);
   --extensionsPickerCheckSelectedColor: #0F69C9;
   --extensionsPickerCheckSelectedByDefaultColor: var(--readonlyLabelAndBorderColor);
   --extensionsPickerKeyboardActivedTextColor: #0F69C9;
   --extensionsPickerRemoveButtonColor: var(--warningColor);
-  --extensionsPickerRowBorderColor: var(--background);
+  --extensionsPickerRowBorderColor: var(--mainContainerBg);
   --extensionsPickerRowHoverBackgroundColor: var(--secondary);
 
   --extensionsPickerDescriptionTextColorOnTablet: #636363;
 
-  --dropdownMenuBg: var(--background);
+  --dropdownMenuBg: #f4f4f4;
   --dropdownMenuShadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   --dropdownMenuTextColor: var(--textColor);
 
   --extensionsPickerCategoryTextColor: var(--mainContainerTextColor);
   --extensionsPickerCategoryUnderlineColor: #7f7f7f;
 
+  --extensionsPickerSearchBg: var(--background);
   --extensionsPickerSearchTextColor: var(--mainContainerTextColor);
-  --extensionsPickerSearchBorderColor: black;
+  --extensionsPickerSearchBorderColor: #8D8D8D;
   --extensionsPickerSearchBorderColorOnFocus: var(--secondary);
-  --extensionsPickerSearchPlaceholderColor: #363636;
-  --extensionsPickerSearchClearButtonBg: #cecece;
+  --extensionsPickerSearchPlaceholderColor: #777777;
+  --extensionsPickerSearchClearButtonBg: #dadada;
   --extensionsPickerSearchIconColor: var(--mainContainerControlBarTextColor);
-  --extensionsPickerSearchIconBg: var(--mainContainerControlBarBg);
+  --extensionsPickerSearchIconBg: var(--background);
 
-  --selectedExtensionAlertInfoBg: #ccc;
-  --selectedExtensionAlertInfoTextColor: black;
+  --selectedExtensionAlertInfoBg: black;
+  --selectedExtensionAlertInfoTextColor: white;
   --clearSelectedExtensionButtonBorderColor: var(--warningColor);
   --clearSelectedExtensionButtonTextColor: inherit;
 
   // Presets
-  --presetsPanelBg: var(--background3);
-  --presetsTitleTextColor: white;
-  --presetsCardBorderColor: var(--background);
-  --presetsCardTextColor: white;
-  --presetsCardBackgroundColor: var(--background3);
-  --presetsCardHoverBackgroundColor: #626262;
+  --presetsPanelBg: var(--extensionsPickerListBg);
+  --presetsTitleTextColor: var(--mainContainerTextColor);
+  --presetsCardBorderColor: var(--mainContainerBg);
+  --presetsCardTextColor: var(--mainContainerTextColor);
+  --presetsCardBackgroundColor: var(--background);
+  --presetsCardHoverBackgroundColor: #d7d7d7;
 
   //Copy to clipboard
-  --copyToClipboardBackgroundColor: var(--background);
-  --copyToClipboardBodyBackgroundColor: var(--background2);
-  --copyToClipboardHeaderTextColor: #5f5f5f;
+  --copyToClipboardBackgroundColor: var(--dropdownMenuBg);
+  --copyToClipboardBodyBackgroundColor: var(--background);
+  --copyToClipboardHeaderTextColor: black;
   --copyToClipboardBodyTextColor: var(--tertiary);
 
   // Header
@@ -150,7 +148,7 @@
   --streamPickerBorderColor: var(--streamPickerPlatformKeyTextColor);
   --streamPickerDropdownStreamIdTextColor: black;
   --streamPickerDropdownPlatformKeyTextColor: var(--streamPickerPlatformKeyTextColor);
-  --streamPickerDropdownBackgroundColor: white;
+  --streamPickerDropdownBackgroundColor: var(--background2);
   --streamPickerDropdownCRTextColor: #505050;
 
   // Blurb
@@ -159,4 +157,5 @@
   --blurbLinkTextColor: var(--linkTextColor);
   --blurbInfoIconColor: var(--primary);
 }
+
 
