@@ -49,7 +49,7 @@
 
   --generateButtonTextColor: white;
   --generateButtonBgColor: var(--secondary);
-  --generateButtonBorderColorOnHover: black;
+  --generateButtonBorderColorOnHover: var(--secondary);
   --generateButtonDisabledBgAndBorderColor: rgba(90, 149, 235, 0.342);
   --generateButtonDisabledColor: rgba(255, 255, 255, 0.384);
 

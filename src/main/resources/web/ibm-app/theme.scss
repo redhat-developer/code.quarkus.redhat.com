@@ -47,7 +47,7 @@
 
   --generateButtonTextColor: white;
   --generateButtonBgColor: var(--secondary);
-  --generateButtonBorderColorOnHover: black;
+  --generateButtonBorderColorOnHover: var(--secondary);
   --generateButtonDisabledBgAndBorderColor: rgba(90, 149, 235, 0.342);
   --generateButtonDisabledColor: rgba(255, 255, 255, 0.384);
 
@@ -115,8 +115,8 @@
   --extensionsPickerSearchIconColor: var(--mainContainerControlBarTextColor);
   --extensionsPickerSearchIconBg: var(--background);
 
-  --selectedExtensionAlertInfoBg: black;
-  --selectedExtensionAlertInfoTextColor: white;
+  --selectedExtensionAlertInfoBg: #c4c4c4;
+  --selectedExtensionAlertInfoTextColor: black;
   --clearSelectedExtensionButtonBorderColor: var(--warningColor);
   --clearSelectedExtensionButtonTextColor: inherit;
 
