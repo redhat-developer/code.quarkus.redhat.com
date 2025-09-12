@@ -107,22 +107,48 @@ objects:
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
                   value: https://maven.repository.redhat.com/ga
+      triggers:
+        - type: ConfigChange
+  - apiVersion: v1
+    kind: DeploymentConfig
+    metadata:
+      name: code-quarkus
+    spec:
+      replicas: ${{REPLICAS}}
+      selector:
+        service: code-quarkus-ibm-offering
+      strategy:
+        rollingParams:
+          intervalSeconds: 1
+          maxSurge: 25%
+          maxUnavailable: 25%
+          timeoutSeconds: 600
+          updatePeriodSeconds: 1
+        type: Rolling
+      template:
+        metadata:
+          labels:
+            service: code-quarkus-ibm-offering
+        spec:
+          serviceAccount: ${SERVICE_ACCOUNT}
+          serviceAccountName: ${SERVICE_ACCOUNT}
+          containers:
             - image: ${IMAGE}:${IMAGE_TAG}
               imagePullPolicy: Always
               name: code-quarkus-ibm
               ports:
-                - containerPort: 8081
+                - containerPort: 8080
               livenessProbe:
                 httpGet:
                   path: /q/health/live
-                  port: 8081
+                  port: 8080
                 initialDelaySeconds: 15
                 periodSeconds: 10
                 timeoutSeconds: 3
               readinessProbe:
                 httpGet:
                   path: /q/health/ready
-                  port: 8081
+                  port: 8080
                 initialDelaySeconds: 15
                 periodSeconds: 10
                 timeoutSeconds: 3
@@ -136,8 +162,6 @@ objects:
               env:
                 - name: QUARKUS_PROFILE
                   value: "prod,ibm"
-                - name: QUARKUS_HTTP_PORT
-                  value: "8081"
                 - name: IO_QUARKUS_CODE_ENVIRONMENT
                   value: ${IO_QUARKUS_CODE_ENVIRONMENT}
                 - name: IO_QUARKUS_CODE_SEGMENT_FLUSH_QUEUE_SIZE
@@ -203,7 +227,7 @@ objects:
           protocol: TCP
           targetPort: 8080
       selector:
-        service: code-quarkus-redhat
+        service: code-quarkus
       sessionAffinity: None
       type: ClusterIP
   - kind: Service
