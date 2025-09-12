@@ -112,7 +112,7 @@ objects:
   - apiVersion: v1
     kind: DeploymentConfig
     metadata:
-      name: code-quarkus
+      name: code-quarkus-ibm-offering
     spec:
       replicas: ${{REPLICAS}}
       selector:
@@ -241,7 +241,7 @@ objects:
         - name: '8080'
           port: 8080
           protocol: TCP
-          targetPort: 8081
+          targetPort: 8080
       selector:
         service: code-quarkus-ibm-offering
       sessionAffinity: None
