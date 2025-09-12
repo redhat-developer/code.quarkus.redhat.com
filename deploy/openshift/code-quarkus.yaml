@@ -30,7 +30,7 @@ objects:
           containers:
             - image: ${IMAGE}:${IMAGE_TAG}
               imagePullPolicy: Always
-              name: code-quarkus-redhat
+              name: code-quarkus
               ports:
                 - containerPort: 8080
               livenessProbe:
