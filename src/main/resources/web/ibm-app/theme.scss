@@ -1,8 +1,4 @@
-@use '@ibm/plex-sans/scss' as PlexSans with (
-  $font-prefix: '@ibm/plex-sans',
-);
-
-@include PlexSans.all();
+@import '@ibm/plex-sans/css/ibm-plex-sans-default.css';
 
 :root {
 
