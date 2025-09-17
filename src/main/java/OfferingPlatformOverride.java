@@ -32,7 +32,7 @@ public class OfferingPlatformOverride implements PlatformOverride {
                     "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/controls-framework.svg",
                     List.of("io.quarkiverse.renarde:quarkus-renarde", "io.quarkiverse.web-bundler:quarkus-web-bundler")),
             new Preset("webapp-npm", "Web app with NPM UI",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/icons/src/svg/32/logo--npm.svg",
+                    "https://raw.githubusercontent.com/carbon-design-system/carbon/main/packages/pictograms/src/svg/ibm--z-os-package-manager.svg",
                     List.of("io.quarkus:quarkus-rest", "io.quarkus:quarkus-rest-jackson",
                             "io.quarkiverse.quinoa:quarkus-quinoa")),
             new Preset("webapp-qute", "Web app with ServerSide Rendering",
