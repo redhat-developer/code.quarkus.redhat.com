@@ -7,6 +7,8 @@ dev-rh:
   quarkus dev -Dquarkus.profile=dev,redhat
 dev-ibm:
   quarkus dev -Dquarkus.profile=dev,ibm
+dev-camel:
+  quarkus dev -Dquarkus.profile=dev,camel
 build:
   quarkus build -DskipTests
 start-ibm:
