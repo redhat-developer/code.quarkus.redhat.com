@@ -9,10 +9,18 @@
         font-weight: 600;
         display: inline-block;
       }
-      @media screen and (max-width: 900px) {
-        margin-left: 20px;
-        margin-right: 20px;
-      }
+
     }
+
+  @media screen and (max-width: 900px) {
+    .brand {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 1rem;
+    }
+    .nav-container {
+      display: none;
+    }
+  }
 
 }

@@ -16,30 +16,30 @@ public class OfferingPlatformOverride implements PlatformOverride {
     public static final List<Preset> IBM_PRESETS = List.of(
             // Some presets are duplicated to support platforms before and after the Big Reactive Renaming
             new Preset("rest-service", "REST service",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/network--services.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/rest-service.svg",
                     List.of("io.quarkus:quarkus-rest")),
             new Preset("db-service", "REST service with database",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/database.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/db-service.svg",
                     List.of("io.quarkus:quarkus-rest", "io.quarkus:quarkus-rest-jackson",
                             "io.quarkus:quarkus-hibernate-orm-panache", "io.quarkus:quarkus-jdbc-postgresql")),
             new Preset("event-driven-kafka", "Event driven service with Kafka",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/event-driven.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/event-driven.svg",
                     List.of("io.quarkus:quarkus-messaging-kafka")),
             new Preset("cli", "Command-line tool",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/systems-devops--code.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/cli.svg",
                     List.of("io.quarkus:quarkus-picocli")),
             new Preset("webapp-mvc", "Web app with Model-View-Controller",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/controls-framework.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/webapp-mvc.svg",
                     List.of("io.quarkiverse.renarde:quarkus-renarde", "io.quarkiverse.web-bundler:quarkus-web-bundler")),
             new Preset("webapp-npm", "Web app with NPM UI",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/main/packages/pictograms/src/svg/ibm--z-os-package-manager.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/webapp-npm.svg",
                     List.of("io.quarkus:quarkus-rest", "io.quarkus:quarkus-rest-jackson",
                             "io.quarkiverse.quinoa:quarkus-quinoa")),
             new Preset("webapp-qute", "Web app with ServerSide Rendering",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/active--server.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/webapp-qute.svg",
                     List.of("io.quarkiverse.qute.web:quarkus-qute-web", "io.quarkiverse.web-bundler:quarkus-web-bundler")),
             new Preset("ai-infused", "AI Infused service",
-                    "https://raw.githubusercontent.com/carbon-design-system/carbon/refs/heads/main/packages/pictograms/src/svg/machine--learning--06.svg",
+                    "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons/ibm-presets/ai-infused.svg",
                     List.of("io.quarkiverse.langchain4j:quarkus-langchain4j-openai",
                             "io.quarkiverse.langchain4j:quarkus-langchain4j-easy-rag")));
 
@@ -62,7 +62,9 @@ public class OfferingPlatformOverride implements PlatformOverride {
             case "ibm":
                 return IBM_PRESETS;
             default:
-                return PlatformService.DEFAULT_PRESETS;
+                return PlatformService.DEFAULT_PRESETS.stream()
+                        .map(p -> new Preset(p.key(), p.title(), p.icon().replace("_neg", "_pos"), p.extensions()))
+                        .toList();
         }
     }
 

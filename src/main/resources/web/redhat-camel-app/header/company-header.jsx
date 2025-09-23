@@ -23,7 +23,7 @@ export function CompanyHeader(props) {
                     Red Hat
                 </a>
                 <div className="build">
-                &nbsp;build of&nbsp;<a href="https://quarkus.io/" onClick={linkClick}>Quarkus</a>
+                &nbsp;build of&nbsp;<a href="https://camel.apache.org/" onClick={linkClick}>Apache Camel</a>&nbsp;for Quarkus
                 </div>
             </>
         )}>
