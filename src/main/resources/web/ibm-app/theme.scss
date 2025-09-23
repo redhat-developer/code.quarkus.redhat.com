@@ -1,5 +1,8 @@
-@import '@ibm/plex-sans/css/ibm-plex-sans-default.css';
+@use '@ibm/plex-sans/scss' as PlexSans with (
+  $font-prefix: '@ibm/plex-sans',
+);
 
+@include PlexSans.all();
 :root {
 
   --font: "IBM Plex Sans", Regular;
@@ -161,3 +164,11 @@
 
 
 .extensions-cart .extensions-cart-button .extension-icon { display: none; }
+
+div.header .brand {
+  font-weight: 500;
+}
+
+div.header .brand a {
+  font-weight: normal;
+}
