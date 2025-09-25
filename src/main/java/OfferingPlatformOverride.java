@@ -48,8 +48,8 @@ public class OfferingPlatformOverride implements PlatformOverride {
 
     private static final Set<String> TAGS = Set.of(
             "with:starter-code", "status:stable", "status:preview", "status:experimental", "status:deprecated",
-            "support:full-support", "support:supported-in-jvm", "support:dev-support", "support:tech-preview",
-            "support:deprecated");
+            "support:full-support", "support:supported-in-jvm", "support:dev-support", "support:dev-preview",
+            "support:tech-preview", "support:deprecated");
 
     @Override
     public Function<CodeQuarkusExtension, CodeQuarkusExtension> extensionMapper() {
