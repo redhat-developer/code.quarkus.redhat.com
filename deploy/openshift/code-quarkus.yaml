@@ -57,6 +57,8 @@ objects:
               env:
                 - name: QUARKUS_PROFILE
                   value: "prod,redhat"
+                - name: IO_QUARKUS_CODE_OFFERING_SUPPORT_TAG
+                  value: "redhat-support"
                 - name: IO_QUARKUS_CODE_ENVIRONMENT
                   value: ${IO_QUARKUS_CODE_ENVIRONMENT}
                 - name: IO_QUARKUS_CODE_SEGMENT_FLUSH_QUEUE_SIZE
@@ -163,7 +165,7 @@ objects:
                 - name: QUARKUS_PROFILE
                   value: "prod,ibm"
                 - name: IO_QUARKUS_CODE_OFFERING_SUPPORT_TAG
-                  value: "redhat-support"
+                  value: "ibm-support"
                 - name: IO_QUARKUS_CODE_ENVIRONMENT
                   value: ${IO_QUARKUS_CODE_ENVIRONMENT}
                 - name: IO_QUARKUS_CODE_SEGMENT_FLUSH_QUEUE_SIZE
