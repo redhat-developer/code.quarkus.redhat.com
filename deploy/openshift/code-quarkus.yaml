@@ -105,6 +105,8 @@ objects:
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING
+                  value: redhat
                 - name: BOOTSTRAP_MAVEN_REPOS
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
@@ -212,6 +214,8 @@ objects:
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING
+                  value: ibm
                 - name: BOOTSTRAP_MAVEN_REPOS
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
@@ -319,6 +323,8 @@ objects:
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING
+                  value: redhat-camel
                 - name: BOOTSTRAP_MAVEN_REPOS
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
