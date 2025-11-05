@@ -5,6 +5,11 @@ import {CodeQuarkus, fetchConfig, fetchPlatform} from '../lib';
 import './theme.scss';
 import {CompanyHeader} from './header/company-header';
 
+// Disable QuarkusBlurb popup for redhat-camel variant
+if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('quarkus-blurb-visible-v1', 'true');
+}
+
 const API_URL = window.API_URL;
 const CLIENT_NAME = window.location.hostname;
 const REQUEST_OPTIONS = {headers: {'Client-Name': CLIENT_NAME}};
