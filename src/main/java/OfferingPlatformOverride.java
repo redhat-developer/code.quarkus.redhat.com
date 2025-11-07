@@ -13,8 +13,7 @@ import java.util.function.Function;
 @Singleton
 public class OfferingPlatformOverride implements PlatformOverride {
 
-
-    public static final String ICONS_ASSETS_URL = "https://raw.githubusercontent.com/redhat-developer/code.quarkus.redhat.com/refs/heads/main/assets/icons";
+    public static final String ICONS_ASSETS_URL = "/assets/icons";
 
     public static final List<Preset> IBM_PRESETS = List.of(
             // Some presets are duplicated to support platforms before and after the Big Reactive Renaming
