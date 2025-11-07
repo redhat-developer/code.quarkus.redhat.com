@@ -216,6 +216,10 @@ objects:
                   value: registry.quarkus.redhat.com,registry.quarkus.io
                 - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING
                   value: ibm
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_RECOMMEND_STREAMS_FROM_COM_REDHAT_QUARKUS_PLATFORM
+                  value: "3.27"
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_IO_RECOMMEND_STREAMS_FROM_COM_REDHAT_QUARKUS_PLATFORM
+                  value: "3.27"
                 - name: BOOTSTRAP_MAVEN_REPOS
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
@@ -325,6 +329,10 @@ objects:
                   value: registry.quarkus.redhat.com,registry.quarkus.io
                 - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING
                   value: redhat-camel
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_RECOMMEND_STREAMS_FROM_COM_REDHAT_QUARKUS_PLATFORM
+                  value: "3.27"
+                - name: QUARKUS_REGISTRY_REGISTRY_QUARKUS_IO_RECOMMEND_STREAMS_FROM_COM_REDHAT_QUARKUS_PLATFORM
+                  value: "3.27"
                 - name: BOOTSTRAP_MAVEN_REPOS
                   value: redhat-ga
                 - name: BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL
