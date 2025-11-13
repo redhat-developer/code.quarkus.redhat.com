@@ -163,3 +163,8 @@
   --blurbInfoIconColor: var(--primary);
 }
 
+// Hide Gradle build tool options - only show Maven
+#buildtool option[value="GRADLE"],
+#buildtool option[value="GRADLE_KOTLIN_DSL"] {
+  display: none;
+}
