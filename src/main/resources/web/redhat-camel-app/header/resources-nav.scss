@@ -1,0 +1,134 @@
+.resources-nav {
+    background-color: var(--background2);
+    border-bottom: 1px solid #ddd;
+    padding: 0;
+
+    .resources-nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 0px;
+        height: 50px;
+    }
+
+    .resources-nav-item {
+        // Override react-bootstrap dropdown styles
+        &.dropdown {
+            position: static; // Allow dropdown menu to position relative to container
+
+            .dropdown-toggle {
+                color: var(--textColor);
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1rem;
+                padding: 0;
+                border: none;
+                background: none;
+                display: inline-flex;
+                align-items: center;
+
+                &:hover, &:focus, &:active {
+                    color: var(--linkTextColor);
+                    text-decoration: none;
+                    background: none !important;
+                    border: none;
+                    box-shadow: none !important;
+                }
+
+                &::after {
+                    margin-left: 0.5rem;
+                }
+            }
+
+            .dropdown-menu {
+                background-color: var(--dropdownMenuBg);
+                box-shadow: var(--dropdownMenuShadow);
+                border-radius: 4px;
+                min-width: 280px;
+                border: none;
+                padding: 0.5rem 0;
+                z-index: 1000;
+                margin-top: 0.5rem;
+
+                &.show {
+                    display: block;
+                }
+
+                .dropdown-item {
+                    display: block;
+                    padding: 0.75rem 1.25rem;
+                    color: var(--dropdownMenuTextColor);
+                    font-size: 0.95rem;
+                    transition: background-color 0.2s;
+                    background: none;
+                    border: none;
+                    width: 100%;
+                    text-align: left;
+
+                    &:hover, &:focus {
+                        background-color: var(--secondary) !important;
+                        color: white !important;
+                        text-decoration: none;
+                    }
+
+                    &:active {
+                        background-color: var(--secondary) !important;
+                        color: white !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .resources-nav-link {
+        color: var(--textColor);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.2s;
+
+        &:hover {
+            color: var(--linkTextColor);
+        }
+
+        &:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+    }
+
+    @media screen and (max-width: 900px) {
+        .resources-nav-container {
+            max-width: 900px;
+            gap: 1rem;
+            padding: 0 10px;
+            height: auto;
+            min-height: 50px;
+            flex-wrap: wrap;
+        }
+
+        .resources-nav-item {
+            &.dropdown {
+                .dropdown-toggle {
+                    font-size: 0.9rem;
+                }
+
+                .dropdown-menu {
+                    min-width: 240px;
+                }
+            }
+        }
+
+        .resources-nav-link {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .resources-nav-container {
+            max-width: 100%;
+        }
+    }
+}
