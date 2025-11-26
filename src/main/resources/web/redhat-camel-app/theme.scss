@@ -1,7 +1,8 @@
+@use "./red-hat-font.scss" as redhatFont;
+@include redhatFont.printRedHatFont(400, "Regular", $familyName: "RedHatText", $relative: false);
+@include redhatFont.printRedHatFont(700, "Medium", $familyName: "RedHatText", $relative: false);
 @import url(https://fonts.googleapis.com/css?family=PT+Mono);
-@import "./red-hat-font.scss";
-@include printRedHatFont(400, "Regular", $familyName: "RedHatText", $relative: false);
-@include printRedHatFont(700, "Medium", $familyName: "RedHatText", $relative: false);
+
 
 :root {
 
