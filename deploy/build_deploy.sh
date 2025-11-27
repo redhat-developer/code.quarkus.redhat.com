@@ -10,7 +10,7 @@ IMAGE_TAG=${IMAGE_TAG-$GIT_REV_SHORT}
 STAGE=false
 
 if [[ $(git --no-pager  log --oneline -1) == *[STAGE]* ]]; then
-  echo "This is commit is flagged with [STAGE] and won't go to production"
+  echo "This commit is flagged with [STAGE] and won't go to production"
   STAGE=true
 fi
 
