@@ -52,19 +52,19 @@ public class OfferingPlatformOverride implements PlatformOverride {
         final Path pom = dir.resolve("pom.xml");
         if (Files.isRegularFile(pom)) {
             try {
-                final List<String> strings = Files.readAllLines(pom);
-                if (strings.stream().anyMatch(s -> s.contains("<repositories>"))) {
+                final List<String> pomLines = Files.readAllLines(pom);
+                if (pomLines.stream().anyMatch(s -> s.contains("<repositories>"))) {
                     return;
                 }
-                OptionalInt lineNumber = IntStream.range(0, strings.size())
-                        .filter(i -> strings.get(i).contains("<dependencyManagement>"))
+                OptionalInt lineNumber = IntStream.range(0, pomLines.size())
+                        .filter(i -> pomLines.get(i).contains("<dependencyManagement>"))
                         .findFirst();
                 if (lineNumber.isEmpty()) {
                     throw new RuntimeException(
                             "Platform generated pom.xml is not valid, please, report this error to the administrator.");
                 }
-                strings.addAll(lineNumber.getAsInt(), repositories);
-                Files.writeString(pom, String.join("\n", strings), StandardOpenOption.TRUNCATE_EXISTING);
+                pomLines.addAll(lineNumber.getAsInt(), repositories);
+                Files.writeString(pom, String.join("\n", pomLines), StandardOpenOption.TRUNCATE_EXISTING);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
