@@ -14,7 +14,7 @@ if [[ $(git --no-pager  log --oneline -1) == *[STAGE]* ]]; then
   STAGE=true
 fi
 
-docker build --compress -f docker/Dockerfile.redhat-app.multistage --build-arg MAVEN_BUILD_EXTRA_ARGS="-Dgit.commit.id=$GIT_REV -Dio.quarkus.code.build.stage=$STAGE"" -t "${IMAGE}:${IMAGE_TAG}" .
+docker build --compress -f docker/Dockerfile.redhat-app.multistage --build-arg MAVEN_BUILD_EXTRA_ARGS="-Dgit.commit.id=$GIT_REV -Dio.quarkus.code.build.stage=$STAGE" -t "${IMAGE}:${IMAGE_TAG}" .
 
 if [[ -n "$QUAY_USER" && -n "$QUAY_TOKEN" ]]; then
     DOCKER_CONF="$PWD/.docker"
