@@ -6,7 +6,7 @@
     <parent>
         <groupId>io.quarkus.code</groupId>
         <artifactId>code-quarkus-parent</artifactId>
-        <version>59</version>
+        <version>61</version>
     </parent>
 
     <artifactId>code-quarkus-redhat-app</artifactId>
@@ -151,6 +151,7 @@
                                 <maven.home>${maven.home}</maven.home>
                             </systemPropertyVariables>
                         </configuration>
+
                     </execution>
                 </executions>
             </plugin>

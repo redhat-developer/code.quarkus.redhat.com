@@ -2,10 +2,8 @@ import com.microsoft.playwright.BrowserContext;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Response;
 import io.quarkiverse.playwright.InjectPlaywright;
-import io.quarkiverse.playwright.WithPlaywright;
 import io.quarkus.code.service.PlatformService;
 import io.quarkus.test.common.http.TestHTTPResource;
-import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -15,9 +13,7 @@ import java.net.URL;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-@QuarkusTest
-@WithPlaywright(verbose = true)
-public class CodeQuarkusRedHatPlaywrightTest {
+public abstract class PlaywrightTestBase {
 
     public static final String LABEL_GENERATE_YOUR_APPLICATION = "[aria-label='Generate your application']";
     public static final String LABEL_DOWNLOAD_THE_ZIP = "[aria-label='Download the zip']";
@@ -30,6 +26,8 @@ public class CodeQuarkusRedHatPlaywrightTest {
     @TestHTTPResource("/")
     URL index;
 
+    abstract String getTitle();
+
     @Test
     public void testIndex() {
         try (Page page = context.newPage()) {
@@ -39,7 +37,7 @@ public class CodeQuarkusRedHatPlaywrightTest {
             page.waitForLoadState();
 
             String title = page.title();
-            Assertions.assertEquals("Quarkus - Start coding with code.quarkus.redhat.com", title);
+            Assertions.assertEquals(getTitle(), title);
         }
     }
 
@@ -71,7 +69,7 @@ public class CodeQuarkusRedHatPlaywrightTest {
         return page;
     }
 
-    private static void closeIntroductionModal(Page page) {
+    void closeIntroductionModal(Page page) {
         // Find the introduction modal close button
         page.waitForSelector("[aria-label='Close the introduction modal']").click();
     }
