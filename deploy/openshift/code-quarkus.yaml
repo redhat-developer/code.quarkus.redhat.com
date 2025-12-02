@@ -118,7 +118,7 @@ objects:
     metadata:
       name: code-quarkus-ibm-offering
     spec:
-      replicas: ${{REPLICAS}}
+      replicas: "0"
       selector:
         service: code-quarkus-ibm-offering
       strategy:
