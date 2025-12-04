@@ -19,7 +19,7 @@ objects:
               name: code-quarkus-acceptance-test
               env:
                 - name: TEST_CONFIG_URL
-                  value: 'https://code.quarkus.stage.redhat.com'
+                  value: ${CODE_QUARKUS_STAGING_URL}
               resources:
                 requests:
                   cpu: ${CPU_REQUEST}
