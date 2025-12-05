@@ -37,7 +37,7 @@ const tagsDef = [
     },
     {
         name: 'support:deprecated',
-        description: 'This feature is likely to be replaced or removed in a future version of IBM Enterprise build of Quarkus.',
+        description: 'This feature is likely to be replaced or removed in a future version of IBM Enterprise Build of Quarkus.',
         background: '#6a737d',
         color: '#ffffff',
     },
