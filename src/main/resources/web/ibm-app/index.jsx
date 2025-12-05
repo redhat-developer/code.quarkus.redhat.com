@@ -31,13 +31,13 @@ const tagsDef = [
     },
     {
         name: 'support:tech-preview',
-        description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported under Red Hat Subscription Level Agreements.',
+        description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported.',
         color: '#0043CE',
         background: '#D0E2FF'
     },
     {
         name: 'support:deprecated',
-        description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information.',
+        description: 'This feature is likely to be replaced or removed in a future version of IBM Enterprise Build of Quarkus.',
         background: '#6a737d',
         color: '#ffffff',
     },
