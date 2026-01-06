@@ -101,7 +101,7 @@ objects:
                   valueFrom:
                     secretKeyRef:
                       name: secrets
-                      key: segment-write-key
+                      key: redhat-segment-write-key
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
@@ -210,7 +210,7 @@ objects:
                   valueFrom:
                     secretKeyRef:
                       name: secrets
-                      key: segment-write-key
+                      key: ibm-segment-write-key
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
@@ -323,7 +323,7 @@ objects:
                   valueFrom:
                     secretKeyRef:
                       name: secrets
-                      key: segment-write-key
+                      key: camel-segment-write-key
                       optional: true
                 - name: QUARKUS_REGISTRIES
                   value: registry.quarkus.redhat.com,registry.quarkus.io
