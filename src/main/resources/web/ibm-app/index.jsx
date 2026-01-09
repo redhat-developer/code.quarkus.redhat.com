@@ -30,6 +30,12 @@ const tagsDef = [
         background: '#FFDFA6'
     },
     {
+       name: 'support:dev-preview',
+        description: 'Developer Preview features are provided to expose features from upstream communities allowing early adopters and integrators to explore and interact with new capabilities in advance of their possible inclusion.',
+        color: '#6929C4',
+        background: '#E8DAFF'
+    },
+    {
         name: 'support:tech-preview',
         description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported.',
         color: '#0043CE',
