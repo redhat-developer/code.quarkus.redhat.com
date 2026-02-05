@@ -32,7 +32,7 @@ class IBMConstants {
             new Preset("webapp-qute", "Web app with ServerSide Rendering",
                     GlobalConstants.ICONS_ASSETS_URL + "/ibm-presets/webapp-qute.svg",
                     List.of("io.quarkiverse.qute.web:quarkus-qute-web", "io.quarkiverse.web-bundler:quarkus-web-bundler")),
-            new Preset("ai-infused", "AI Infused service",
+            new Preset("ai-infused", "AI-Infused service",
                     GlobalConstants.ICONS_ASSETS_URL + "/ibm-presets/ai-infused.svg",
                     List.of("io.quarkiverse.langchain4j:quarkus-langchain4j-openai",
                             "io.quarkiverse.langchain4j:quarkus-langchain4j-easy-rag")));
