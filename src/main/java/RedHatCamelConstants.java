@@ -31,7 +31,7 @@ public class RedHatCamelConstants {
                     GlobalConstants.ICONS_ASSETS_URL + "/redhat-camel-presets/orange-event-driven-kafka_pos.svg",
                     List.of("org.apache.camel.quarkus:camel-quarkus-kafka",
                             "org.apache.camel.quarkus:camel-quarkus-jms")),
-            new Preset("ai-infused", "AI Infused service",
+            new Preset("ai-infused", "AI-Infused service",
                     GlobalConstants.ICONS_ASSETS_URL + "/redhat-camel-presets/orange-ai-infused_pos.svg",
                     List.of("org.apache.camel.quarkus:camel-quarkus-langchain4j-agent",
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-chat",
