@@ -42,4 +42,3 @@ BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL = "https://maven.repository.redhat.com/ga"
 QUARKUS_PROFILE = "prod,redhat"
 QUARKUS_REGISTRY_REGISTRY_QUARKUS_REDHAT_COM_OFFERING = "redhat"
 ```
-
