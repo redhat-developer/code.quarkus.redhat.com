@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11';
-import {CodeQuarkus, fetchConfig, fetchPlatform} from '../lib';
+import {CodeQuarkus, fetchConfig} from '../lib';
+import {fetchPlatform} from './custom-platform-api';
 import './theme.scss';
 import {CompanyHeader} from './header/company-header';
 
