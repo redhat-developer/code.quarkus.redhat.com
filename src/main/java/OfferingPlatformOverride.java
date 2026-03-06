@@ -1,6 +1,7 @@
 import io.quarkus.code.model.CodeQuarkusExtension;
 import io.quarkus.code.model.Preset;
 import io.quarkus.code.model.ProjectDefinition;
+import io.quarkus.code.model.Stream;
 import io.quarkus.code.service.PlatformOverride;
 import io.quarkus.code.service.PlatformService;
 import jakarta.inject.Inject;
@@ -93,4 +94,20 @@ public class OfferingPlatformOverride implements PlatformOverride {
         }
         return s;
     }
+
+    @Override
+    public Stream.JavaCompatibility javaCompatibilityMapper(String streamKey, Stream.JavaCompatibility javaCompatibility) {
+        switch (config.id()) {
+            case "redhat-camel":
+                if (RedHatCamelConstants.REDHAT_CAMEL_JAVA_OVERRIDES.containsKey(streamKey)) {
+                    return RedHatCamelConstants.REDHAT_CAMEL_JAVA_OVERRIDES.get(streamKey);
+                } else {
+                    return javaCompatibility;
+                }
+            default:
+                return javaCompatibility;
+        }
+
+    }
+
 }
