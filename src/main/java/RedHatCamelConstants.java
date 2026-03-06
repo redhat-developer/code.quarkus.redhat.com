@@ -1,6 +1,11 @@
+import com.google.common.collect.ImmutableSortedSet;
 import io.quarkus.code.model.Preset;
+import io.quarkus.code.model.Stream;
 
 import java.util.List;
+import java.util.Map;
+
+import static io.quarkus.code.model.Stream.*;
 
 public class RedHatCamelConstants {
 
@@ -38,4 +43,9 @@ public class RedHatCamelConstants {
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-tokenizer",
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-tools",
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-web-search")));
+
+
+        static final Map<String, Stream.JavaCompatibility> REDHAT_CAMEL_JAVA_OVERRIDES = Map.of(
+                "com.redhat.quarkus.platform:3.32", new Stream.JavaCompatibility(ImmutableSortedSet.of(17,21),21)
+        );
 }
