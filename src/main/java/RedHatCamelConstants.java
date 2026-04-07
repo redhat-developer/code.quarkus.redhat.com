@@ -44,8 +44,6 @@ public class RedHatCamelConstants {
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-tools",
                             "org.apache.camel.quarkus:camel-quarkus-langchain4j-web-search")));
 
-
-        static final Map<String, Stream.JavaCompatibility> REDHAT_CAMEL_JAVA_OVERRIDES = Map.of(
-                "com.redhat.quarkus.platform:3.32", new Stream.JavaCompatibility(ImmutableSortedSet.of(17,21),21)
-        );
+    static final Map<String, Stream.JavaCompatibility> REDHAT_CAMEL_JAVA_OVERRIDES = Map.of(
+            "com.redhat.quarkus.platform:3.33", new Stream.JavaCompatibility(ImmutableSortedSet.of(17, 21), 21));
 }
