@@ -79,7 +79,20 @@ public class OfferingPlatformOverride implements PlatformOverride {
 
     @Override
     public List<String> extensionTagsMapper(List<String> tags) {
-        return tags.stream().map(this::mapTag).filter(Objects::nonNull).filter(GlobalConstants.TAGS::contains).toList();
+        return switch (config.id()) {
+            case "redhat-camel"-> filterOutStatusWhenSupportTag(tags).stream().map(this::mapTag).filter(Objects::nonNull).filter(GlobalConstants.TAGS::contains).toList();
+            default -> tags.stream().map(this::mapTag).filter(Objects::nonNull).filter(GlobalConstants.TAGS::contains).toList();
+        };
+    }
+
+    private List<String> filterOutStatusWhenSupportTag(List<String> tags){
+        final String tagName = config.supportTag();
+        if (tags.stream().anyMatch(s -> s.startsWith(tagName+":"))) {
+            return tags.stream().filter(s -> !s.startsWith("status:")).toList();
+        } else {
+            return tags;
+        }
+
     }
 
     private String mapTag(String s) {
