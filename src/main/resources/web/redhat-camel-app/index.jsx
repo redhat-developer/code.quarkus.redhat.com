@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-app-polyfill/ie11';
-import {CodeQuarkus, fetchConfig, fetchPlatform} from '../lib';
+import { CodeQuarkus, fetchConfig, fetchPlatform } from '../lib';
 import './theme.scss';
-import {CompanyHeader} from './header/company-header';
+import { CompanyHeader } from './header/company-header';
 
 // Disable QuarkusBlurb popup for redhat-camel variant
 if (typeof localStorage !== 'undefined') {
@@ -12,45 +12,50 @@ if (typeof localStorage !== 'undefined') {
 
 const API_URL = window.API_URL;
 const CLIENT_NAME = window.location.hostname;
-const REQUEST_OPTIONS = {headers: {'Client-Name': CLIENT_NAME}};
+const REQUEST_OPTIONS = { headers: { 'Client-Name': CLIENT_NAME } };
 
 const tagsDef = [
     {
         name: 'support:full-support',
         description: 'Full-support for development and production phases.',
         color: '#0E6027',
-        background: '#A7F0BA'
-
+        background: '#A7F0BA',
+        showFullName: true,
     },
     {
         name: 'support:supported-in-jvm',
         description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine.',
         color: '#0E6027',
-        background: '#D4F4E1'
+        background: '#D4F4E1',
+        showFullName: true
     },
     {
         name: 'support:dev-support',
         description: 'Support and advice for development phase.',
         color: '#704214',
-        background: '#FFDFA6'
+        background: '#FFDFA6',
+        showFullName: true
     },
     {
-       name: 'support:dev-preview',
+        name: 'support:dev-preview',
         href: 'https://access.redhat.com/support/offerings/devpreview',
         color: '#6929C4',
-        background: '#E8DAFF'
+        background: '#E8DAFF',
+        showFullName: true
     },
     {
         name: 'support:tech-preview',
         description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported under Red Hat Subscription Level Agreements.',
         color: '#0043CE',
-        background: '#D0E2FF'
+        background: '#D0E2FF',
+        showFullName: true
     },
     {
         name: 'support:deprecated',
         description: 'This feature is likely to be replaced or removed in a future version of Red Hat build of Quarkus. See release notes on docs.redhat.com for more information.',
         background: '#6a737d',
         color: '#ffffff',
+        showFullName: true
     },
     {
         name: 'status:preview',
@@ -94,6 +99,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
-        <CodeQuarkus api={api} configApi={fetchConfig} platformApi={fetchPlatform} header={CompanyHeader}/>
+        <CodeQuarkus api={api} configApi={fetchConfig} platformApi={fetchPlatform} header={CompanyHeader} />
     </React.StrictMode>
 );
