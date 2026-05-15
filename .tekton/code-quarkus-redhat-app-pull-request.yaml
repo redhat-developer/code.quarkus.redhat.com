@@ -26,6 +26,9 @@ spec:
     value: quay.io/redhat-developer/code-quarkus:on-pr-{{revision}}
   - name: image-expires-after
     value: 5d
+  - name: build-args
+    value:
+    - MAVEN_BUILD_EXTRA_ARGS=-Dgit.commit.id={{revision}}
   - name: dockerfile
     value: docker/Dockerfile.redhat-app.multistage
   - name: path-context
