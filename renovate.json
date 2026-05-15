@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "groupName": "code-quarkus",
+      "matchPackageNames": [
+        "/^io\\.quarkus\\.code/"
+      ]
+    },
+    {
+      "groupName": "quarkiverse",
+      "matchPackageNames": [
+        "/^io\\.quarkiverse/"
+      ]
+    },
+    {
+      "groupName": "mvnpm",
+      "matchPackageNames": [
+        "/^org\\.mvnpm/"
+      ]
+    }
+  ]
+}
