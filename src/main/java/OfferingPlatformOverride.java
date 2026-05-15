@@ -73,6 +73,7 @@ public class OfferingPlatformOverride implements PlatformOverride {
     private List<String> getRepositories() {
         return switch (config.id()) {
             case "ibm" -> IBMConstants.IBM_POM_REPOSITORIES;
+            case "redhat", "redhat-camel" -> RedHatConstants.REDHAT_POM_REPOSITORIES;
             default -> null;
         };
     }
