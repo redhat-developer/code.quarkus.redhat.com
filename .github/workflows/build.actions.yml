@@ -12,15 +12,16 @@ env:
   BOOTSTRAP_MAVEN_REPOS: redhat-ga
   BOOTSTRAP_MAVEN_REPO_REDHAT_GA_URL: https://maven.repository.redhat.com/ga
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-test:
     name: "Build & Test"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: n1hility/cancel-previous-runs@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up JDK 21
         # Uses sha for added security since tags can be updated
         uses: joschi/setup-jdk@1818212fcdf7eea4e09a6eb156c536640bf7b52f
