@@ -14,38 +14,44 @@ const tagsDef = [
         name: 'support:full-support',
         description: 'Full-support for development and production phases.',
         color: '#0E6027',
-        background: '#A7F0BA'
+        background: '#A7F0BA',
+        showFullName: true
 
     },
     {
         name: 'support:supported-in-jvm',
         description: 'Support in JVM, means that this extension is tested and verified for usage in a Java Virtual Machine.',
         color: '#0E6027',
-        background: '#D4F4E1'
+        background: '#D4F4E1',
+        showFullName: true
     },
     {
         name: 'support:dev-support',
         description: 'Support and advice for development phase.',
         color: '#704214',
-        background: '#FFDFA6'
+        background: '#FFDFA6',
+        showFullName: true
     },
     {
-       name: 'support:dev-preview',
+        name: 'support:dev-preview',
         description: 'Developer Preview features are provided to expose features from upstream communities allowing early adopters and integrators to explore and interact with new capabilities in advance of their possible inclusion.',
         color: '#6929C4',
-        background: '#E8DAFF'
+        background: '#E8DAFF',
+        showFullName: true
     },
     {
         name: 'support:tech-preview',
         description: 'Technology Preview features provide early access to upcoming product innovations, enabling you to test functionality and provide feedback during the development process. However, these features are not fully supported.',
         color: '#0043CE',
-        background: '#D0E2FF'
+        background: '#D0E2FF',
+        showFullName: true
     },
     {
         name: 'support:deprecated',
         description: 'This feature is likely to be replaced or removed in a future version of IBM Enterprise Build of Quarkus.',
         background: '#6a737d',
         color: '#ffffff',
+        showFullName: true
     },
     {
         name: 'status:preview',
