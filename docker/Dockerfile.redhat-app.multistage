@@ -2,14 +2,15 @@
 FROM registry.access.redhat.com/ubi8/openjdk-21:1.23-4.1778751353 AS build
 ARG MAVEN_BUILD_EXTRA_ARGS=
 RUN echo "$MAVEN_BUILD_EXTRA_ARGS"
-
+USER root
+RUN microdnf install -y gzip && microdnf clean all
+USER 185
 COPY mvnw pom.xml maven-settings.xml* /usr/src/app/
 COPY .mvn /usr/src/app/.mvn
 RUN cd /usr/src/app/ && ./mvnw verify clean --fail-never
 COPY src /usr/src/app/src
 USER root
 RUN chown -R 185 /usr/src/app
-RUN microdnf install -y gzip && microdnf clean all
 USER 185
 RUN cd /usr/src/app/ && ./mvnw clean install -DskipTests $MAVEN_BUILD_EXTRA_ARGS
 
