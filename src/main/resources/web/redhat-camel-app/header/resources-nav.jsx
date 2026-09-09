@@ -41,7 +41,7 @@ export function ResourcesNav({ extensions, streamKey, analytics }) {
                         rel="noopener noreferrer"
                         onClick={linkTracker}
                     >
-                        Examples
+                        {links.examples.label}
                     </a>
                 </div>
             </div>
