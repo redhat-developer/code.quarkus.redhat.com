@@ -22,6 +22,6 @@ export function buildResourceLinks(camelVersion, streamKey) {
             { label: 'Supported Configuration', url: `https://access.redhat.com/articles/6507531#camel-${configAnchorVersion}-ga` },
             { label: 'Release Schedule', url: 'https://access.redhat.com/articles/7021827' },
         ],
-        examples: { label: 'Camel Quarkus Quickstarts', url: `https://github.com/jboss-fuse/camel-quarkus-examples/tree/${streamId}.x-product` },
+        examples: { label: 'Quickstarts', url: `https://github.com/jboss-fuse/camel-quarkus-examples/tree/${streamId}.x-product` },
     };
 }
